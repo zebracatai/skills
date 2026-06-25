@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "zebracat": {
+      "type": "http",
+      "url": "https://mcp.zebracat.ai/mcp/",
+      "note": "Official Zebracat MCP server. OAuth on first connection — runs against the user's existing Zebracat plan credits. The zebracat-* skills detect this MCP and use it instead of the zebracat CLI or REST API when no ZEBRACAT_API_KEY is set."
+    }
+  }
+}

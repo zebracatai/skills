@@ -1,0 +1,18 @@
+.DS_Store
+*.swp
+*.swo
+node_modules/
+
+# Local learning logs written by the skills at the workspace root
+*.jsonl
+
+# Downloaded video/audio artifacts and temp previews
+*.mp4
+*.mp3
+*.wav
+/tmp/zebracat/
+
+# Local CI / install fixtures
+.agents/
+_ghskill_test/
+_install_test/

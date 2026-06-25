@@ -1,0 +1,47 @@
+{
+  "name": "zebracat",
+  "version": "1.0.0",
+  "description": "Create Zebracat AI videos from an idea, script, blog URL, or audio file — AI Video, Moving AI Images, AI Avatar, Stock Footage, and viral Brainrot. Generate avatars and reusable characters, clone voices, and translate finished videos into 170+ languages.",
+  "author": {
+    "name": "Zebracat",
+    "email": "support@zebracat.ai",
+    "url": "https://zebracat.ai"
+  },
+  "homepage": "https://zebracat.ai",
+  "repository": "https://github.com/zebracatai/skills",
+  "license": "MIT",
+  "keywords": [
+    "zebracat",
+    "video",
+    "ai-video",
+    "video-generation",
+    "text-to-video",
+    "avatar",
+    "ai-avatar",
+    "voice-clone",
+    "brainrot",
+    "moving-ai-images",
+    "stock-footage",
+    "translate",
+    "dub",
+    "localization"
+  ],
+  "skills": "./",
+  "interface": {
+    "displayName": "Zebracat",
+    "shortDescription": "AI videos, avatars, voice cloning, brainrot, and translation",
+    "longDescription": "Zebracat Skills turn an idea, script, blog post, or audio file into a finished video — AI Video (cinematic AI footage), Moving AI Images, AI Avatar presenters, Stock Footage, and viral Brainrot. Use zebracat-video as the producer (intent discovery, script, voice, visuals, render, deliver), zebracat-avatar to design reusable presenters and characters, zebracat-voice to browse or clone voices, zebracat-brainrot for subway-surfers / minecraft-parkour / italian-brainrot short-form, and zebracat-translate to dub finished videos into 170+ languages with captions.",
+    "developerName": "Zebracat",
+    "category": "Design",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://zebracat.ai",
+    "defaultPrompt": [
+      "Make a 30-second video about my product launch",
+      "Turn this blog post into a video: https://example.com/post",
+      "Create an AI avatar presenter and record an intro video",
+      "Translate this video into Spanish, German, and Japanese"
+    ],
+    "brandColor": "#7c3aed",
+    "logo": "./assets/logo.png"
+  }
+}

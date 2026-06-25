@@ -1,0 +1,27 @@
+{
+  "name": "zebracat",
+  "version": "1.0.0",
+  "description": "Create Zebracat AI videos from an idea, script, blog URL, or audio file — AI Video, Moving AI Images, AI Avatar, Stock Footage, and viral Brainrot. Generate avatars and reusable characters, clone voices, and translate finished videos into 170+ languages.",
+  "author": {
+    "name": "Zebracat",
+    "url": "https://zebracat.ai"
+  },
+  "repository": "https://github.com/zebracatai/skills",
+  "license": "MIT",
+  "keywords": [
+    "zebracat",
+    "video",
+    "ai-video",
+    "video-generation",
+    "text-to-video",
+    "avatar",
+    "ai-avatar",
+    "voice-clone",
+    "brainrot",
+    "moving-ai-images",
+    "stock-footage",
+    "translate",
+    "dub",
+    "localization"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "zebracat",
+  "owner": {
+    "name": "Zebracat",
+    "url": "https://zebracat.ai"
+  },
+  "plugins": [
+    {
+      "name": "zebracat",
+      "source": "./",
+      "description": "Zebracat skills for AI video generation, avatars and characters, voice cloning, viral brainrot, and video translation. Invoke as /zebracat:video, /zebracat:avatar, /zebracat:translate, /zebracat:brainrot, or /zebracat:voice.",
+      "version": "1.0.0",
+      "skills": [
+        {
+          "name": "video",
+          "path": "zebracat-video",
+          "invoke": "/zebracat:video"
+        },
+        {
+          "name": "avatar",
+          "path": "zebracat-avatar",
+          "invoke": "/zebracat:avatar"
+        },
+        {
+          "name": "translate",
+          "path": "zebracat-translate",
+          "invoke": "/zebracat:translate"
+        },
+        {
+          "name": "brainrot",
+          "path": "zebracat-brainrot",
+          "invoke": "/zebracat:brainrot"
+        },
+        {
+          "name": "voice",
+          "path": "zebracat-voice",
+          "invoke": "/zebracat:voice"
+        }
+      ]
+    }
+  ]
+}

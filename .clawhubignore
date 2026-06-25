@@ -1,0 +1,3 @@
+# Exclude developer tooling from the published skill bundle
+evals/
+scripts/release.sh
