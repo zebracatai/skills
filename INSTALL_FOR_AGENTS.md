@@ -13,14 +13,26 @@ If you fetched this file by URL without cloning yet, the companion files live at
 - `https://raw.githubusercontent.com/zebracatai/skills/main/CLAUDE.md` — runtime contract
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-video/SKILL.md` — flagship producer
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-avatar/SKILL.md` — avatar / character designer
-- `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-translate/SKILL.md` — translation / dubbing
-- `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-brainrot/SKILL.md` — viral short-form
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-voice/SKILL.md` — voice browse / clone
+- `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-brand/SKILL.md` — brand kit
+- `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-script/SKILL.md` — voice-over script writer
+- `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-image/SKILL.md` — standalone AI images
+- `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-brainrot/SKILL.md` — viral short-form
+- `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-translate/SKILL.md` — translation / dubbing
 - `https://raw.githubusercontent.com/zebracatai/skills/main/INSTALL.md` — human-facing install doc
 
-## Step 1: Detect the agent host and pick the install path
+## Step 1: Install the skills
 
-Each host expects skills at a different path. If unsure, ask the user "which AI coding agent are you running this from?"
+**Preferred — `npx skills` (auto-detects the agent):**
+
+```bash
+npx skills add zebracatai/skills                 # all eight skills
+npx skills add zebracatai/skills --skill zebracat-video   # just one
+```
+
+Force a specific agent with `-a` (`claude-code`, `openclaw`, `cursor`, `codex`) and install at user scope with `-g`. For OpenClaw specifically, `npx skills add zebracatai/skills -a openclaw` or ClawHub (`clawhub install zebracat-skills`) also works.
+
+**Manual clone (if `npx` isn't available).** Each host expects skills at a different path. If unsure, ask the user "which AI coding agent are you running this from?"
 
 | Agent host  | Default install path                       |
 |-------------|--------------------------------------------|
@@ -37,7 +49,7 @@ git clone --single-branch --depth 1 \
   <install-path>
 ```
 
-The fastest cross-agent install is `gh skill install` (per-skill), and for OpenClaw it's ClawHub (`clawhub install zebracat-skills`) — either short-circuits the manual clone. After install, jump to Step 2.
+`gh skill install zebracatai/skills <skill>` (per-skill) is another cross-agent option. After install, jump to Step 2.
 
 ## Step 2: Pick a transport (the ladder)
 
@@ -71,7 +83,15 @@ We cannot configure this from inside the skill — the user wires the MCP server
 
 ### Option B — `zebracat` CLI
 
-Install the CLI (per Zebracat's CLI docs / your package channel), then either:
+Install the CLI:
+
+```bash
+npm install -g @zebracat/cli
+# or:
+curl -fsSL https://raw.githubusercontent.com/zebracatai/zebracat-cli/main/install.sh | bash
+```
+
+Then authenticate — either:
 
 ```bash
 zebracat auth login                 # OAuth, account credit
@@ -156,11 +176,11 @@ The skills handle intent discovery, scripting, style + voice selection, generati
 
 ## Upgrade
 
-```bash
-cd <install-path> && git pull origin main
-```
+- Installed via `npx skills`: re-run `npx skills add zebracatai/skills` to pull the latest.
+- Installed via git clone: `cd <install-path> && git pull origin main`.
+- Installed via ClawHub: `clawhub update zebracat-skills`.
 
-If installed via ClawHub: `clawhub update zebracat-skills`. Re-read the active skill's `SKILL.md` after an upgrade if the version bumped — the transport ladder occasionally gains new options.
+Re-read the active skill's `SKILL.md` after an upgrade if the version bumped — the transport ladder occasionally gains new options.
 
 ## Troubleshooting
 

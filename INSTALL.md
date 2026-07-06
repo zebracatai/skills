@@ -1,38 +1,64 @@
 # Install Zebracat Skills
 
-The repo ships *five* skills you can install:
+The repo ships *eight* skills you can install:
 
 - **`zebracat-video`** — the flagship producer: idea / script / blog / audio → finished video
 - **`zebracat-avatar`** — choose or customize a presenter, build reusable characters
-- **`zebracat-translate`** — dub existing videos into 170+ languages with captions
-- **`zebracat-brainrot`** — viral short-form (subway-surfers / minecraft-parkour / italian-brainrot)
 - **`zebracat-voice`** — browse, preview, and clone voices; pick a tone
+- **`zebracat-brand`** — set up and reuse a brand kit (name, logo, colors, fonts, tone)
+- **`zebracat-script`** — write and refine a voice-over script (synchronous, no render credits)
+- **`zebracat-image`** — generate standalone AI images (thumbnails, hero shots, 9:16 / 16:9 / 1:1)
+- **`zebracat-brainrot`** — viral short-form (subway-surfers / minecraft-parkour / italian-brainrot)
+- **`zebracat-translate`** — dub existing videos into 170+ languages with captions
 
-Most people start with `zebracat-video`. The others chain into it: `zebracat-avatar` and `zebracat-voice` produce a presenter and a `voice_id` that `zebracat-video` consumes; `zebracat-translate` localizes finished videos; `zebracat-brainrot` is a fast lane for viral shorts.
+Most people start with `zebracat-video`. The others chain into it: `zebracat-avatar` and `zebracat-voice` produce a presenter and a `voice_id` that `zebracat-video` consumes; `zebracat-brand` supplies a reusable brand kit; `zebracat-script` drafts the words before you render; `zebracat-image` makes standalone stills; `zebracat-translate` localizes finished videos; `zebracat-brainrot` is a fast lane for viral shorts.
 
-## Option 1 — `gh skill install` (works across 12+ agents)
+## Option 1 — `npx skills` (easiest)
 
-With [GitHub CLI](https://cli.github.com) v2.90+, this is the most portable install. `gh skill` writes to the right directory for your agent automatically (Claude Code, Cursor, Codex, Gemini CLI, GitHub Copilot, and more):
+The [Vercel Labs `skills` CLI](https://github.com/vercel-labs/skills) installs directly from GitHub — no clone, no local config. It detects your agent and writes to the right directory.
+
+All eight skills:
+```bash
+npx skills add zebracatai/skills
+```
+
+A single skill:
+```bash
+npx skills add zebracatai/skills --skill zebracat-video
+```
+
+Target a specific agent with `-a` (`claude-code`, `openclaw`, …), or install globally (user scope, every project) with `-g`:
+```bash
+npx skills add zebracatai/skills -a openclaw
+npx skills add zebracatai/skills -g
+```
+
+## Option 2 — `gh skill install` (works across 12+ agents)
+
+With [GitHub CLI](https://cli.github.com) v2.90+, this is a portable install. `gh skill` writes to the right directory for your agent automatically (Claude Code, Cursor, Codex, Gemini CLI, GitHub Copilot, and more):
 
 ```bash
 gh skill install zebracatai/skills zebracat-video
 gh skill install zebracatai/skills zebracat-avatar
-gh skill install zebracatai/skills zebracat-translate
-gh skill install zebracatai/skills zebracat-brainrot
 gh skill install zebracatai/skills zebracat-voice
+gh skill install zebracatai/skills zebracat-brand
+gh skill install zebracatai/skills zebracat-script
+gh skill install zebracatai/skills zebracat-image
+gh skill install zebracatai/skills zebracat-brainrot
+gh skill install zebracatai/skills zebracat-translate
 ```
 
-Project scope (current repo only) is the default. For user scope (every project on this machine), add `--scope user`. Pin to a release tag for reproducibility, e.g. `zebracat-video@v1.0.0 --pin`.
+Project scope (current repo only) is the default. For user scope (every project on this machine), add `--scope user`. Pin to a release tag for reproducibility, e.g. `zebracat-video@v1.1.0 --pin`.
 
-## Option 2 — ClawHub
+## Option 3 — ClawHub (OpenClaw marketplace)
 
 ```bash
 clawhub install zebracat-skills
 ```
 
-Installs all five skills to your agent's default skills directory automatically.
+Installs all eight skills to your agent's default skills directory automatically.
 
-## Option 3 — Git clone
+## Option 4 — Git clone
 
 Clone into your agent's skills directory:
 
@@ -95,10 +121,10 @@ export ZEBRACAT_API_KEY=sk-your-key-here
 
 Ephemeral (current shell only). To persist, add the `export` line to your shell profile (`~/.zshrc`, `~/.bashrc`, or equivalent). If `ZEBRACAT_API_KEY` is set, the skills use the CLI (or REST). This is the most predictable setup for agent workflows.
 
-The `zebracat` CLI pattern is `zebracat <noun> <verb>`; output is JSON on stdout (`--human` for tables). Verify with `zebracat auth status`.
+Install the `zebracat` CLI with `npm install -g @zebracat/cli` (or `curl -fsSL https://raw.githubusercontent.com/zebracatai/zebracat-cli/main/install.sh | bash`). The CLI pattern is `zebracat <noun> <verb>`; output is JSON on stdout (`--human` for tables). Verify with `zebracat auth status`.
 
 ## First Run
 
 Paste this to your agent — it finds the right paths automatically:
 
-> Install the Zebracat Skills from https://github.com/zebracatai/skills.git — clone into your skills directory (find it with your config, or ask if unsure). Then connect the Zebracat MCP server at https://mcp.zebracat.ai/mcp/, or if you have a Zebracat API key, `export ZEBRACAT_API_KEY=sk-…`. Then use zebracat-video to make a 30-second vertical video about [topic] — ask me anything first.
+> Install the Zebracat Skills: run `npx skills add zebracatai/skills` (or clone https://github.com/zebracatai/skills.git into your skills directory — find it with your config, or ask if unsure). Then connect the Zebracat MCP server at https://mcp.zebracat.ai/mcp/, or if you have a Zebracat API key, `export ZEBRACAT_API_KEY=sk-…`. Then use zebracat-video to make a 30-second vertical video about [topic] — ask me anything first.

@@ -5,6 +5,25 @@ All notable changes to the Zebracat Skills are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-07-06
+
+Distribution and docs release — new install channels, concrete CLI install, and a content polish. No API surface changed.
+
+### Added
+
+- **Three new skills** — `zebracat-brand` (set up and reuse a brand kit: name, logo, colors, fonts, tone), `zebracat-script` (write and refine a voice-over script synchronously, no render credits), and `zebracat-image` (generate standalone AI images — thumbnails, hero shots, reference frames). This takes the suite from 5 to 8 skills; all three chain into `zebracat-video`. Each ships its own `references/` (`brand-kit.md`, `script-craft.md`, `image-styles.md`) and is wired into the install docs and plugin manifests.
+- **`npx skills` install** — one-command setup via the Vercel Labs `skills` CLI, now the headline install path in `README.md`, `INSTALL.md`, and `INSTALL_FOR_AGENTS.md`: `npx skills add zebracatai/skills` (all skills), `--skill <name>` (one skill), `-a <agent>` to target a host (e.g. `openclaw`), `-g` for user scope.
+- **`@zebracat/cli` on npm** — the `zebracat` CLI now installs with `npm install -g @zebracat/cli` (the curl install script is kept as a fallback), replacing the previous "install per your package channel" placeholders across the install docs and the transport-ladder fallback message. Verify with `zebracat auth status`.
+- **First-class OpenClaw support** — OpenClaw is listed alongside Claude Code / Cursor / Codex everywhere, with its `~/.openclaw/skills/` path and install commands (`npx skills add zebracatai/skills -a openclaw`, `clawhub install zebracat-skills`, or git clone).
+- **Browse-all-skills link** — `https://mcp.zebracat.ai/skills` added to the README.
+
+### Changed
+
+- Content polish across the original five `SKILL.md` files and their `references/` — tightened wording and fixed clarity issues (e.g. the language-validation note and a stale troubleshooting pointer in zebracat-translate). No API tools, endpoints, or parameters changed.
+- Bumped `VERSION` and each `SKILL.md` frontmatter to `1.1.0`.
+
+[1.1.0]: https://github.com/zebracatai/skills/releases/tag/v1.1.0
+
 ## [1.0.0] - 2026-06-25
 
 Initial release.

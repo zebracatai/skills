@@ -2,8 +2,8 @@
   "$schema": "https://cursor.com/schemas/cursor-plugin/plugin.json",
   "name": "zebracat",
   "displayName": "Zebracat",
-  "version": "1.0.0",
-  "description": "Create Zebracat AI videos from an idea, script, blog URL, or audio file — AI Video, Moving AI Images, AI Avatar, Stock Footage, and viral Brainrot. Generate avatars and reusable characters, clone voices, and translate finished videos into 170+ languages.",
+  "version": "1.1.0",
+  "description": "Create Zebracat AI videos from an idea, script, blog URL, or audio file — AI Video, Moving AI Images, AI Avatar, Stock Footage, and viral Brainrot. Generate avatars and reusable characters, clone voices, set up brand kits, draft voice-over scripts, generate standalone AI images, and translate finished videos into 170+ languages.",
   "author": {
     "name": "Zebracat",
     "email": "support@zebracat.ai"
@@ -27,14 +27,20 @@
     "stock-footage",
     "translate",
     "dub",
-    "localization"
+    "localization",
+    "brand-kit",
+    "script-generator",
+    "ai-image"
   ],
-  "tags": ["video", "ai", "avatar", "voice", "brainrot", "creative", "translation", "localization"],
+  "tags": ["video", "ai", "avatar", "voice", "brand", "script", "image", "brainrot", "creative", "translation", "localization"],
   "skills": [
     "./zebracat-video/",
     "./zebracat-avatar/",
-    "./zebracat-translate/",
+    "./zebracat-voice/",
+    "./zebracat-brand/",
+    "./zebracat-script/",
+    "./zebracat-image/",
     "./zebracat-brainrot/",
-    "./zebracat-voice/"
+    "./zebracat-translate/"
   ]
 }

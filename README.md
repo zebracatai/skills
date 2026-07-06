@@ -24,49 +24,79 @@ That's it. The agent fetches [INSTALL_FOR_AGENTS.md](./INSTALL_FOR_AGENTS.md) an
 
 Want to install manually instead? Pick the path that matches your tooling.
 
-### Option A — `gh skill install` (works across 12+ agents)
+### Option A — `npx skills` (easiest, no clone)
+
+The [Vercel Labs `skills` CLI](https://github.com/vercel-labs/skills) installs straight from GitHub — no clone, no config. All eight skills:
+
+```bash
+npx skills add zebracatai/skills
+```
+
+Just one skill:
+
+```bash
+npx skills add zebracatai/skills --skill zebracat-video
+```
+
+Target a specific agent with `-a` (e.g. `claude-code`, `openclaw`), or install globally (user scope, every project) with `-g`:
+
+```bash
+npx skills add zebracatai/skills -a openclaw     # install for OpenClaw
+npx skills add zebracatai/skills -g              # user scope, every project
+```
+
+### Option B — `gh skill install` (works across 12+ agents)
 
 Requires [GitHub CLI](https://cli.github.com) v2.90+. Writes to the right directory for your agent automatically (Claude Code, Cursor, Codex, Gemini CLI, Copilot, and more — [agentskills.io](https://agentskills.io)):
 
 ```bash
 gh skill install zebracatai/skills zebracat-video
 gh skill install zebracatai/skills zebracat-avatar
-gh skill install zebracatai/skills zebracat-translate
-gh skill install zebracatai/skills zebracat-brainrot
 gh skill install zebracatai/skills zebracat-voice
+gh skill install zebracatai/skills zebracat-brand
+gh skill install zebracatai/skills zebracat-script
+gh skill install zebracatai/skills zebracat-image
+gh skill install zebracatai/skills zebracat-brainrot
+gh skill install zebracatai/skills zebracat-translate
 ```
 
-### Option B — ClawHub
+### Option C — ClawHub (OpenClaw marketplace)
 
 ```bash
 clawhub install zebracat-skills
 ```
 
-Installs all five skills to your agent's default skills directory.
+Installs all eight skills to your agent's default skills directory.
 
-### Option C — Git clone
+### Option D — Git clone
 
-Clone into your agent's skills directory (Claude Code default shown):
+Clone into your agent's skills directory:
 
 ```bash
+# Claude Code
 git clone https://github.com/zebracatai/skills.git ~/.claude/skills/zebracat-skills
+# OpenClaw
+git clone https://github.com/zebracatai/skills.git ~/.openclaw/skills/zebracat-skills
 ```
 
-After cloning, the five skills are auto-discovered at `zebracat-video/SKILL.md`, `zebracat-avatar/SKILL.md`, `zebracat-translate/SKILL.md`, `zebracat-brainrot/SKILL.md`, and `zebracat-voice/SKILL.md`.
+After cloning, all eight skills are auto-discovered at `zebracat-video/SKILL.md`, `zebracat-avatar/SKILL.md`, `zebracat-voice/SKILL.md`, `zebracat-brand/SKILL.md`, `zebracat-script/SKILL.md`, `zebracat-image/SKILL.md`, `zebracat-brainrot/SKILL.md`, and `zebracat-translate/SKILL.md`.
 
 > Not sure where your skills directory is? Ask your agent: *"Where is your skills directory?"*
 
 ## What's Included
 
-Five skills that work standalone or chain together:
+Eight skills that work standalone or chain together:
 
 | Skill | What it does | Invoke |
 |-------|--------------|--------|
 | **zebracat-video** | Idea / script / blog URL / audio → finished video. The flagship producer. | `/zebracat:video` |
 | **zebracat-avatar** | Choose or customize a presenter, build reusable characters → `AVATAR-<NAME>.md`. | `/zebracat:avatar` |
-| **zebracat-translate** | Existing video → dubbed + captioned version in 170+ languages. | `/zebracat:translate` |
-| **zebracat-brainrot** | Viral short-form: subway-surfers / minecraft-parkour / italian-brainrot / general. | `/zebracat:brainrot` |
 | **zebracat-voice** | Browse, preview, and clone voices; pick a tone → `voice_id`. | `/zebracat:voice` |
+| **zebracat-brand** | Set up and reuse a brand kit — name, logo, colors, fonts, tone. | `/zebracat:brand` |
+| **zebracat-script** | Write and refine a voice-over script (synchronous, no render credits). | `/zebracat:script` |
+| **zebracat-image** | Generate standalone AI images — thumbnails, hero shots, 9:16 / 16:9 / 1:1. | `/zebracat:image` |
+| **zebracat-brainrot** | Viral short-form: subway-surfers / minecraft-parkour / italian-brainrot / general. | `/zebracat:brainrot` |
+| **zebracat-translate** | Existing video → dubbed + captioned version in 170+ languages. | `/zebracat:translate` |
 
 ## How It Works
 
@@ -93,6 +123,7 @@ The skills auto-detect a transport. Detailed ladder in [CLAUDE.md](./CLAUDE.md).
 
 - **MCP (zero-setup if on a plan):** connect `https://mcp.zebracat.ai/mcp/` to your agent. First call triggers OAuth in your browser.
 - **API key (pay-as-you-go):** get a key from your Zebracat account, then `export ZEBRACAT_API_KEY=sk-…`.
+- **CLI (`zebracat`):** `npm install -g @zebracat/cli` (or `curl -fsSL https://raw.githubusercontent.com/zebracatai/zebracat-cli/main/install.sh | bash`), then `zebracat auth login` or `export ZEBRACAT_API_KEY=sk-…`. Verify with `zebracat auth status`.
 
 ## Things to Try
 
@@ -123,6 +154,7 @@ Data only leaves your machine through MCP / the `zebracat` CLI / the REST API (v
 
 - [Zebracat](https://zebracat.ai)
 - [Repository](https://github.com/zebracatai/skills)
+- [Browse all skills](https://mcp.zebracat.ai/skills)
 - [Installation guide](INSTALL.md) · [For agents](INSTALL_FOR_AGENTS.md)
 - [Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md)
 

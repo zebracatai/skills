@@ -2,15 +2,18 @@
 
 ## What This Is
 
-The Zebracat Skills. Five independent, self-contained skills for AI video generation:
+The Zebracat Skills. Eight independent, self-contained skills for AI video generation:
 
 - **zebracat-video** — idea / script / blog URL / audio → finished video. The flagship producer. Consumes avatars and characters from zebracat-avatar and voices from zebracat-voice.
 - **zebracat-avatar** — design a reusable AI avatar presenter or named character. Output (an `AVATAR-<NAME>.md` state file) is reused by zebracat-video.
-- **zebracat-translate** — existing video → dubbed video in another language with captions. Independent of the others.
-- **zebracat-brainrot** — viral short-form (subway-surfers / minecraft-parkour / italian-brainrot / general). A specialized fast lane over zebracat-video.
 - **zebracat-voice** — browse, preview, and clone voices; pick a tone. Output (a `voice_id`) is reused by zebracat-video and zebracat-avatar.
+- **zebracat-brand** — set up and manage a reusable brand kit (name, logo, colors, fonts, tone). Reused by zebracat-video so videos come out on-brand.
+- **zebracat-script** — write and refine a voice-over script synchronously (no render credits). Hands the approved script to zebracat-video.
+- **zebracat-image** — generate standalone AI images (thumbnails, hero shots, reference frames) in 9:16 / 16:9 / 1:1. Returns image URLs.
+- **zebracat-brainrot** — viral short-form (subway-surfers / minecraft-parkour / italian-brainrot / general). A specialized fast lane over zebracat-video.
+- **zebracat-translate** — existing video → dubbed video in another language with captions. Independent of the others.
 
-Each skill ships its own bundle of references so it installs cleanly via `gh skill install`, ClawHub, a plugin manifest, or direct git clone.
+Each skill ships its own bundle of references so it installs cleanly via `npx skills`, `gh skill install`, ClawHub, a plugin manifest, or direct git clone.
 
 ## Architecture
 
@@ -42,22 +45,34 @@ zebracat-skills/
 │   └── references/
 │       ├── avatar-selection.md
 │       └── troubleshooting.md
-├── zebracat-translate/         # Dubbing / localization
+├── zebracat-voice/             # Voice browse + clone
 │   ├── SKILL.md
 │   └── references/
-│       └── languages.md
+│       ├── voice-cloning.md
+│       └── tones.md
+├── zebracat-brand/             # Brand kit (logo, colors, fonts, tone)
+│   ├── SKILL.md
+│   └── references/
+│       └── brand-kit.md
+├── zebracat-script/            # Voice-over script writer
+│   ├── SKILL.md
+│   └── references/
+│       └── script-craft.md
+├── zebracat-image/             # Standalone AI image generation
+│   ├── SKILL.md
+│   └── references/
+│       └── image-styles.md
 ├── zebracat-brainrot/          # Viral short-form
 │   ├── SKILL.md
 │   └── references/
 │       └── formats.md
-└── zebracat-voice/             # Voice browse + clone
+└── zebracat-translate/         # Dubbing / localization
     ├── SKILL.md
     └── references/
-        ├── voice-cloning.md
-        └── tones.md
+        └── languages.md
 ```
 
-*No root SKILL.md, no root references/.* The five skills are independent. If shared docs drift between them, that's acceptable — each skill is internally consistent and authored independently.
+*No root SKILL.md, no root references/.* The eight skills are independent. If shared docs drift between them, that's acceptable — each skill is internally consistent and authored independently.
 
 ## The 300-Line Rule
 
@@ -115,7 +130,7 @@ Detection order, in full:
 2. **REST (API key)** — `ZEBRACAT_API_KEY` is set AND no CLI → direct REST with `X-API-KEY`.
 3. **MCP (OAuth)** — no `ZEBRACAT_API_KEY` AND `mcp__zebracat__*` tools visible → MCP, plan credits. **This is the preferred end-user path.**
 4. **CLI (OAuth)** — no `ZEBRACAT_API_KEY` AND no MCP AND `zebracat` CLI works → CLI via `zebracat auth login`, account credit.
-5. **Neither** — tell the user once: *"To use this skill, connect the Zebracat MCP server (`https://mcp.zebracat.ai/mcp/`) or install the Zebracat CLI, then run `zebracat auth login`."*
+5. **Neither** — tell the user once: *"To use this skill, connect the Zebracat MCP server (`https://mcp.zebracat.ai/mcp/`) or install the Zebracat CLI (`npm install -g @zebracat/cli`), then run `zebracat auth login`."*
 
 **Never cross transports mid-session.** Read only the column for your detected transport in each SKILL.md's operation blocks. If something isn't exposed in your transport, tell the user — don't silently switch.
 

@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.1.0
 name: zebracat-avatar
 description: |
   Choose or customize a Zebracat AI avatar presenter, or build a reusable named character,

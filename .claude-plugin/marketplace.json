@@ -8,8 +8,8 @@
     {
       "name": "zebracat",
       "source": "./",
-      "description": "Zebracat skills for AI video generation, avatars and characters, voice cloning, viral brainrot, and video translation. Invoke as /zebracat:video, /zebracat:avatar, /zebracat:translate, /zebracat:brainrot, or /zebracat:voice.",
-      "version": "1.0.0",
+      "description": "Zebracat skills for AI video generation, avatars and characters, voice cloning, brand kits, voice-over scripts, standalone AI images, viral brainrot, and video translation. Invoke as /zebracat:video, /zebracat:avatar, /zebracat:voice, /zebracat:brand, /zebracat:script, /zebracat:image, /zebracat:brainrot, or /zebracat:translate.",
+      "version": "1.1.0",
       "skills": [
         {
           "name": "video",
@@ -22,9 +22,24 @@
           "invoke": "/zebracat:avatar"
         },
         {
-          "name": "translate",
-          "path": "zebracat-translate",
-          "invoke": "/zebracat:translate"
+          "name": "voice",
+          "path": "zebracat-voice",
+          "invoke": "/zebracat:voice"
+        },
+        {
+          "name": "brand",
+          "path": "zebracat-brand",
+          "invoke": "/zebracat:brand"
+        },
+        {
+          "name": "script",
+          "path": "zebracat-script",
+          "invoke": "/zebracat:script"
+        },
+        {
+          "name": "image",
+          "path": "zebracat-image",
+          "invoke": "/zebracat:image"
         },
         {
           "name": "brainrot",
@@ -32,9 +47,9 @@
           "invoke": "/zebracat:brainrot"
         },
         {
-          "name": "voice",
-          "path": "zebracat-voice",
-          "invoke": "/zebracat:voice"
+          "name": "translate",
+          "path": "zebracat-translate",
+          "invoke": "/zebracat:translate"
         }
       ]
     }

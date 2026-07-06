@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.1.0
 name: zebracat-translate
 description: |
   Translate and dub an existing video into another language with optional captions, powered
@@ -88,7 +88,7 @@ Ask only what you don't already have. One or two questions per turn.
 
 ### Phase 2 — Pre-flight (silent)
 
-- **Validate the language** against the supported list: `list_languages()` (MCP) / `zebracat video translate --to <lang>` validates on submit; pre-check with `zebracat style list`-style listing where available. Map loose input to a canonical name ("Spanish" → "Spanish (Spain)", "Chinese" → "Chinese (Mandarin, Simplified)"). If no match, ask the user to pick the closest.
+- **Validate the language** against the supported list: `list_languages()` (MCP); the CLI validates on submit (`zebracat video translate --to <lang>`). Map loose input to a canonical name ("Spanish" → "Spanish (Spain)", "Chinese" → "Chinese (Mandarin, Simplified)"). If no match, ask the user to pick the closest.
 - **Check the source is reachable.** A public HTTPS URL returning a video works directly. Auth-walled / 403 / 404 / HTML → ask for a public URL.
 - **Regional variants matter.** If the user says "Spanish" without a region and the audience is unclear, confirm Spain vs Latin America once.
 
@@ -120,7 +120,7 @@ One message per completed language:
 
 > ✅ Spanish (Spain) — <video_url> · captions on
 
-Append a line to `zebracat-video-log.jsonl` per finished translation (`video_type:"translation"`, `topic:"<source> → <lang>"`). If a language fails, give one short line with the cause (see references/troubleshooting in the source skill) and move on.
+Append a line to `zebracat-video-log.jsonl` per finished translation (`video_type:"translation"`, `topic:"<source> → <lang>"`). If a language fails, give one short line with the likely cause (unreachable source URL, unsupported language, or insufficient credits) and move on.
 
 ## Source Quality
 
