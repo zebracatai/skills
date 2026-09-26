@@ -90,7 +90,7 @@ Clone the user's own voice from a sample.
 1. **Consent + sample.** Ask the user to provide a clean recording of **their own** voice and confirm they have the right to use it. A good sample is 30–60s, clear, single speaker, minimal background noise.
 2. **Submit the clone:**
 
-**MCP:** the voice-clone tool (provide the sample audio per your transport's input format).
+**MCP:** there is no clone tool. Send the user to https://studio.zebracat.ai (Voice Cloning); once it is done, `list_cloned_voices()` returns the new `voice_id`.
 **CLI:** `zebracat voice clone` — pass the sample file; follow `zebracat voice clone --help` for the exact flags.
 
 3. **Confirm + preview** the cloned voice, then treat it like any other `voice_id`.

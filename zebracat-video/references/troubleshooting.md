@@ -42,7 +42,7 @@ Account-credit auth instead of a key: `-H "Authorization: Bearer <oauth-token>"`
 
 ## Polling & stuck jobs
 
-Status flow: `queued` → `processing` → `rendering` → `completed` | `failed`.
+Status flow: `pending` → `processing` → `rendering` → `completed` | `failed`.
 
 Cadence when not using `--wait`:
 

@@ -76,7 +76,7 @@ zebracat-skills/
 
 ## The 300-Line Rule
 
-Each SKILL.md must stay under ~300 lines. Skill files are injected into EVERY prompt turn.
+Each SKILL.md must stay under ~300 lines. A skill's description rides in every session, and its whole SKILL.md body is loaded each time the skill triggers.
 
 **What stays in SKILL.md:**
 - Frontmatter (name, description, triggers, env requirements)
@@ -108,7 +108,7 @@ If `mcp__zebracat__*` tools are available in the toolset, use them. OAuth on fir
 
 ### 2. CLI — the `zebracat` binary
 
-If the `zebracat` binary is installed (`zebracat auth status` exits 0), use it. Auth is either OAuth login (`zebracat auth login`, account credit) or the `ZEBRACAT_API_KEY` env var (pay-as-you-go).
+If the `zebracat` binary is installed (`zebracat auth status` exits 0), use it. Auth is an API key either way, billed pay-as-you-go from the API balance: the `ZEBRACAT_API_KEY` env var, or a key stored by `zebracat auth login`.
 
 - Pattern: `zebracat <noun> <verb>` — e.g. `zebracat video create`, `zebracat voice list`.
 - Output: JSON on stdout (add `--human` for tables). Add `--wait` on creation commands to block until completion.
@@ -129,7 +129,7 @@ Detection order, in full:
 1. **CLI (API key)** — `ZEBRACAT_API_KEY` is set AND `zebracat` CLI works → CLI with the key (pay-as-you-go). The API key is an explicit signal the user wants direct/billed access; it short-circuits MCP.
 2. **REST (API key)** — `ZEBRACAT_API_KEY` is set AND no CLI → direct REST with `X-API-KEY`.
 3. **MCP (OAuth)** — no `ZEBRACAT_API_KEY` AND `mcp__zebracat__*` tools visible → MCP, plan credits. **This is the preferred end-user path.**
-4. **CLI (OAuth)** — no `ZEBRACAT_API_KEY` AND no MCP AND `zebracat` CLI works → CLI via `zebracat auth login`, account credit.
+4. **CLI (stored key)** — no `ZEBRACAT_API_KEY` AND no MCP AND `zebracat` CLI works → CLI with the key saved by `zebracat auth login`, pay-as-you-go.
 5. **Neither** — tell the user once: *"To use this skill, connect the Zebracat MCP server (`https://mcp.zebracat.ai/mcp/`) or install the Zebracat CLI (`npm install -g @zebracat/cli`), then run `zebracat auth login`."*
 
 **Never cross transports mid-session.** Read only the column for your detected transport in each SKILL.md's operation blocks. If something isn't exposed in your transport, tell the user — don't silently switch.
