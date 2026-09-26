@@ -27,7 +27,7 @@ A phone voice-memo in a quiet room usually works. A noisy café recording usuall
 
 ## Submitting the clone
 
-**MCP:** use the voice-clone tool, providing the sample audio in the input format your transport expects (URL, asset, or inline).
+**MCP:** there is no clone tool. The user clones at https://studio.zebracat.ai (Voice Cloning); `list_cloned_voices()` then returns the cloned `voice_id`, which works as `voice_id` everywhere.
 
 **CLI:**
 ```bash

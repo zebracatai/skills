@@ -102,6 +102,8 @@ Match the user's input to an entry method (and a starting phase):
 | Gives an audio/podcast URL | **audio** | `create_video_from_audio` / `--from audio` |
 | "Just pick everything / surprise me" | **agentic** | `create_agentic_video` / `--from agentic` |
 
+In MCP mode `create_agentic_video` generates only when called with `confirmed=true`; without it, it returns the proposed plan (status `awaiting_confirmation`) to show the user. `plan_video(idea=…)` returns the options and recommended defaults for free — use it to build the plan the user approves.
+
 **Agentic is the lowest-friction path** — Zebracat's planner picks `video_type`, style, voice, and duration. Use it when the user has no strong preferences or says "just make it."
 
 ## First Look — Avatar Check (first video request only)
@@ -175,17 +177,16 @@ Show word count + estimated duration. Voice-over = spoken words only — strip s
 ```
 create_video_from_idea(
   idea="<idea or approved script topic>",
-  video_type="ai_video",
+  footage_type="ai_animation",    # ai_animation = AI Video · ai_image = Moving AI Images · stock
   duration=30,
   language="english",
   mood="<mood>",
   aspect_ratio="vertical",
   voice_id="<voice_id>",          # optional
-  visual_style="<style_id>",      # optional
   should_render=true
 )
 ```
-Other entries: `create_video_from_script(script=…)`, `create_video_from_blog(url=…)`, `create_video_from_audio(audio_url=…)`, `create_agentic_video(prompt=…)`. All accept the same optional knobs (duration, language, mood, aspect_ratio, voice_id, footage_type/visual_style, prompt_style, should_render).
+Other entries: `create_video_from_script(script=…)` and `create_video_from_blog(url=…)` take the same knobs (footage_type, duration, language, mood, aspect_ratio, voice_id, should_render; idea also takes prompt_style). `create_video_from_audio(audio_url=…)` takes only duration and should_render. `video_type`, `visual_style` and `avatar_id` exist only on `create_agentic_video(prompt=…)`.
 
 **CLI:**
 ```bash
@@ -204,7 +205,7 @@ Silent, backgrounded. If you used `--wait` the CLI handles it. Otherwise:
 **MCP:** `get_video_status(task_id=<task_id>)` → status + progress + output URL.
 **CLI:** `zebracat video status <task_id>`
 
-Cadence: first check ~30s, then every 60s. Status flow: `queued` → `processing` → `rendering` → `completed` | `failed`. Stuck at one status >5 min → one "taking longer than usual" note. Cancel with `cancel_video(task_id)` / `zebracat video cancel <id>` if the user asks.
+Cadence: first check ~30s, then every 60s. Status flow: `pending` → `processing` → `rendering` → `completed` | `failed`. Stuck at one status >5 min → one "taking longer than usual" note. Cancel with `cancel_video(task_id)` / `zebracat video cancel <id>` if the user asks.
 
 📖 **Error → action mapping, retries, stuck jobs → [references/troubleshooting.md](references/troubleshooting.md)**
 
