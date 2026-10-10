@@ -17,6 +17,8 @@ Each skill ships its own bundle of references so it installs cleanly via `npx sk
 
 ## Architecture
 
+Skill → prompt files → Zebracat operations index, and a request trace: `docs/ARCHITECTURE.md`.
+
 ```
 zebracat-skills/
 ├── CLAUDE.md                   # This file. Runtime contract, transport ladder, hard rules.
