@@ -57,7 +57,7 @@ the user's language but stored as the API expects.
 
 Same ladder as the suite — full version in [CLAUDE.md](../CLAUDE.md):
 
-1. **CLI (API key)** → 2. **REST (API key)** → 3. **MCP (OAuth, preferred)** → 4. **CLI (OAuth)** → 5. tell the user how to connect.
+1. **CLI (API key)** → 2. **REST (API key)** → 3. **MCP (OAuth, preferred)** → 4. **CLI (saved key)** → 5. tell the user how to connect.
 
 > **Hard rule:** `ZEBRACAT_API_KEY` set ⇒ CLI/REST. Unset ⇒ MCP OAuth. Listing brands is exposed
 > on MCP (`list_brands`); create/update use the CLI or REST (multipart form).

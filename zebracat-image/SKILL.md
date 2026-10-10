@@ -54,7 +54,7 @@ narration.
 
 Same ladder as the suite — full version in [CLAUDE.md](../CLAUDE.md):
 
-1. **CLI (API key)** → 2. **REST (API key)** → 3. **MCP (OAuth, preferred)** → 4. **CLI (OAuth)** → 5. tell the user how to connect.
+1. **CLI (API key)** → 2. **REST (API key)** → 3. **MCP (OAuth, preferred)** → 4. **CLI (saved key)** → 5. tell the user how to connect.
 
 > **Hard rule:** `ZEBRACAT_API_KEY` set ⇒ CLI/REST. Unset ⇒ MCP OAuth. Image generation is
 > exposed on the CLI and REST; if your MCP toolset has no image tool, use the CLI/REST path.

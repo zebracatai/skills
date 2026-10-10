@@ -57,7 +57,7 @@ Detect the user's language; reply in it. Write captions/voice-over in the video 
 
 Same ladder as the suite — full version in [CLAUDE.md](../CLAUDE.md):
 
-1. **CLI (API key)** → 2. **REST (API key)** → 3. **MCP (OAuth, preferred)** → 4. **CLI (OAuth)** → 5. tell the user how to connect.
+1. **CLI (API key)** → 2. **REST (API key)** → 3. **MCP (OAuth, preferred)** → 4. **CLI (saved key)** → 5. tell the user how to connect.
 
 > **Hard rule:** `ZEBRACAT_API_KEY` set ⇒ CLI/REST. Unset ⇒ MCP OAuth.
 

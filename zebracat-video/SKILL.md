@@ -80,10 +80,10 @@ Detect the user's language from their first message; store as `user_language`.
 
 Detect once at session start. Full ladder + the hard rule live in [CLAUDE.md](../CLAUDE.md). Summary:
 
-1. **CLI (API key)** — `ZEBRACAT_API_KEY` set AND `zebracat auth status` exits 0 → CLI, pay-as-you-go.
+1. **CLI (API key)** — `ZEBRACAT_API_KEY` set AND the `zebracat` binary is installed → CLI, pay-as-you-go.
 2. **REST (API key)** — `ZEBRACAT_API_KEY` set AND no CLI → direct HTTPS with `X-API-KEY`.
 3. **MCP (OAuth)** — no key AND `mcp__zebracat__*` tools visible → MCP, plan credits. **Preferred for end users.**
-4. **CLI (OAuth)** — no key AND no MCP AND CLI present → `zebracat auth login`, account credit.
+4. **CLI (saved key)** — no key in the env AND no MCP AND `zebracat auth status` reports `"authenticated": true` (key saved by `zebracat auth login`) → CLI, pay-as-you-go.
 5. **Neither** → tell the user once how to connect MCP (`https://mcp.zebracat.ai/mcp/`) or install the CLI (`npm install -g @zebracat/cli`).
 
 > **Hard rule:** `ZEBRACAT_API_KEY` set ⇒ CLI/REST. Unset ⇒ MCP OAuth.

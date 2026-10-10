@@ -82,7 +82,7 @@ The skills auto-detect a transport at runtime. The full ladder lives in [CLAUDE.
 |----------|------|---------|---------|
 | 1 | **CLI / REST (API key)** | `ZEBRACAT_API_KEY` is set | Pay-as-you-go |
 | 2 | **MCP (OAuth)** | MCP tools visible AND no API key | Zebracat plan credits |
-| 3 | **CLI (OAuth)** | `zebracat auth login` session | Account credit |
+| 3 | **CLI (saved key)** | API key saved by `zebracat auth login` | Pay-as-you-go |
 
 **The rule:** if `ZEBRACAT_API_KEY` is set, the skills use the CLI (or REST) with it. Otherwise they prefer MCP via OAuth.
 
@@ -121,7 +121,7 @@ export ZEBRACAT_API_KEY=sk-your-key-here
 
 Ephemeral (current shell only). To persist, add the `export` line to your shell profile (`~/.zshrc`, `~/.bashrc`, or equivalent). If `ZEBRACAT_API_KEY` is set, the skills use the CLI (or REST). This is the most predictable setup for agent workflows.
 
-Install the `zebracat` CLI with `npm install -g @zebracat/cli` (or `curl -fsSL https://raw.githubusercontent.com/zebracatai/zebracat-cli/main/install.sh | bash`). The CLI pattern is `zebracat <noun> <verb>`; output is JSON on stdout (`--human` for tables). Verify with `zebracat auth status`.
+Install the `zebracat` CLI with `npm install -g @zebracat/cli` (or `curl -fsSL https://raw.githubusercontent.com/zebracatai/zebracat-cli/main/install.sh | bash`). The CLI pattern is `zebracat <noun> <verb>`; output is JSON on stdout (`--human` for tables). Authenticate with `zebracat auth login` (it asks for your API key and saves it) or `ZEBRACAT_API_KEY`; both bill pay-as-you-go. Verify with `zebracat auth status` (`"authenticated": true`).
 
 ## First Run
 
