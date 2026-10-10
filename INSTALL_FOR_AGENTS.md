@@ -59,10 +59,10 @@ The skills reach Zebracat through exactly one of three transports. **Detect, don
 
 Detection order:
 
-1. **CLI (API key)** — `ZEBRACAT_API_KEY` set AND `zebracat auth status` exits 0 → CLI, pay-as-you-go.
+1. **CLI (API key)** — `ZEBRACAT_API_KEY` set AND the `zebracat` binary is installed → CLI, pay-as-you-go.
 2. **REST (API key)** — `ZEBRACAT_API_KEY` set AND no `zebracat` binary → direct HTTPS to `https://api.zebracat.ai/api/v1/public/` with header `X-API-KEY: sk-…`.
 3. **MCP (OAuth)** — no `ZEBRACAT_API_KEY` AND `mcp__zebracat__*` tools visible → MCP, plan credits. **Preferred for end users.**
-4. **CLI (OAuth)** — no key AND no MCP AND `zebracat` binary present → `zebracat auth login`, account credit.
+4. **CLI (saved key)** — no key in the env AND no MCP AND `zebracat auth status` reports `"authenticated": true` (a key saved by `zebracat auth login`) → CLI, pay-as-you-go.
 5. **Neither** — tell the user once how to connect MCP or install the CLI (Step 3).
 
 **First, check for MCP.** If `mcp__zebracat__*` tools are visible and the user hasn't set an API key, MCP is the path of least resistance — OAuth, no key handling, bills the user's plan credits. If MCP is connected and the user is happy with it, **skip to Step 5**. But warn them:
@@ -94,9 +94,10 @@ curl -fsSL https://raw.githubusercontent.com/zebracatai/zebracat-cli/main/instal
 Then authenticate — either:
 
 ```bash
-zebracat auth login                 # OAuth, account credit
-# or, for pay-as-you-go:
+zebracat auth login                 # prompts for your API key and saves it
+# or:
 export ZEBRACAT_API_KEY=sk-your-key
+# Both bill pay-as-you-go from your API balance (the CLI has no plan-credit login).
 ```
 
 Verify:
@@ -157,7 +158,7 @@ Expected outcome: a vertical `.mp4`, ~15 seconds. If it fails, the common causes
 
 1. **`ZEBRACAT_API_KEY` not in the current shell** (key path) — re-source the profile or restart the agent host.
 2. **No credits** — check `get_balance()` / `zebracat account usage`; point the user to billing.
-3. **Transport not detected** — confirm `zebracat auth status` (CLI) or that `mcp__zebracat__*` tools are visible (MCP).
+3. **Transport not detected** — confirm `zebracat auth status` shows `"authenticated": true` (CLI) or that `mcp__zebracat__*` tools are visible (MCP).
 4. **MCP vs key conflict** — `ZEBRACAT_API_KEY` set forces CLI/REST. To use MCP plan credits, `unset ZEBRACAT_API_KEY`.
 
 If the user declines, skip to Step 7. The skills work either way; the smoke test just removes uncertainty.

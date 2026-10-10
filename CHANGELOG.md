@@ -5,6 +5,12 @@ All notable changes to the Zebracat Skills are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- **CLI auth wording** — the docs and every skill's transport ladder described `zebracat auth login` as an OAuth / browser sign-in billed to plan or account credit. The CLI has been API-key only since July 2026: `auth login` saves an API key and the CLI always bills pay-as-you-go from the API balance. Rung 4 of the ladder is now **CLI (saved key)**. The docs also no longer treat `zebracat auth status` exiting 0 as signed in (it exits 0 when signed out too); read its `"authenticated"` field. `scripts/check-cli-auth-docs.sh` guards the wording.
+
 ## [1.1.0] - 2026-07-06
 
 Distribution and docs release — new install channels, concrete CLI install, and a content polish. No API surface changed.

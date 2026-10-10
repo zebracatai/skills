@@ -117,13 +117,13 @@ The skills auto-detect a transport. Detailed ladder in [CLAUDE.md](./CLAUDE.md).
 |----------|------|---------|---------|----------|
 | 1 | **CLI / REST (API key)** | `ZEBRACAT_API_KEY` is set | Pay-as-you-go | Agents, CI, scripts |
 | 2 | **MCP (OAuth)** | MCP tools visible AND no API key | Your Zebracat plan credits | Users on a Zebracat plan |
-| 3 | **CLI (OAuth)** | `zebracat auth login` session | Account credit | Interactive CLI users |
+| 3 | **CLI (saved key)** | API key saved by `zebracat auth login` | Pay-as-you-go | Interactive CLI users |
 
 **The rule:** if `ZEBRACAT_API_KEY` is set, the skills use the CLI (or REST) with it. Otherwise they use MCP via OAuth — no key handling, bills your plan credits.
 
 - **MCP (zero-setup if on a plan):** connect `https://mcp.zebracat.ai/mcp/` to your agent. First call triggers OAuth in your browser.
 - **API key (pay-as-you-go):** get a key from your Zebracat account, then `export ZEBRACAT_API_KEY=sk-…`.
-- **CLI (`zebracat`):** `npm install -g @zebracat/cli` (or `curl -fsSL https://raw.githubusercontent.com/zebracatai/zebracat-cli/main/install.sh | bash`), then `zebracat auth login` or `export ZEBRACAT_API_KEY=sk-…`. Verify with `zebracat auth status`.
+- **CLI (`zebracat`):** `npm install -g @zebracat/cli` (or `curl -fsSL https://raw.githubusercontent.com/zebracatai/zebracat-cli/main/install.sh | bash`), then `zebracat auth login` (saves your API key) or `export ZEBRACAT_API_KEY=sk-…`. Either way the CLI bills pay-as-you-go. Verify with `zebracat auth status` (`"authenticated": true`).
 
 ## Things to Try
 
