@@ -35,6 +35,8 @@ gh pr create --title "Short summary" --body "What / Why / Changes / Testing"
 
 ## Repository layout
 
+See also [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for which skill calls what.
+
 Eight **independent, self-contained skills**, each owning its own `references/`:
 
 ```
