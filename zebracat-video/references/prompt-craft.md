@@ -7,7 +7,7 @@ How to turn an idea into a brief and script that produce a strong Zebracat video
 ## The brief vs the script
 
 - **Brief** — the instruction to Zebracat: video type, style, mood, duration, aspect, audience, key message. Goes into the entry call.
-- **Script** — the narration the viewer hears. Either the user's own (use the `script` entry) or generated via `generate_script(...)`.
+- **Script** — the narration the viewer hears. Either the user's own (`input_kind: "script"`, their words are kept) or written by the plan / by zebracat-script (`write_script`).
 
 Keep them separate. The brief is in English (API directive); the script is in the video language.
 
@@ -45,16 +45,13 @@ CTA:       what to do next (if any)
 
 ## Generating a script
 
-```
-generate_script(
-  idea="<the idea>",
-  language="english",
-  duration=30,
-  mood="<mood>",
-  prompt_style="<optional narrative style id>"
-)
-```
-Show the result with word count + estimated duration and get approval before generating the video. If the user supplied a script, prefer the `script` entry and keep their words — light cleanup only (remove directives, fix obvious typos).
+Usually you don't need to: `create_video` with `input_kind: "idea"` writes the script inside the
+plan, and `get_plan` shows it for approval. To draft the words first, use zebracat-script
+(`write_script(idea, seconds, language)` → `get_script(job_id)`), then pass the approved text with
+`input_kind: "voiceover_script"` (one narrator) or `"script"` (several speakers).
+
+If the user supplied a script, keep their words (`input_kind: "script"`) — light cleanup only
+(remove directives, fix obvious typos).
 
 ## On-screen text
 
@@ -74,9 +71,9 @@ Mood drives music, pacing, and voice delivery. Be specific: "calm and reassuring
 ## Language separation (non-English videos)
 
 - **Script / narration / on-screen text** → in the video language.
-- **Brief, mood, style ids, video_type, aspect** → English (pipeline directives).
+- **Style ids, media_type, aspect, preset, quality** → English (pipeline directives).
 
-A Spanish video still uses `video_type=ai_video`, `aspect_ratio=vertical`, `mood="energetic"` — only the spoken/visible words are Spanish.
+A Spanish video still uses `media_type=ai_video`, `aspect=vertical` — only the brief, the spoken and the visible words are Spanish (set `language`).
 
 ## What doesn't work
 

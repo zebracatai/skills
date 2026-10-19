@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.2.0
 name: zebracat-image
 description: |
   Generate standalone AI images from a text prompt with Zebracat — thumbnails, hero shots,
