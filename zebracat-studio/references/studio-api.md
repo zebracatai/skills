@@ -45,7 +45,7 @@ curl -sS -X POST https://api.zebracat.ai/api/v1/public/studio/clips \
 
 | `code` | Meaning | Action |
 |--------|---------|--------|
-| `api_key_billing_pending` (402) | Paid Studio calls with an API key are not live yet | Use MCP/OAuth (plan credits), or quote only. |
+| `api_key_billing_pending` (402) | This server has not switched API-key billing on | Use MCP/OAuth (plan credits), or quote only. |
 | `insufficient_credits`, `premium_voice`, `length_locked` (402) | Not enough credits, or a plan limit | Show the quote; point to billing or a cheaper option. |
 | `studio_allowance` (429) | Hourly/daily allowance used | Wait `retry_after_s`. |
 | 404 on every `/studio/*` | Studio is not open on this server | Offer zebracat-video / zebracat-image. |

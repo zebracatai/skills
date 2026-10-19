@@ -43,7 +43,8 @@ is https://api.zebracat.ai/docs/guides/errors.md.
 
 | `code` | Action |
 |--------|--------|
-| `api_key_billing_pending` | API-key billing for paid v2 calls is not live yet. Plans and quotes work; to generate, use MCP/OAuth (plan credits). Tell the user once. |
+| `api_key_billing_pending` | This server has not switched API-key billing on. Plans and quotes work; to generate, use MCP/OAuth (plan credits). Tell the user once. |
+| `video_model_insufficient_credits`, `character_lipsync_credits` (402) | The balance does not cover Generate: show `required_usd` / `available_usd` and the top-up `hint`, or make the video shorter or cheaper. |
 | any 402 with `type: insufficient_funds` (`insufficient_credits`, `insufficient_balance`, …) | Out of credits or dollars. Show the quote and point to billing. |
 | `rev_conflict` (409) | The plan changed since you read it: `get_plan`, then retry with the new `rev`. |
 | `plan_not_ready` (409) | Still planning: keep polling `get_video`. |

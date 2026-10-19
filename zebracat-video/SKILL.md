@@ -86,10 +86,11 @@ Full ladder in [CLAUDE.md](../CLAUDE.md). Summary:
 
 > **Hard rule:** `ZEBRACAT_API_KEY` set ⇒ CLI/REST. Unset ⇒ MCP OAuth.
 
-> **API keys and paid v2 calls:** until API-key billing for v2 is live, Generate with an API key
-> answers `402 api_key_billing_pending`. Plans, quotes and edits still work. Tell the user once
-> and offer the MCP/OAuth path (plan credits). See
-> [references/troubleshooting.md](references/troubleshooting.md).
+> **API keys pay in dollars:** with `ZEBRACAT_API_KEY`, Generate, clones, voice-overs, clips and swaps
+> are paid from the API dollar balance at the quote's `usd`. A short balance answers `402`
+> (`type: insufficient_funds`, `required_usd` / `available_usd`, a top-up `hint`): show it to the user.
+> A server that has not switched API-key billing on answers `api_key_billing_pending` instead: then
+> offer the MCP/OAuth path (plan credits).
 
 ## The lifecycle (every transport)
 

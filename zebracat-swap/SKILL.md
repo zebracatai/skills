@@ -80,6 +80,6 @@ main person; ask only when the user meant someone else.
 | `upgrade_required` | Swap needs a paid plan: say so. |
 | `refused` | The safety check said no: say why (`message`) and stop. |
 | `insufficient_credits` | Show `required` vs `available`; point to billing. |
-| `api_key_billing_pending` | API-key billing for paid calls is not live yet: use the MCP/OAuth path. |
+| `api_key_billing_pending` | This server has not switched API-key billing on: use the MCP/OAuth path. |
 | `price_changed` | Re-quote and ask again. |
 | `invalid` on `analysis_id` | The analysis expired: analyze again. |
