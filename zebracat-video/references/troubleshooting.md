@@ -44,7 +44,9 @@ is https://api.zebracat.ai/docs/guides/errors.md.
 | `code` | Action |
 |--------|--------|
 | `api_key_billing_pending` | API-key billing for paid v2 calls is not live yet. Plans and quotes work; to generate, use MCP/OAuth (plan credits). Tell the user once. |
-| `insufficient_funds` / `insufficient_credit` / `insufficient_balance` (402) | Out of credits or dollars. Show the quote and point to billing. |
+| any 402 with `type: insufficient_funds` (`insufficient_credits`, `insufficient_balance`, …) | Out of credits or dollars. Show the quote and point to billing. |
+| `rev_conflict` (409) | The plan changed since you read it: `get_plan`, then retry with the new `rev`. |
+| `plan_not_ready` (409) | Still planning: keep polling `get_video`. |
 | `too_many_runs` (429) | Too many plans in progress. Wait for one to reach `plan_ready`, then retry. |
 | `concurrency_limit` / `daily_limit` (429) | Wait `Retry-After` seconds. |
 | `studio_allowance` (429) | Plan-chat allowance used up; wait `retry_after_s`, or use `edit_plan`. |
@@ -52,7 +54,6 @@ is https://api.zebracat.ai/docs/guides/errors.md.
 | `director_v2_replan` | An old AI Avatar plan: ask `chat_plan` to make it an AI video with the presenter speaking. |
 | `clone_topic_required` | A `remix` / `remake_niche` clone needs `topic`: ask the user what their video is about. |
 | `already_generating` (409) | Cancel came too late: the video is being generated. |
-| `conflict` on `edit_plan` (409) | The plan changed since you read it: `get_plan`, then retry with the new `rev`. |
 | `401` / `403` | Bad key, expired login, or another account's task. |
 
 ## Generation problems

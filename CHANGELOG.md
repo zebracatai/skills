@@ -11,7 +11,8 @@ The skills move to the v2 video engine (the zebracat.ai chat's engine) and the a
 
 ### Added
 
-- **`zebracat-studio`** — the dashboard's Studio tools one at a time: hooks for a script, a voice-over in any voice, an AI image, a short clip. Paid tools (voice-overs, clips) are quoted first (`dry_run` / `confirmed`). Ships `references/studio-api.md`. The suite is now nine skills; wired into every plugin manifest and the install docs.
+- **`zebracat-studio`** — the dashboard's Studio tools one at a time: hooks for a script, a voice-over in any voice, an AI image, a short clip. Paid tools (voice-overs, clips) are quoted first (`dry_run` / `confirmed`). Ships `references/studio-api.md`. Wired into every plugin manifest and the install docs.
+- **`zebracat-swap`** — Character Swap through MCP (`analyze_character_swap`, `swap_character` with `confirmed`), REST (`/character-swap…`) or `zebracat swap`: consent asked of the user, quote first, paid plans. The suite is now ten skills.
 - **Agent docs links** — `INSTALL_FOR_AGENTS.md` and `CLAUDE.md` point at the generated `llms.txt`, `llms-full.txt`, the agent quickstart and the OpenAPI 3.1 schema.
 
 ### Changed

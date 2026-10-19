@@ -1,6 +1,6 @@
 # Install Zebracat Skills
 
-The repo ships *nine* skills you can install:
+The repo ships *ten* skills you can install:
 
 - **`zebracat-video`** — the flagship producer: idea / script / blog / audio → finished video
 - **`zebracat-avatar`** — choose or customize a presenter, build reusable characters
@@ -8,6 +8,7 @@ The repo ships *nine* skills you can install:
 - **`zebracat-brand`** — set up and reuse a brand kit (name, logo, colors, fonts, tone)
 - **`zebracat-script`** — write and refine a voice-over script (synchronous, no render credits)
 - **`zebracat-studio`** — Studio tools one at a time: hooks, voice-overs, images, clips
+- **`zebracat-swap`** — Character Swap: your character in place of the person in a clip
 - **`zebracat-image`** — generate standalone AI images (thumbnails, hero shots, 9:16 / 16:9 / 1:1)
 - **`zebracat-brainrot`** — viral short-form (subway-surfers / minecraft-parkour / italian-brainrot)
 - **`zebracat-translate`** — dub existing videos into 170+ languages with captions
@@ -18,7 +19,7 @@ Most people start with `zebracat-video`. The others chain into it: `zebracat-ava
 
 The [Vercel Labs `skills` CLI](https://github.com/vercel-labs/skills) installs directly from GitHub — no clone, no local config. It detects your agent and writes to the right directory.
 
-All nine skills:
+All ten skills:
 ```bash
 npx skills add zebracatai/skills
 ```
@@ -57,7 +58,7 @@ Project scope (current repo only) is the default. For user scope (every project 
 clawhub install zebracat-skills
 ```
 
-Installs all nine skills to your agent's default skills directory automatically.
+Installs all ten skills to your agent's default skills directory automatically.
 
 ## Option 4 — Git clone
 

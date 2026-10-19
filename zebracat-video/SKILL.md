@@ -188,7 +188,8 @@ before Generate with `cancel_video`; after Generate it answers `already_generati
 `clone_video(video_url, mode, topic)` / `zebracat video clone --url … --mode … --topic …`.
 Modes: `generate_similar`, `recreate_script`, `remix` (needs `topic`), `remake_niche` (needs
 `topic`), `avatar_reaction`, `face_swap`. Ask for the topic before a `remix` / `remake_niche`.
-A clone plans and generates in one go: confirm the price first (`dry_run`).
+A clone plans and generates in one go, and `clone_video` has no quote step: tell the user it spends
+credits and get a yes before calling it (REST `POST /video/clone` takes `"dry_run": true` where the v2 engine is on).
 
 ## Deliver
 

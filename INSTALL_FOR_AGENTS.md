@@ -17,6 +17,7 @@ If you fetched this file by URL without cloning yet, the companion files live at
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-brand/SKILL.md` — brand kit
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-script/SKILL.md` — script writer
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-studio/SKILL.md` — Studio tools (hooks, voice-overs, images, clips)
+- `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-swap/SKILL.md` — Character Swap
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-image/SKILL.md` — standalone AI images
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-brainrot/SKILL.md` — viral short-form
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-translate/SKILL.md` — translation / dubbing
@@ -34,7 +35,7 @@ The API docs written for agents (generated from the live API, so they never drif
 **Preferred — `npx skills` (auto-detects the agent):**
 
 ```bash
-npx skills add zebracatai/skills                 # all nine skills
+npx skills add zebracatai/skills                 # all ten skills
 npx skills add zebracatai/skills --skill zebracat-video   # just one
 ```
 

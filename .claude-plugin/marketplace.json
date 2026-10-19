@@ -8,7 +8,7 @@
     {
       "name": "zebracat",
       "source": "./",
-      "description": "Zebracat skills for AI video generation (plan first, exact price), Studio tools (hooks, voice-overs, images, clips), avatars and characters, voice cloning, brand kits, scripts, standalone AI images, viral brainrot, and video translation. Invoke as /zebracat:video, /zebracat:studio, /zebracat:avatar, /zebracat:voice, /zebracat:brand, /zebracat:script, /zebracat:image, /zebracat:brainrot, or /zebracat:translate.",
+      "description": "Zebracat skills for AI video generation (plan first, exact price), Studio tools (hooks, voice-overs, images, clips), Character Swap, avatars and characters, voice cloning, brand kits, scripts, standalone AI images, viral brainrot, and video translation. Invoke as /zebracat:video, /zebracat:studio, /zebracat:swap, /zebracat:avatar, /zebracat:voice, /zebracat:brand, /zebracat:script, /zebracat:image, /zebracat:brainrot, or /zebracat:translate.",
       "version": "1.2.0",
       "skills": [
         {
@@ -20,6 +20,11 @@
           "name": "studio",
           "path": "zebracat-studio",
           "invoke": "/zebracat:studio"
+        },
+        {
+          "name": "swap",
+          "path": "zebracat-swap",
+          "invoke": "/zebracat:swap"
         },
         {
           "name": "avatar",

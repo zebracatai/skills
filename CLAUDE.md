@@ -2,7 +2,7 @@
 
 ## What This Is
 
-The Zebracat Skills. Nine independent, self-contained skills for AI video generation:
+The Zebracat Skills. Ten independent, self-contained skills for AI video generation:
 
 - **zebracat-video** — idea / script / blog URL / audio → finished video. The flagship producer. Consumes avatars and characters from zebracat-avatar and voices from zebracat-voice.
 - **zebracat-avatar** — design a reusable AI avatar presenter or named character. Output (an `AVATAR-<NAME>.md` state file) is reused by zebracat-video.
@@ -10,6 +10,7 @@ The Zebracat Skills. Nine independent, self-contained skills for AI video genera
 - **zebracat-brand** — set up and manage a reusable brand kit (name, logo, colors, fonts, tone). Reused by zebracat-video so videos come out on-brand.
 - **zebracat-script** — write and refine a voice-over script synchronously (no render credits). Hands the approved script to zebracat-video.
 - **zebracat-studio** — Studio tools one at a time: hooks, voice-overs, images, clips (the dashboard's Studio). Quotes paid tools before spending.
+- **zebracat-swap** — Character Swap: a character in place of the main person in a clip (consent, paid plans, quote first).
 - **zebracat-image** — generate standalone AI images (thumbnails, hero shots, reference frames) in 9:16 / 16:9 / 1:1. Returns image URLs.
 - **zebracat-brainrot** — viral short-form (subway-surfers / minecraft-parkour / italian-brainrot / general). A specialized fast lane over zebracat-video.
 - **zebracat-translate** — existing video → dubbed video in another language with captions. Independent of the others.
@@ -63,6 +64,8 @@ zebracat-skills/
 │   ├── SKILL.md
 │   └── references/
 │       └── studio-api.md
+├── zebracat-swap/              # Character Swap
+│   └── SKILL.md
 ├── zebracat-image/             # Standalone AI image generation
 │   ├── SKILL.md
 │   └── references/
@@ -77,7 +80,7 @@ zebracat-skills/
         └── languages.md
 ```
 
-*No root SKILL.md, no root references/.* The nine skills are independent. If shared docs drift between them, that's acceptable — each skill is internally consistent and authored independently.
+*No root SKILL.md, no root references/.* The ten skills are independent. If shared docs drift between them, that's acceptable — each skill is internally consistent and authored independently.
 
 ## The 300-Line Rule
 

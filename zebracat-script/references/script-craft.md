@@ -50,7 +50,7 @@ curl -sS -X POST https://api.zebracat.ai/api/v1/public/studio/scripts \
   -H "X-API-KEY: $ZEBRACAT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"idea":"3 productivity tips for remote engineers","seconds":30}'
-# → {"job_id": "…", "status": "queued", …}
+# → {"job_id": "…", "status": "writing", …}
 curl -sS https://api.zebracat.ai/api/v1/public/studio/scripts/<job_id> -H "X-API-KEY: $ZEBRACAT_API_KEY"
 ```
 

@@ -73,12 +73,12 @@ Text = spoken words only: no stage directions, no speaker labels.
 
 ## Image
 
-`generate_image(prompt, model?, aspect?, count?, reference_urls?)`. `GET /studio/media/models`
-(`list_media_models` if exposed) lists the models. Show the image link(s).
+`generate_image(prompt, aspect?, count?, reference_urls?)` (`aspect` is `9:16`, `1:1` or `16:9`; images cost 0
+credits within a daily cap). Show the image link(s).
 
 ## Clip
 
-1. `prompt` (one shot: subject, action, camera), `seconds`, `aspect`, optional `image_url` to
+1. `prompt` (one shot: subject, action, camera), `seconds`, `aspect` (`9:16`, `1:1`, `16:9`), optional `image_url` to
    animate a still, optional `model`.
 2. Quote first (`dry_run` / no `confirmed`), then generate on yes.
 3. Poll every 10-20 s; deliver the clip URL. A failed clip releases its credits.

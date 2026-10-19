@@ -26,7 +26,7 @@ Want to install manually instead? Pick the path that matches your tooling.
 
 ### Option A — `npx skills` (easiest, no clone)
 
-The [Vercel Labs `skills` CLI](https://github.com/vercel-labs/skills) installs straight from GitHub — no clone, no config. All nine skills:
+The [Vercel Labs `skills` CLI](https://github.com/vercel-labs/skills) installs straight from GitHub — no clone, no config. All ten skills:
 
 ```bash
 npx skills add zebracatai/skills
@@ -66,7 +66,7 @@ gh skill install zebracatai/skills zebracat-translate
 clawhub install zebracat-skills
 ```
 
-Installs all nine skills to your agent's default skills directory.
+Installs all ten skills to your agent's default skills directory.
 
 ### Option D — Git clone
 
@@ -79,13 +79,13 @@ git clone https://github.com/zebracatai/skills.git ~/.claude/skills/zebracat-ski
 git clone https://github.com/zebracatai/skills.git ~/.openclaw/skills/zebracat-skills
 ```
 
-After cloning, all nine skills are auto-discovered at `zebracat-video/SKILL.md`, `zebracat-avatar/SKILL.md`, `zebracat-voice/SKILL.md`, `zebracat-brand/SKILL.md`, `zebracat-script/SKILL.md`, `zebracat-studio/SKILL.md`, `zebracat-image/SKILL.md`, `zebracat-brainrot/SKILL.md`, and `zebracat-translate/SKILL.md`.
+After cloning, all ten skills are auto-discovered at `zebracat-video/SKILL.md`, `zebracat-avatar/SKILL.md`, `zebracat-voice/SKILL.md`, `zebracat-brand/SKILL.md`, `zebracat-script/SKILL.md`, `zebracat-studio/SKILL.md`, `zebracat-swap/SKILL.md`, `zebracat-image/SKILL.md`, `zebracat-brainrot/SKILL.md`, and `zebracat-translate/SKILL.md`.
 
 > Not sure where your skills directory is? Ask your agent: *"Where is your skills directory?"*
 
 ## What's Included
 
-Nine skills that work standalone or chain together:
+Ten skills that work standalone or chain together:
 
 | Skill | What it does | Invoke |
 |-------|--------------|--------|
@@ -95,6 +95,7 @@ Nine skills that work standalone or chain together:
 | **zebracat-brand** | Set up and reuse a brand kit — name, logo, colors, fonts, tone. | `/zebracat:brand` |
 | **zebracat-script** | Write and refine a video script with Studio's writer (free, no render credits). | `/zebracat:script` |
 | **zebracat-studio** | Studio tools one at a time: hooks, a voice-over, an image, a clip. | `/zebracat:studio` |
+| **zebracat-swap** | Character Swap: put your character in place of the person in a clip. | `/zebracat:swap` |
 | **zebracat-image** | Generate standalone AI images — thumbnails, hero shots, 9:16 / 16:9 / 1:1. | `/zebracat:image` |
 | **zebracat-brainrot** | Viral short-form: subway-surfers / minecraft-parkour / italian-brainrot / general. | `/zebracat:brainrot` |
 | **zebracat-translate** | Existing video → dubbed + captioned version in 170+ languages. | `/zebracat:translate` |
