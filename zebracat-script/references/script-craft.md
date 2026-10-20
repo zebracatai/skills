@@ -1,82 +1,93 @@
 # Script Craft — reference
 
-Full details for `zebracat-script`. Read this when you need the exact fields, enums, or
-request/response shapes.
+Full details for `zebracat-script`. Read this when you need the exact fields or shapes. The
+authoritative, always-current version: https://api.zebracat.ai/docs/guides/studio.md and
+https://api.zebracat.ai/docs/reference/studio.md.
 
-## Endpoint (REST)
+## Endpoints (REST)
 
-`POST https://api.zebracat.ai/api/v1/public/script_generator`
+| Call | What |
+|------|------|
+| `GET /api/v1/public/studio/scripts/options` | languages, tones, formats, the length rules for this account |
+| `POST /api/v1/public/studio/scripts` | start a script → `202 {job_id, status}` |
+| `GET /api/v1/public/studio/scripts/{job_id}` | the job; when `status` is `done`, `result` holds the script |
 
-**Synchronous** — the script is returned in the response body; there is no task to poll.
+Writing takes a few seconds: poll every 2-3 s.
 
 ### Request body
 
-| Field | Required | Type | Default | Notes |
-|-------|----------|------|---------|-------|
-| `idea` | ✅ | string | — | The idea/prompt to write a script about. |
-| `language` | — | string | `english` | e.g. `english`, `spanish`, `german`. |
-| `duration` | — | int | `30` | Target spoken length in seconds. One of `15, 30, 60, 120, 180`. Controls script length. |
-| `mood` | — | string | `happy` | Tone of the script (see moods below). |
-| `prompt_style` | — | string | auto | Narration style. Browse `GET /api/public/video/prompt_styles`. |
+| Field | Required | Notes |
+|-------|----------|-------|
+| `idea` | ✅ | What the script is about: a topic, a brief, or rough notes. |
+| `seconds` | — | Target spoken length. The options call gives the account's maximum. |
+| `language` | — | A value from the options' languages (default: English). |
+| `tone` | — | A tone id from the options, or `auto`. |
+| `format` | — | A format id from the options, or `auto` (narrated, dialogue, …). |
 
-### Response
+### Result
 
 ```json
-{ "script": "Ever feel like the day disappears? Here are three tips to take it back. First, ..." }
+{
+  "status": "done",
+  "result": {
+    "title": "Three hearts, nine brains",
+    "script_view": {"logline": "…", "beats": [{"n": 1, "kind": "opener", "seconds": 4, "lines": [{"speaker": "Narrator", "text": "…"}]}]},
+    "plain_text": "…the script with speaker names…",
+    "narration_text": "…only the words to be spoken…"
+  }
+}
 ```
 
-Feed the returned `script` straight into `POST /api/public/video/script` (that's what
-zebracat-video does) to turn it into a video.
+- `narration_text` is what a voice reads: hand it to `zebracat-studio` (voice-over) or to
+  zebracat-video as `input_kind: "voiceover_script"`.
+- `plain_text` keeps who says what: hand it to zebracat-video as `input_kind: "script"` for a
+  video where people speak.
 
 ### Example (REST)
 
 ```bash
-curl -sS https://api.zebracat.ai/api/v1/public/script_generator \
+curl -sS -X POST https://api.zebracat.ai/api/v1/public/studio/scripts \
   -H "X-API-KEY: $ZEBRACAT_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"idea":"3 productivity tips for remote engineers","duration":30,"mood":"happy"}'
+  -d '{"idea":"3 productivity tips for remote engineers","seconds":30}'
+# → {"job_id": "…", "status": "writing", …}
+curl -sS https://api.zebracat.ai/api/v1/public/studio/scripts/<job_id> -H "X-API-KEY: $ZEBRACAT_API_KEY"
 ```
 
-## Duration → shape
+## Seconds → shape
 
-| Duration | Best for | Rough word count (≈2.5 words/sec) |
-|----------|----------|-----------------------------------|
-| 15s | Hooks, teasers, single-point social posts | ~35–40 |
-| 30s | Standard social / ad / promo | ~70–80 |
-| 60s | Explainers, product overviews | ~140–160 |
-| 120s | Tutorials, deeper stories | ~280–320 |
-| 180s | Long-form education | ~420–470 |
+| Seconds | Best for | Rough word count (≈2.5 words/sec) |
+|---------|----------|-----------------------------------|
+| 15 | Hooks, teasers, single-point social posts | ~35–40 |
+| 30 | Standard social / ad / promo | ~70–80 |
+| 60 | Explainers, product overviews | ~140–160 |
+| 120 | Tutorials, deeper stories | ~280–320 |
+| 180 | Long-form education | ~420–470 |
 
-The API enforces the enum — don't send arbitrary seconds. If the user wants "about 45 seconds",
-pick the nearest valid value (30 or 60) and say so.
+## Hooks
 
-## Moods
-
-Common moods: `happy`, `calm`, `serious`, `energetic`, `inspirational`, `dramatic`,
-`professional`. The API exposes the authoritative list; if a mood is rejected, fall back to
-`happy` and mention the adjustment.
-
-## Prompt styles (narration voice)
-
-`prompt_style` shapes *how* the script is written — e.g. `storytime` (narrative arc),
-news/anchor (factual, punchy), conversational (casual, direct). Browse the live list:
-
-```bash
-curl -sS https://api.zebracat.ai/api/v1/public/video/prompt_styles -H "X-API-KEY: $ZEBRACAT_API_KEY"
-```
-
-Leave `prompt_style` unset to let Zebracat auto-pick from the idea and mood.
+For a stronger opening line, `POST /api/v1/public/studio/hooks` with the script answers several
+hooks, each with the script rewritten to open on it (MCP `write_hooks`, CLI `zebracat studio hooks`).
+See zebracat-studio.
 
 ## Transport notes
 
-- **MCP:** `generate_script(idea, language?, duration?, mood?, prompt_style?)` — returns the script text.
-- **CLI:** `zebracat script "<idea>" [--duration N] [--mood M] [--language L]` — see `--help` for exact flags.
-- **REST:** as above. Auth via `X-API-KEY` (pay-as-you-go) or `Authorization: Bearer` (account credit).
+- **MCP:** `write_script(idea, seconds?, language?)` → `get_script(job_id)`.
+- **CLI:** `zebracat studio script "<idea>" [--seconds N] [--language L] --wait`.
+- **REST:** as above. Auth via `X-API-KEY` (API dollars) or `Authorization: Bearer` (account).
+- Scripts are free, within an allowance per account (hourly and daily); over it the API answers
+  `429 studio_allowance` with `retry_after_s`.
+
+## Legacy
+
+`POST /api/v1/public/script_generator` (`{idea, duration, mood, prompt_style}` → `{script}`,
+MCP `generate_script`, CLI `zebracat script`) still works and, on the v2 engine, runs the same
+writer. Prefer `/studio/scripts` for new work.
 
 ## Errors
 
 | Status | Meaning | Fix |
 |--------|---------|-----|
-| 400 | Validation (missing `idea`, invalid `duration`/`mood`) | Fix the field; `idea` is mandatory, `duration` must be in the enum. |
-| 401 | Invalid/missing API key | Check `ZEBRACAT_API_KEY` or the MCP OAuth session. |
-| 402 | Insufficient balance | Script generation costs a small amount; top up or use plan credits via MCP. |
+| 400 | Validation (missing `idea`, a value not in the options) | Fix the field; read the options call. |
+| 404 | Studio is not open on this server | Use the legacy `script_generator`. |
+| 429 `studio_allowance` | Allowance used up | Wait `retry_after_s`. |

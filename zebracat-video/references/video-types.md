@@ -1,87 +1,66 @@
 # Video Types Reference
 
-Zebracat produces five video types. Pick by purpose first, budget second. When in doubt, use the agentic entry (`create_agentic_video` / `--from agentic`) and let the planner choose.
+On the v2 engine a video is described by three independent choices, all optional: the **media
+type** (what the pictures are made of), the **audio mode** (who speaks), and a **preset** (a
+proven format). Leave out what the user does not care about; the plan decides from the brief.
+
+The live lists: `list_presets` / `zebracat presets list` / `GET /video/presets`, and
+`list_video_models` / `zebracat models list` / `GET /video/models` (qualities, models, prices).
 
 ---
 
-## ai_video — Cinematic AI footage
+## Media types (`media_type`)
 
-Fully AI-generated, motion-rich footage. The most "produced" look.
+| Value | Pictures | Best for | Tradeoffs |
+|-------|----------|----------|-----------|
+| `ai_video` | generated video clips, people can speak on camera with lip-sync | ads, stories, UGC, interviews, podcasts, presenters | highest cost; the default for most briefs |
+| `ai_image_video` | AI stills with motion | calm explainers, long narration, budget work | less kinetic |
+| `stock` | real b-roll | corporate, how-to, authentic footage | no stylized look |
+| `brainrot` | viral gameplay backgrounds (subway surfers, minecraft…) | viral shorts → use **zebracat-brainrot** | needs a background (`background_video`) |
 
-- **Best for:** ads, brand films, product launches, story-driven content, anything that needs a premium, cinematic feel.
-- **Strengths:** dynamic camera moves, custom scenes stock can't cover, strong stylization (works beautifully with Ghibli / Anime / Cartoon / cinematic styles).
-- **Tradeoffs:** highest render cost and time of the footage types.
-- **Pair with:** a defined `visual_style`, a clear mood, and a tight script. Cinematic styles shine here.
+**Presenters and avatars:** there is no separate "AI Avatar" type any more. A presenter is an
+`ai_video` with that person on camera: pass their portrait as `uploads: [{url, kind: "person"}]`
+(zebracat-avatar stores the URL in `AVATAR-<NAME>.md`). The old `video_type: ai_avatar` on the v1
+endpoints maps to exactly that.
 
-## moving_ai_images — Subtle motion over AI stills
+## Audio modes (`audio_mode`)
 
-AI-generated still images with gentle parallax / pan-and-zoom motion.
+| Value | Who speaks |
+|-------|------------|
+| `narration` | one voice-over over the pictures |
+| `dialogue` | the people on camera speak their lines (interviews, podcasts, sketches, UGC) |
+| `silent` | no voice; music only |
 
-- **Best for:** calm explainers, educational content, budget-conscious projects, narration-led videos where the visuals support rather than star.
-- **Strengths:** cheaper and faster than `ai_video`, very consistent look, great for long-form narration.
-- **Tradeoffs:** less kinetic than `ai_video`; not ideal for high-energy ads.
-- **Pair with:** a strong voice-over and clear scene-by-scene script.
+## Quality (`quality`)
 
-## ai_avatar — Talking presenter
+`quick`, `balanced`, `cinematic`, or `auto` (the plan picks per shot). Higher quality uses stronger
+video models and costs more; `list_video_models` prints the credits per 5 s for each.
 
-A presenter avatar delivers the message to camera. Requires an `avatar_id` (and a `voice_id`).
+## Presets (`preset`)
 
-- **Best for:** spokesperson videos, course intros, personalized outreach, announcements, anything that benefits from a human face.
-- **Strengths:** direct, trustworthy, repeatable brand presenter. Reusable across videos.
-- **Tradeoffs:** needs an avatar set up first.
-- **Flow:** if no `AVATAR-<NAME>.md` exists, hand off to **zebracat-avatar** to design one, then return and generate with `video_type=ai_avatar`. Read `Avatar ID` + `Voice ID` from the file.
-- **Layout note:** avatars can be full-frame, split-screen with b-roll, or mixed. State the preference in the brief; the default is a clean presenter framing.
+A preset pre-fills the format (cast slots, beat shape, defaults); the user's own choices still win.
 
-## stock_footage — Real-world b-roll
+| Preset | What it makes |
+|--------|---------------|
+| `street_interview` | an interviewer asks one question; passers-by answer on camera |
+| `video_podcast` | host and guest at a podcast desk, trading turns |
+| `ugc_ad` | a creator talks to the phone camera: hook, problem, product, result, call to action |
+| `ai_movie` | a short story that ends |
+| `ai_debate` | a moderated debate |
+| `fruit_drama` | a mini-drama between 3D fruit characters |
+| `pov_video` | through the viewer's eyes, narrated |
+| `product_showcase` | the product as the hero of every shot |
+| `travel_video` | places, one per beat |
 
-Curated real stock clips selected to match the script (semantic search).
+The creator pages (`ai-cartoon-video-generator`, `ai-anime-video-generator`, `ghibli-ai`, …) are
+presets too; `list_presets` has them all.
 
-- **Best for:** corporate, how-to, authentic/real-world subjects, testimonials-style content, anything where real people and places matter.
-- **Strengths:** authentic, no "AI look", fast, reliable for common subjects (offices, cities, nature, people).
-- **Tradeoffs:** limited for abstract or fantastical concepts (stock may not exist).
-- **Pair with:** concrete, real-world scripts. Avoid for surreal/abstract topics — use `ai_video` there.
+## Input kinds (`input_kind`)
 
-## brainrot — Viral short-form
-
-High-retention vertical short-form: gameplay background (subway-surfers, minecraft-parkour), italian-brainrot, or general fast-cut viral style.
-
-- **Best for:** TikTok / Reels / Shorts virality, hooks, listicles, "did you know" content.
-- **Flow:** **hand off to the zebracat-brainrot skill** — it owns the formats, background selection, and caption styling. See `zebracat-brainrot/references/formats.md`.
-
----
-
-## footage_type vs video_type
-
-The `from_idea` / `from_script` / `from_blog` / `from_audio` entries accept a `footage_type` (a.k.a. `video_type`) knob with the same five values above. The agentic entry omits it and lets the planner choose. CLI exposes it as `--type ai_video|moving_ai_images|ai_avatar|stock_footage|brainrot`.
-
-## Quick decision matrix
-
-| The user wants… | Use |
-|---|---|
-| A premium, cinematic ad or brand film | `ai_video` |
-| A fantastical / stylized look (Ghibli, anime) | `ai_video` |
-| A calm narrated explainer, on a budget | `moving_ai_images` |
-| A spokesperson / presenter on camera | `ai_avatar` (+ zebracat-avatar) |
-| Real offices, cities, people, products | `stock_footage` |
-| A viral TikTok/Reel/Short | `brainrot` (→ zebracat-brainrot) |
-| "Just make something good" | agentic entry |
-
-## Aspect ratio by platform
-
-| Platform | aspect_ratio / `--aspect` |
-|----------|---------------------------|
-| TikTok, Reels, Shorts, Stories | `vertical` (9:16) |
-| YouTube, LinkedIn, website, email | `horizontal` (16:9) |
-| Instagram feed, square ads | `square` (1:1) |
-
-Set aspect before anything else — it shapes framing, composition, and pacing.
-
-## Duration guidance
-
-Allowed: `15`, `30`, `60`, `120`, `180` seconds.
-
-- **15–30s:** social hooks, ads, teasers. One idea, one CTA.
-- **60s:** explainers, product overviews, the sweet spot for most marketing.
-- **120–180s:** tutorials, deep explainers, story-driven brand films.
-
-Duration should follow the script length — roughly 2.5 words/second of narration. Don't request 180s for a 40-word script; it pads.
+| Value | The brief is |
+|-------|--------------|
+| `idea` | an idea or topic (default): the engine writes the script |
+| `script` | the user's script: their words are kept |
+| `voiceover_script` | a narration script: kept, read by one voice |
+| `script_with_scenes` | a script with scene directions |
+| `url` | a page to make the video from (blog, product page) |

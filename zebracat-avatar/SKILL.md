@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.2.0
 name: zebracat-avatar
 description: |
   Choose or customize a Zebracat AI avatar presenter, or build a reusable named character,
@@ -9,8 +9,8 @@ description: |
   "I want a spokesperson"; (2) "create a character called X", "design a presenter named Y";
   (3) establishing a reusable presenter BEFORE making avatar videos — the correct first step
   when no avatar exists yet; (4) "use my own avatar", "customize the avatar's look/voice".
-  Returns avatar_id + voice_id, saved to AVATAR-<NAME>.md — pass directly to zebracat-video
-  (video_type=ai_avatar).
+  Returns avatar_id + voice_id, saved to AVATAR-<NAME>.md — zebracat-video casts the avatar as
+  the person on camera.
   Chain signal: if the user says an avatar/identity action AND a video action in one request
   ("set up an avatar AND make a video", "design a presenter then record"), run zebracat-avatar
   first, then zebracat-video.
@@ -143,7 +143,7 @@ Write `AVATAR-<NAME>.md` with Appearance, Voice, and the Zebracat section (Avata
 
 ### Phase 4 — Make a video (optional)
 
-If the user wants to see the presenter in action, hand off to **zebracat-video** with `video_type=ai_avatar` and the new `Avatar ID` + `Voice ID`. Offer a short test clip first.
+If the user wants to see the presenter in action, hand off to **zebracat-video** with the new `Avatar ID` + `Voice ID` (it casts the avatar as the person on camera). Offer a short test clip first.
 
 ## Iteration
 

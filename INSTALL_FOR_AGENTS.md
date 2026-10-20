@@ -15,18 +15,27 @@ If you fetched this file by URL without cloning yet, the companion files live at
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-avatar/SKILL.md` — avatar / character designer
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-voice/SKILL.md` — voice browse / clone
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-brand/SKILL.md` — brand kit
-- `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-script/SKILL.md` — voice-over script writer
+- `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-script/SKILL.md` — script writer
+- `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-studio/SKILL.md` — Studio tools (hooks, voice-overs, images, clips)
+- `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-swap/SKILL.md` — Character Swap
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-image/SKILL.md` — standalone AI images
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-brainrot/SKILL.md` — viral short-form
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-translate/SKILL.md` — translation / dubbing
 - `https://raw.githubusercontent.com/zebracatai/skills/main/INSTALL.md` — human-facing install doc
+
+The API docs written for agents (generated from the live API, so they never drift):
+
+- `https://api.zebracat.ai/docs/llms.txt` (also served at `/llms.txt`) — the llmstxt.org index: guides and reference, one line each
+- `https://api.zebracat.ai/docs/llms-full.txt` (also served at `/llms-full.txt`) — every guide and the full endpoint reference in one Markdown file
+- `https://api.zebracat.ai/docs/guides/agent-quickstart.md` — one call to a finished video, in curl / Python / JS / MCP / CLI
+- `https://api.zebracat.ai/docs/openapi.json` — OpenAPI 3.1
 
 ## Step 1: Install the skills
 
 **Preferred — `npx skills` (auto-detects the agent):**
 
 ```bash
-npx skills add zebracatai/skills                 # all eight skills
+npx skills add zebracatai/skills                 # all ten skills
 npx skills add zebracatai/skills --skill zebracat-video   # just one
 ```
 

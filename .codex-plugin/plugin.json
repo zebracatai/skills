@@ -1,7 +1,7 @@
 {
   "name": "zebracat",
-  "version": "1.1.0",
-  "description": "Create Zebracat AI videos from an idea, script, blog URL, or audio file — AI Video, Moving AI Images, AI Avatar, Stock Footage, and viral Brainrot. Generate avatars and reusable characters, clone voices, set up brand kits, draft voice-over scripts, generate standalone AI images, and translate finished videos into 170+ languages.",
+  "version": "1.2.0",
+  "description": "Create Zebracat AI videos from an idea, script, URL or a reference video, plan first with the exact price, on the same engine as the zebracat.ai chat. Studio tools (hooks, voice-overs, images, clips), Character Swap, avatars and reusable characters, voice cloning, brand kits, scripts, standalone AI images, viral brainrot, and translation of finished videos into 170+ languages.",
   "author": {
     "name": "Zebracat",
     "email": "support@zebracat.ai",
@@ -27,16 +27,24 @@
     "localization",
     "brand-kit",
     "script-generator",
-    "ai-image"
+    "ai-image",
+    "studio",
+    "voice-over",
+    "hooks",
+    "ai-clip",
+    "character-swap"
   ],
   "skills": "./",
   "interface": {
     "displayName": "Zebracat",
-    "shortDescription": "AI videos, avatars, voice cloning, brainrot, and translation",
-    "longDescription": "Zebracat Skills turn an idea, script, blog post, or audio file into a finished video — AI Video (cinematic AI footage), Moving AI Images, AI Avatar presenters, Stock Footage, and viral Brainrot. Use zebracat-video as the producer (intent discovery, script, voice, visuals, render, deliver), zebracat-avatar to design reusable presenters and characters, zebracat-voice to browse or clone voices, zebracat-brand to set up a reusable brand kit (logo, colors, fonts, tone), zebracat-script to draft and refine a voice-over script before rendering, zebracat-image to generate standalone AI images (thumbnails, hero shots, reference frames), zebracat-brainrot for subway-surfers / minecraft-parkour / italian-brainrot short-form, and zebracat-translate to dub finished videos into 170+ languages with captions.",
+    "shortDescription": "AI videos, Studio tools, avatars, voice cloning, brainrot, and translation",
+    "longDescription": "Zebracat Skills turn an idea, script, URL or reference video into a finished video on the same engine as the zebracat.ai chat — AI video with people who speak on camera, AI images in motion, stock footage, and viral Brainrot. Use zebracat-video as the producer (plan, price, edit, generate, deliver), zebracat-studio for single tools (hooks, voice-overs, images, clips), zebracat-avatar to design reusable presenters and characters, zebracat-voice to browse or clone voices, zebracat-brand to set up a reusable brand kit (logo, colors, fonts, tone), zebracat-script to draft and refine a voice-over script before rendering, zebracat-image to generate standalone AI images (thumbnails, hero shots, reference frames), zebracat-brainrot for subway-surfers / minecraft-parkour / italian-brainrot short-form, and zebracat-translate to dub finished videos into 170+ languages with captions.",
     "developerName": "Zebracat",
     "category": "Design",
-    "capabilities": ["Read", "Write"],
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
     "websiteURL": "https://zebracat.ai",
     "defaultPrompt": [
       "Make a 30-second video about my product launch",

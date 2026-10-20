@@ -5,6 +5,24 @@ All notable changes to the Zebracat Skills are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-10-19
+
+The skills move to the v2 video engine (the zebracat.ai chat's engine) and the agent docs.
+
+### Added
+
+- **`zebracat-studio`** — the dashboard's Studio tools one at a time: hooks for a script, a voice-over in any voice, an AI image, a short clip. Paid tools (voice-overs, clips) are quoted first (`dry_run` / `confirmed`). Ships `references/studio-api.md`. Wired into every plugin manifest and the install docs.
+- **`zebracat-swap`** — Character Swap through MCP (`analyze_character_swap`, `swap_character` with `confirmed`), REST (`/character-swap…`) or `zebracat swap`: consent asked of the user, quote first, paid plans. The suite is now ten skills.
+- **Agent docs links** — `INSTALL_FOR_AGENTS.md` and `CLAUDE.md` point at the generated `llms.txt`, `llms-full.txt`, the agent quickstart and the OpenAPI 3.1 schema.
+
+### Changed
+
+- **`zebracat-video`** follows the v2 lifecycle: `create_video` / `POST /videos` / `zebracat video create` plans first, the user sees the plan and its exact price (`quote_video`), changes it (`edit_plan`, `chat_plan`), and Generate runs on their yes (`generate_video confirmed=true`). Choices are structured (`media_type`, `audio_mode`, `preset`, `quality`, `uploads`); `phase` replaces `status` when polling; clone has six modes. `references/video-types.md` and `troubleshooting.md` are rewritten to match (error codes such as `api_key_billing_pending`, `too_many_runs`, `director_v2_too_long`).
+- **`zebracat-script`** writes with Studio's writer: `write_script` / `POST /studio/scripts` / `zebracat studio script` (async job, free within an allowance). The legacy `generate_script` / `script_generator` is the fallback where Studio is closed.
+- Bumped `VERSION`, every `SKILL.md` frontmatter and the plugin manifests to `1.2.0`.
+
+[1.2.0]: https://github.com/zebracatai/skills/releases/tag/v1.2.0
+
 ## [1.1.0] - 2026-07-06
 
 Distribution and docs release — new install channels, concrete CLI install, and a content polish. No API surface changed.
