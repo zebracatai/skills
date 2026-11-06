@@ -73,15 +73,27 @@ Installs all ten skills to your agent's default skills directory.
 Clone into your agent's skills directory:
 
 ```bash
-# Claude Code
-git clone https://github.com/zebracatai/skills.git ~/.claude/skills/zebracat-skills
+# Claude Code: clone anywhere, then install the clone as a plugin
+git clone https://github.com/zebracatai/skills.git ~/zebracat-skills
+claude plugin marketplace add ~/zebracat-skills && claude plugin install zebracat@zebracat
 # OpenClaw
 git clone https://github.com/zebracatai/skills.git ~/.openclaw/skills/zebracat-skills
 ```
 
-After cloning, all ten skills are auto-discovered at `zebracat-video/SKILL.md`, `zebracat-avatar/SKILL.md`, `zebracat-voice/SKILL.md`, `zebracat-brand/SKILL.md`, `zebracat-script/SKILL.md`, `zebracat-studio/SKILL.md`, `zebracat-swap/SKILL.md`, `zebracat-image/SKILL.md`, `zebracat-brainrot/SKILL.md`, and `zebracat-translate/SKILL.md`.
+Claude Code loads only skills one folder deep in `~/.claude/skills/`, so a clone there gives no commands; install the clone as a plugin as shown. After cloning, all ten skills are at `zebracat-video/SKILL.md`, `zebracat-avatar/SKILL.md`, `zebracat-voice/SKILL.md`, `zebracat-brand/SKILL.md`, `zebracat-script/SKILL.md`, `zebracat-studio/SKILL.md`, `zebracat-swap/SKILL.md`, `zebracat-image/SKILL.md`, `zebracat-brainrot/SKILL.md`, and `zebracat-translate/SKILL.md`.
 
 > Not sure where your skills directory is? Ask your agent: *"Where is your skills directory?"*
+
+### Option E — Claude Code plugin
+
+Installs all ten skills and connects the Zebracat MCP server in one step. Inside Claude Code:
+
+```
+/plugin marketplace add zebracatai/skills
+/plugin install zebracat@zebracat
+```
+
+Or from your shell: `claude plugin marketplace add zebracatai/skills && claude plugin install zebracat@zebracat`. Run `/mcp` once to sign in to Zebracat (OAuth, your plan credits).
 
 ## What's Included
 
@@ -89,16 +101,18 @@ Ten skills that work standalone or chain together:
 
 | Skill | What it does | Invoke |
 |-------|--------------|--------|
-| **zebracat-video** | Idea / script / URL / reference video → a plan with its price → finished video. The flagship producer. | `/zebracat:video` |
-| **zebracat-avatar** | Choose or customize a presenter, build reusable characters → `AVATAR-<NAME>.md`. | `/zebracat:avatar` |
-| **zebracat-voice** | Browse, preview, and clone voices; pick a tone → `voice_id`. | `/zebracat:voice` |
-| **zebracat-brand** | Set up and reuse a brand kit — name, logo, colors, fonts, tone. | `/zebracat:brand` |
-| **zebracat-script** | Write and refine a video script with Studio's writer (free, no render credits). | `/zebracat:script` |
-| **zebracat-studio** | Studio tools one at a time: hooks, a voice-over, an image, a clip. | `/zebracat:studio` |
-| **zebracat-swap** | Character Swap: put your character in place of the person in a clip. | `/zebracat:swap` |
-| **zebracat-image** | Generate standalone AI images — thumbnails, hero shots, 9:16 / 16:9 / 1:1. | `/zebracat:image` |
-| **zebracat-brainrot** | Viral short-form: subway-surfers / minecraft-parkour / italian-brainrot / general. | `/zebracat:brainrot` |
-| **zebracat-translate** | Existing video → dubbed + captioned version in 170+ languages. | `/zebracat:translate` |
+| **zebracat-video** | Idea / script / URL / reference video → a plan with its price → finished video. The flagship producer. | `/zebracat-video` |
+| **zebracat-avatar** | Choose or customize a presenter, build reusable characters → `AVATAR-<NAME>.md`. | `/zebracat-avatar` |
+| **zebracat-voice** | Browse, preview, and clone voices; pick a tone → `voice_id`. | `/zebracat-voice` |
+| **zebracat-brand** | Set up and reuse a brand kit — name, logo, colors, fonts, tone. | `/zebracat-brand` |
+| **zebracat-script** | Write and refine a video script with Studio's writer (free, no render credits). | `/zebracat-script` |
+| **zebracat-studio** | Studio tools one at a time: hooks, a voice-over, an image, a clip. | `/zebracat-studio` |
+| **zebracat-swap** | Character Swap: put your character in place of the person in a clip. | `/zebracat-swap` |
+| **zebracat-image** | Generate standalone AI images — thumbnails, hero shots, 9:16 / 16:9 / 1:1. | `/zebracat-image` |
+| **zebracat-brainrot** | Viral short-form: subway-surfers / minecraft-parkour / italian-brainrot / general. | `/zebracat-brainrot` |
+| **zebracat-translate** | Existing video → dubbed + captioned version in 170+ languages. | `/zebracat-translate` |
+
+Type the command, or just ask ("make a 30-second video about …") and your agent picks the skill. In Claude Code the commands above work on every install path. A plugin install (Option E) also lists them under the plugin's name, as `/zebracat:zebracat-video` and so on; both forms run the same skill.
 
 ## How It Works
 

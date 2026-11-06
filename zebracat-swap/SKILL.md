@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 1.2.1
 name: zebracat-swap
 description: |
   Zebracat Character Swap: replace the main person in a video with a character from a picture,

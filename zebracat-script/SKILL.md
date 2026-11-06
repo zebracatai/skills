@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 1.2.1
 name: zebracat-script
 description: |
   Write and refine a video script from an idea with Zebracat Studio's writer (the same as the
