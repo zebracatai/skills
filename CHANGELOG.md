@@ -5,6 +5,29 @@ All notable changes to the Zebracat Skills are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2026-11-06
+
+The Claude Code plugin installs, and the docs name the commands it really gives.
+
+### Fixed
+
+- **Claude Code plugin install** — `.claude-plugin/marketplace.json` listed `skills` as `{name, path, invoke}` objects, so `claude plugin validate` failed (`plugins.0.skills: Invalid input`) and `/plugin install zebracat@zebracat` refused the entry. The entry no longer lists skills; `plugin.json` now declares `"skills": ["./"]`, so all ten skills load from the repo root.
+- **Command names** — the docs and the marketplace description promised `/zebracat:video`, `/zebracat:avatar` …, which never existed. The commands are the skill names: `/zebracat-video`, `/zebracat-studio`, `/zebracat-swap`, `/zebracat-avatar`, `/zebracat-voice`, `/zebracat-brand`, `/zebracat-script`, `/zebracat-image`, `/zebracat-brainrot`, `/zebracat-translate`. They work on every install path. A plugin install also lists them as `/zebracat:zebracat-video` and so on. The skill names are unchanged, so `npx skills add zebracatai/skills --list` shows the same names as before.
+- **Claude Code git clone** — the docs said to clone into `~/.claude/skills/zebracat-skills`. Claude Code loads that folder as a plugin but reads no skills from it (Claude Code 2.1.319 ignores the `skills` key there), so it gave no commands. The docs now clone anywhere and install the clone as a plugin (`claude plugin marketplace add <path>`, then `claude plugin install zebracat@zebracat`).
+- **Cursor manifest** — dropped `$schema`; Cursor's plugin schema allows no extra keys.
+- **Codex manifest** — dropped `interface.logo`, which pointed at a file the repo doesn't have (`./assets/logo.png`).
+
+### Added
+
+- The Claude Code plugin install (`/plugin marketplace add zebracatai/skills`, then `/plugin install zebracat@zebracat`) in `README.md`, `INSTALL.md` and `INSTALL_FOR_AGENTS.md`.
+- A marketplace `description`, and `privacyPolicyUrl` in `.claude-plugin/plugin.json`.
+
+### Changed
+
+- Bumped `VERSION`, every `SKILL.md` frontmatter and the plugin manifests to `1.2.1`.
+
+[1.2.1]: https://github.com/zebracatai/skills/releases/tag/v1.2.1
+
 ## [1.2.0] - 2026-10-19
 
 The skills move to the v2 video engine (the zebracat.ai chat's engine) and the agent docs.

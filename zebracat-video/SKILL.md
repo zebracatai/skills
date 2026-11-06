@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 1.2.1
 name: zebracat-video
 description: |
   Turn an idea, script, URL or a reference video into a finished Zebracat video, through the

@@ -64,9 +64,11 @@ Installs all ten skills to your agent's default skills directory automatically.
 
 Clone into your agent's skills directory:
 
-**Claude Code** (default: `~/.claude/skills/zebracat-skills`):
+**Claude Code** — clone anywhere, then install the clone as a plugin (Claude Code loads only skills one folder deep in `~/.claude/skills/`, so a clone there gives no commands):
 ```bash
-git clone https://github.com/zebracatai/skills.git ~/.claude/skills/zebracat-skills
+git clone https://github.com/zebracatai/skills.git ~/zebracat-skills
+claude plugin marketplace add ~/zebracat-skills
+claude plugin install zebracat@zebracat
 ```
 
 **OpenClaw** (default: `~/.openclaw/skills/zebracat-skills`):
@@ -75,6 +77,31 @@ git clone https://github.com/zebracatai/skills.git ~/.openclaw/skills/zebracat-s
 ```
 
 > Not sure where your skills directory is? Ask your agent: *"Where is your skills directory?"*
+
+## Option 5 — Claude Code plugin
+
+Installs all ten skills and the Zebracat MCP server config in one step. Inside Claude Code:
+
+```
+/plugin marketplace add zebracatai/skills
+/plugin install zebracat@zebracat
+```
+
+Or from your shell:
+```bash
+claude plugin marketplace add zebracatai/skills
+claude plugin install zebracat@zebracat
+```
+
+Run `/mcp` once to sign in to Zebracat (OAuth, your plan credits).
+
+## Using the skills
+
+Type the skill's command in Claude Code, or just ask ("make a 30-second video about …"):
+
+`/zebracat-video`, `/zebracat-studio`, `/zebracat-swap`, `/zebracat-avatar`, `/zebracat-voice`, `/zebracat-brand`, `/zebracat-script`, `/zebracat-image`, `/zebracat-brainrot`, `/zebracat-translate`
+
+These work with every install option above. A plugin install (Option 4 for Claude Code, or Option 5) also lists them under the plugin's name, as `/zebracat:zebracat-video` and so on; both forms run the same skill.
 
 ## Auth — three ways to reach Zebracat
 

@@ -1,6 +1,6 @@
 {
   "name": "zebracat",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Create Zebracat AI videos from an idea, script, URL or a reference video, plan first with the exact price, on the same engine as the zebracat.ai chat. Studio tools (hooks, voice-overs, images, clips), Character Swap, avatars and reusable characters, voice cloning, brand kits, scripts, standalone AI images, viral brainrot, and translation of finished videos into 170+ languages.",
   "author": {
     "name": "Zebracat",
@@ -52,7 +52,6 @@
       "Create an AI avatar presenter and record an intro video",
       "Translate this video into Spanish, German, and Japanese"
     ],
-    "brandColor": "#7c3aed",
-    "logo": "./assets/logo.png"
+    "brandColor": "#7c3aed"
   }
 }

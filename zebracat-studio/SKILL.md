@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 1.2.1
 name: zebracat-studio
 description: |
   Zebracat Studio's single-purpose tools, one at a time: hooks (scroll-stopping opening lines

@@ -45,7 +45,7 @@ Force a specific agent with `-a` (`claude-code`, `openclaw`, `cursor`, `codex`) 
 
 | Agent host  | Default install path                       |
 |-------------|--------------------------------------------|
-| Claude Code | `~/.claude/skills/zebracat-skills`         |
+| Claude Code | Anywhere (e.g. `~/zebracat-skills`), then `claude plugin marketplace add <install-path> && claude plugin install zebracat@zebracat`. A clone inside `~/.claude/skills/` loads no skills. |
 | OpenClaw    | `~/.openclaw/skills/zebracat-skills`       |
 | Codex       | `~/.codex/skills/zebracat-skills`          |
 | Cursor      | `~/.cursor/skills/zebracat-skills`         |
@@ -58,7 +58,13 @@ git clone --single-branch --depth 1 \
   <install-path>
 ```
 
-`gh skill install zebracatai/skills <skill>` (per-skill) is another cross-agent option. After install, jump to Step 2.
+`gh skill install zebracatai/skills <skill>` (per-skill) is another cross-agent option.
+
+**Claude Code plugin (skills + MCP config in one step).** The user runs, inside Claude Code: `/plugin marketplace add zebracatai/skills`, then `/plugin install zebracat@zebracat` (shell: `claude plugin marketplace add zebracatai/skills && claude plugin install zebracat@zebracat`).
+
+**Commands.** In Claude Code each skill runs as `/zebracat-video`, `/zebracat-studio`, `/zebracat-swap`, `/zebracat-avatar`, `/zebracat-voice`, `/zebracat-brand`, `/zebracat-script`, `/zebracat-image`, `/zebracat-brainrot` or `/zebracat-translate`, on every install path; the user can also just ask. A plugin install also lists them as `/zebracat:zebracat-video` and so on. Never tell the user `/zebracat:video`: no such command exists.
+
+After install, jump to Step 2.
 
 ## Step 2: Pick a transport (the ladder)
 
