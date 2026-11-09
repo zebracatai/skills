@@ -1,5 +1,5 @@
 ---
-version: 1.2.1
+version: 1.2.2
 name: zebracat-video
 description: |
   Turn an idea, script, URL or a reference video into a finished Zebracat video, through the
@@ -80,9 +80,9 @@ Full ladder in [CLAUDE.md](../CLAUDE.md). Summary:
 1. **CLI (API key)** — `ZEBRACAT_API_KEY` set AND `zebracat auth status` exits 0.
 2. **REST (API key)** — `ZEBRACAT_API_KEY` set AND no CLI.
 3. **MCP (OAuth)** — no key AND `mcp__zebracat__*` tools visible. **Preferred for end users.**
-4. **CLI (OAuth)** — no key, no MCP, CLI present → `zebracat auth login`.
+4. **CLI (saved API key)** — no env key, no MCP, `zebracat auth status` exits 0 (key saved with `zebracat auth login`).
 5. **Neither** → tell the user once how to connect MCP (`https://mcp.zebracat.ai/mcp`) or
-   install the CLI (`npm install -g @zebracat/cli`).
+   install the CLI (`curl -fsSL https://cli.zebracat.ai | bash`).
 
 > **Hard rule:** `ZEBRACAT_API_KEY` set ⇒ CLI/REST. Unset ⇒ MCP OAuth.
 

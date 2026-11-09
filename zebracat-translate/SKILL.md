@@ -1,5 +1,5 @@
 ---
-version: 1.2.1
+version: 1.2.2
 name: zebracat-translate
 description: |
   Translate and dub an existing video into another language with optional captions, powered
@@ -56,7 +56,7 @@ Same ladder as the suite — full version in [CLAUDE.md](../CLAUDE.md):
 1. **CLI (API key)** — `ZEBRACAT_API_KEY` set + CLI works.
 2. **REST (API key)** — key set, no CLI.
 3. **MCP (OAuth)** — no key + `mcp__zebracat__*` visible. **Preferred for end users.**
-4. **CLI (OAuth)** — no key, no MCP, CLI present.
+4. **CLI (saved API key)** — no env key, no MCP, `zebracat auth status` exits 0 (key saved with `zebracat auth login`).
 5. **Neither** → tell the user once how to connect MCP or the CLI.
 
 > **Hard rule:** `ZEBRACAT_API_KEY` set ⇒ CLI/REST. Unset ⇒ MCP OAuth.

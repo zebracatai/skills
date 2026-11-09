@@ -1,10 +1,11 @@
 ---
-version: 1.2.1
+version: 1.2.2
 name: zebracat-studio
 description: |
   Zebracat Studio's single-purpose tools, one at a time: hooks (scroll-stopping opening lines
   for a script), a voice-over from text in any voice, an AI image, or a short AI video clip.
   The same tools, prices and limits as the dashboard's Studio.
+  Not on the public Zebracat service yet (Studio tools are off there): check the tools exist first.
   Use when: (1) "write me hooks / a better opening line for this script"; (2) "make a
   voice-over of this text", "read this in <voice>", "an MP3 of this script"; (3) "a clip of X",
   "a 5-second shot of …", "animate this picture"; (4) "an image of X" on the Studio models.
@@ -28,6 +29,10 @@ Four quick tools. Each is one call (plus a status poll), lands in the user's ass
 can be used in a video later.
 
 **Docs for agents:** https://api.zebracat.ai/docs/guides/studio.md
+
+## Availability (check first)
+
+This skill's tools are switched off on the public Zebracat service for now (Studio tools are off there). Before anything else, check that these tools are in your tool list (MCP): `write_hooks`, `generate_voice`, `generate_image` and `generate_clip`. With the CLI / REST, a not-found answer means the same. If they are missing, tell the user once: *"This isn't available on Zebracat yet. I can make it part of a video with zebracat-video instead."* Then stop; don't try another transport.
 
 ## Skill Announcement
 

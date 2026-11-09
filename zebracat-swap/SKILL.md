@@ -1,10 +1,11 @@
 ---
-version: 1.2.1
+version: 1.2.2
 name: zebracat-swap
 description: |
   Zebracat Character Swap: replace the main person in a video with a character from a picture,
   keeping the motion, the camera and the original sound. The same engine and prices as the
   dashboard's Swap page; the result is a normal Zebracat project you can edit.
+  Not on the public Zebracat service yet (Studio tools are off there): check the tools exist first.
   Use when: (1) "put me / my mascot / this character in this video", "swap the person in this
   clip", "replace the presenter with …"; (2) "make this TikTok with my avatar instead of them".
   Needs: a clip on Zebracat storage, a picture of the character (or a saved AI character), a paid
@@ -27,6 +28,10 @@ metadata:
 
 Put a character in place of the main person in a clip. Read the full guide when a field is unclear:
 https://api.zebracat.ai/docs/guides/character-swap.md
+
+## Availability (check first)
+
+This skill's tools are switched off on the public Zebracat service for now (Studio tools are off there). Before anything else, check that these tools are in your tool list (MCP): `swap_character`. With the CLI / REST, a not-found answer means the same. If they are missing, tell the user once: *"This isn't available on Zebracat yet. I can make it part of a video with zebracat-video instead."* Then stop; don't try another transport.
 
 ## Skill Announcement
 

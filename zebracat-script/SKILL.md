@@ -1,10 +1,11 @@
 ---
-version: 1.2.1
+version: 1.2.2
 name: zebracat-script
 description: |
   Write and refine a video script from an idea with Zebracat Studio's writer (the same as the
   dashboard's Studio → Script) — free, no render credits. Draft, tune and approve the words
   before generating.
+  Not on the public Zebracat service yet (Studio tools are off there): check the tools exist first.
   Use when: (1) "write a script about X", "draft a voice-over", "give me a 30-second script";
   (2) "I want to see/approve the script first", "just the words, not the video yet";
   (3) tuning length, language, tone, or narration style before committing to a render.
@@ -30,6 +31,10 @@ Draft the words **before** spending render credits. A script takes a few seconds
 nothing (within an hourly/daily allowance), so iterate on length, tone and format until the user
 approves, then hand the final script to zebracat-video.
 
+## Availability (check first)
+
+This skill's tools are switched off on the public Zebracat service for now (Studio tools are off there). Before anything else, check that these tools are in your tool list (MCP): `write_script` and `get_script`. With the CLI / REST, a not-found answer means the same. If they are missing, tell the user once: *"This isn't available on Zebracat yet. I can make it part of a video with zebracat-video instead."* Then stop; don't try another transport.
+
 ## Skill Announcement
 
 > 🦓 **Using: zebracat-script** — drafting your voice-over
@@ -52,7 +57,7 @@ API directives.
 
 Same ladder as the suite — full version in [CLAUDE.md](../CLAUDE.md):
 
-1. **CLI (API key)** → 2. **REST (API key)** → 3. **MCP (OAuth, preferred)** → 4. **CLI (OAuth)** → 5. tell the user how to connect.
+1. **CLI (API key)** → 2. **REST (API key)** → 3. **MCP (OAuth, preferred)** → 4. **CLI (saved API key)** → 5. tell the user how to connect.
 
 > **Hard rule:** `ZEBRACAT_API_KEY` set ⇒ CLI/REST. Unset ⇒ MCP OAuth.
 

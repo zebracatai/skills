@@ -1,9 +1,10 @@
 ---
-version: 1.2.1
+version: 1.2.2
 name: zebracat-image
 description: |
   Generate standalone AI images from a text prompt with Zebracat — thumbnails, hero shots,
   reference frames, social graphics, or assets. Pick a visual style and aspect, get image URLs back.
+  Not on the public Zebracat service yet (Studio tools are off there): check the tools exist first.
   Use when: (1) "generate an image of X", "make a thumbnail", "create a hero image", "AI image
   of ..."; (2) "I need a 9:16 / 16:9 / square graphic"; (3) producing a still asset rather than
   a video; (4) a reference frame to steer a later video.
@@ -25,6 +26,10 @@ metadata:
 
 Generate a still image from a prompt — a fast, single-call way to make thumbnails, hero shots,
 social graphics, or reference frames. Not a video: the output is image URLs.
+
+## Availability (check first)
+
+This skill's tools are switched off on the public Zebracat service for now (Studio tools are off there). Before anything else, check that these tools are in your tool list (MCP): `generate_image`. With the CLI / REST, a not-found answer means the same. If they are missing, tell the user once: *"This isn't available on Zebracat yet. I can make it part of a video with zebracat-video instead."* Then stop; don't try another transport.
 
 ## Skill Announcement
 
@@ -54,7 +59,7 @@ narration.
 
 Same ladder as the suite — full version in [CLAUDE.md](../CLAUDE.md):
 
-1. **CLI (API key)** → 2. **REST (API key)** → 3. **MCP (OAuth, preferred)** → 4. **CLI (OAuth)** → 5. tell the user how to connect.
+1. **CLI (API key)** → 2. **REST (API key)** → 3. **MCP (OAuth, preferred)** → 4. **CLI (saved API key)** → 5. tell the user how to connect.
 
 > **Hard rule:** `ZEBRACAT_API_KEY` set ⇒ CLI/REST. Unset ⇒ MCP OAuth. Image generation is
 > exposed on the CLI and REST; if your MCP toolset has no image tool, use the CLI/REST path.
