@@ -1,5 +1,5 @@
 ---
-version: 1.2.1
+version: 1.2.2
 name: zebracat-brainrot
 description: |
   Create viral, high-retention short-form "brainrot" videos with Zebracat — vertical clips with
@@ -27,7 +27,7 @@ metadata:
 
 # Zebracat Brainrot 🦓
 
-Make scroll-stopping vertical short-form: a gameplay/chaotic background, a punchy hook, fast captions, and a tight voice-over. This is `video_type=brainrot` with opinionated defaults tuned for retention.
+Make scroll-stopping vertical short-form: a gameplay/chaotic background, a punchy hook, fast captions, and a tight voice-over. This is `create_video` with a brainrot preset and opinionated defaults tuned for retention.
 
 ## Skill Announcement
 
@@ -51,13 +51,13 @@ Make scroll-stopping vertical short-form: a gameplay/chaotic background, a punch
 
 ## Language Awareness
 
-Detect the user's language; reply in it. Write captions/voice-over in the video language. Keep `video_type`, `aspect_ratio`, format ids, and mood enums in English.
+Detect the user's language; reply in it. Write captions/voice-over in the video language. Keep `preset`, `aspect`, and other technical args in English.
 
 ## Transport Detection (pick one silently)
 
 Same ladder as the suite — full version in [CLAUDE.md](../CLAUDE.md):
 
-1. **CLI (API key)** → 2. **REST (API key)** → 3. **MCP (OAuth, preferred)** → 4. **CLI (OAuth)** → 5. tell the user how to connect.
+1. **CLI (API key)** → 2. **REST (API key)** → 3. **MCP (OAuth, preferred)** → 4. **CLI (saved API key)** → 5. tell the user how to connect.
 
 > **Hard rule:** `ZEBRACAT_API_KEY` set ⇒ CLI/REST. Unset ⇒ MCP OAuth.
 
@@ -82,43 +82,50 @@ If the user didn't say, ask one line: *"Which vibe — subway surfers, minecraft
 
 Apply these unless the user overrides:
 
-- `video_type=brainrot`
-- `aspect_ratio=vertical`
-- `duration=15` or `30` (short and punchy; rarely longer)
-- `mood`: high-energy / fast (or comedic for `italian`)
-- A strong **hook in the first 1–2 seconds** (the single biggest retention lever)
-- Fast, bold captions synced to the voice-over
+- the format's **preset** (table below): it sets the gameplay background and the brainrot story shape
+- `aspect="vertical"`
+- `seconds=15` or `30` (short and punchy; rarely longer)
+- the energy (high-energy, or comedic for `italian`) and a strong **hook in the first 1–2 seconds**,
+  said in the brief in the user's own words
+- fast, bold captions (the plan has them on by default)
 
-Map the chosen format to the brainrot background in the brief (e.g. "subway surfers gameplay background", "minecraft parkour background", "italian brainrot style"). The exact background selection is handled by the pipeline from this directive.
+| Format | `preset` |
+|--------|----------|
+| `subway` | `subway-surfers-video-generator` |
+| `minecraft` | `minecraft-parkour-generator` |
+| `italian` | `italian-brainrot-generator` |
+| `general` | `brainrot-video-generator` |
 
-### Phase 3 — Generate
+### Phase 3 — Plan, price, generate
+
+Same v2 flow as **zebracat-video**: plan → show the price → generate on the user's yes.
 
 **MCP:**
 ```
-create_video_from_idea(
-  idea="<topic or hook>",
-  video_type="brainrot",
-  duration=30,
-  aspect_ratio="vertical",
-  language="english",
-  mood="high-energy",
-  prompt_style="<optional>",
-  should_render=true
+create_video(
+  brief="<the user's words: the topic, fact or script>",
+  preset="subway-surfers-video-generator",
+  aspect="vertical",
+  seconds=30,
+  idempotency_key="<uuid>"
 )
 ```
-Put the format directive (subway / minecraft / italian / general) into the `idea`/prompt text so the pipeline picks the right background. For a user-supplied script, use `create_video_from_script(script=…)`. For "just make it go viral", `create_agentic_video(prompt=…, video_type="brainrot")`.
+For a user-supplied script add `input_kind="script"` (spoken word for word). It plans only
+(nothing is spent). Poll `get_video(task_id)` until `phase` is `plan_ready` (or `needs_input`:
+ask the engine's question, then `answer_video_question`). Show a short summary and the price
+from `quote_video(task_id)`, then on the user's yes: `generate_video(task_id, confirmed=true)`.
 
 **CLI:**
 ```bash
-zebracat video create \
-  --from idea --prompt "<topic>. Subway surfers gameplay background, fast captions." \
-  --type brainrot --duration 30 --aspect vertical \
-  --mood high-energy --render --wait --timeout 30m
+zebracat video create --brief "<topic>" --preset subway-surfers-video-generator \
+  --aspect vertical --seconds 30 --plan-only --wait
+zebracat video quote <task_id>
+zebracat video generate <task_id> --yes --wait
 ```
 
 ### Phase 4 — Poll + deliver
 
-Silent poll (`get_video_status` / `zebracat video status <id>`), then deliver the vertical MP4 with a one-line summary and append the JSONL log line. Offer next steps: *"Want this in other languages?"* → **zebracat-translate**; *"Want a normal cinematic version?"* → **zebracat-video**.
+Silent poll (`get_video(task_id)` / `zebracat video status <task_id>`), then deliver the vertical video with a one-line summary and append the JSONL log line. Offer next steps: *"Want this in other languages?"* → **zebracat-translate**; *"Want a normal cinematic version?"* → **zebracat-video**.
 
 ## Best Practices
 
@@ -127,4 +134,4 @@ Silent poll (`get_video_status` / `zebracat video status <id>`), then deliver th
 - **Keep it short.** 15–30s. Longer kills retention.
 - **Captions are the content.** Bold, fast, synced. Voice-over carries; captions reinforce.
 - **Match format to audience.** Gaming → minecraft; meme/comedy → italian; mass-appeal facts → subway; everything else → general.
-- **Don't over-produce.** Brainrot is fast and raw by design — when unsure, use the agentic entry with `video_type=brainrot`.
+- **Don't over-produce.** Brainrot is fast and raw by design — when unsure, use the `brainrot-video-generator` preset.

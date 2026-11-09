@@ -105,10 +105,10 @@ Ten skills that work standalone or chain together:
 | **zebracat-avatar** | Choose or customize a presenter, build reusable characters → `AVATAR-<NAME>.md`. | `/zebracat-avatar` |
 | **zebracat-voice** | Browse, preview, and clone voices; pick a tone → `voice_id`. | `/zebracat-voice` |
 | **zebracat-brand** | Set up and reuse a brand kit — name, logo, colors, fonts, tone. | `/zebracat-brand` |
-| **zebracat-script** | Write and refine a video script with Studio's writer (free, no render credits). | `/zebracat-script` |
-| **zebracat-studio** | Studio tools one at a time: hooks, a voice-over, an image, a clip. | `/zebracat-studio` |
-| **zebracat-swap** | Character Swap: put your character in place of the person in a clip. | `/zebracat-swap` |
-| **zebracat-image** | Generate standalone AI images — thumbnails, hero shots, 9:16 / 16:9 / 1:1. | `/zebracat-image` |
+| **zebracat-script** | Write and refine a video script with Studio's writer (free, no render credits). *Coming soon: not on the public service yet.* | `/zebracat-script` |
+| **zebracat-studio** | Studio tools one at a time: hooks, a voice-over, an image, a clip. *Coming soon: not on the public service yet.* | `/zebracat-studio` |
+| **zebracat-swap** | Character Swap: put your character in place of the person in a clip. *Coming soon: not on the public service yet.* | `/zebracat-swap` |
+| **zebracat-image** | Generate standalone AI images — thumbnails, hero shots, 9:16 / 16:9 / 1:1. *Coming soon: not on the public service yet.* | `/zebracat-image` |
 | **zebracat-brainrot** | Viral short-form: subway-surfers / minecraft-parkour / italian-brainrot / general. | `/zebracat-brainrot` |
 | **zebracat-translate** | Existing video → dubbed + captioned version in 170+ languages. | `/zebracat-translate` |
 
@@ -133,13 +133,12 @@ The skills auto-detect a transport. Detailed ladder in [CLAUDE.md](./CLAUDE.md).
 |----------|------|---------|---------|----------|
 | 1 | **CLI / REST (API key)** | `ZEBRACAT_API_KEY` is set | Pay-as-you-go | Agents, CI, scripts |
 | 2 | **MCP (OAuth)** | MCP tools visible AND no API key | Your Zebracat plan credits | Users on a Zebracat plan |
-| 3 | **CLI (OAuth)** | `zebracat auth login` session | Account credit | Interactive CLI users |
 
 **The rule:** if `ZEBRACAT_API_KEY` is set, the skills use the CLI (or REST) with it. Otherwise they use MCP via OAuth — no key handling, bills your plan credits.
 
 - **MCP (zero-setup if on a plan):** connect `https://mcp.zebracat.ai/mcp/` to your agent. First call triggers OAuth in your browser.
 - **API key (pay-as-you-go):** get a key from your Zebracat account, then `export ZEBRACAT_API_KEY=sk-…`.
-- **CLI (`zebracat`):** `npm install -g @zebracat/cli` (or `curl -fsSL https://raw.githubusercontent.com/zebracatai/zebracat-cli/main/install.sh | bash`), then `zebracat auth login` or `export ZEBRACAT_API_KEY=sk-…`. Verify with `zebracat auth status`.
+- **CLI (`zebracat`):** `curl -fsSL https://cli.zebracat.ai | bash`, then `zebracat auth login` (paste your API key) or `export ZEBRACAT_API_KEY=sk-…`. Verify with `zebracat auth status`.
 
 ## Things to Try
 

@@ -9,8 +9,8 @@
     {
       "name": "zebracat",
       "source": "./",
-      "description": "Zebracat skills for AI video generation (plan first, exact price), Studio tools (hooks, voice-overs, images, clips), Character Swap, avatars and characters, voice cloning, brand kits, scripts, standalone AI images, viral brainrot, and video translation. Invoke as /zebracat-video, /zebracat-studio, /zebracat-swap, /zebracat-avatar, /zebracat-voice, /zebracat-brand, /zebracat-script, /zebracat-image, /zebracat-brainrot or /zebracat-translate, or just ask. The plugin also lists them under its namespace, e.g. /zebracat:zebracat-video.",
-      "version": "1.2.1"
+      "description": "Zebracat skills for AI video generation (plan first, exact price), Studio tools (hooks, voice-overs, images, clips), Character Swap, avatars and characters, voice cloning, brand kits, scripts, standalone AI images, viral brainrot, and video translation. Invoke as /zebracat-video, /zebracat-studio, /zebracat-swap, /zebracat-avatar, /zebracat-voice, /zebracat-brand, /zebracat-script, /zebracat-image, /zebracat-brainrot or /zebracat-translate, or just ask. The plugin also lists them under its namespace, e.g. /zebracat:zebracat-video. Studio tools, Character Swap, script writing and standalone images are coming soon: they are not switched on for the public service yet.",
+      "version": "1.2.2"
     }
   ]
 }

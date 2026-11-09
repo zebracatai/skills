@@ -5,6 +5,23 @@ All notable changes to the Zebracat Skills are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.2] - 2026-11-09
+
+The skills only promise what the public Zebracat service does today (ZEB-659).
+
+### Fixed
+
+- **zebracat-brainrot** called `create_video_from_idea(video_type="brainrot", …)`. That tool has no `video_type`, so the call was refused. It now runs the v2 flow of zebracat-video: `create_video` with the format's preset (`subway-surfers-video-generator`, `minecraft-parkour-generator`, `italian-brainrot-generator`, `brainrot-video-generator`), then `quote_video`, then `generate_video(confirmed=true)` on the user's yes.
+- **CLI install** — `npm install -g @zebracat/cli` installs 0.1.6, which has no `video create --brief`, `plan` or `video quote`. Every install line is now `curl -fsSL https://cli.zebracat.ai | bash` (the latest release).
+- **"CLI (OAuth)"** — the CLI has no OAuth login: `zebracat auth login` saves an API key. The ladder step is now "CLI (saved API key)", pay-as-you-go.
+
+### Changed
+
+- **zebracat-image, zebracat-script, zebracat-studio, zebracat-swap** are marked "coming soon": their tools are not switched on for the public service yet. Each skill checks that its tools exist first and, if not, says so once and offers zebracat-video. README, INSTALL and the plugin descriptions say the same.
+- Bumped `VERSION`, every `SKILL.md` frontmatter and the plugin manifests to `1.2.2`.
+
+[1.2.2]: https://github.com/zebracatai/skills/releases/tag/v1.2.2
+
 ## [1.2.1] - 2026-11-06
 
 The Claude Code plugin installs, and the docs name the commands it really gives.

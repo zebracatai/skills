@@ -46,7 +46,7 @@ CTA:       what to do next (if any)
 ## Generating a script
 
 Usually you don't need to: `create_video` with `input_kind: "idea"` writes the script inside the
-plan, and `get_plan` shows it for approval. To draft the words first, use zebracat-script
+plan, and `get_plan` shows it for approval. To draft the words first, use zebracat-script where Studio is on
 (`write_script(idea, seconds, language)` → `get_script(job_id)`), then pass the approved text with
 `input_kind: "voiceover_script"` (one narrator) or `"script"` (several speakers).
 

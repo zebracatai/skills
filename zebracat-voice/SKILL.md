@@ -1,5 +1,5 @@
 ---
-version: 1.2.1
+version: 1.2.2
 name: zebracat-voice
 description: |
   Browse, preview, and pick a Zebracat voice — or clone a voice from a sample — and choose its
@@ -56,7 +56,7 @@ Detect the user's language; reply in it. When listing voices, filter by the targ
 
 Same ladder as the suite — full version in [CLAUDE.md](../CLAUDE.md):
 
-1. **CLI (API key)** → 2. **REST (API key)** → 3. **MCP (OAuth, preferred)** → 4. **CLI (OAuth)** → 5. tell the user how to connect.
+1. **CLI (API key)** → 2. **REST (API key)** → 3. **MCP (OAuth, preferred)** → 4. **CLI (saved API key)** → 5. tell the user how to connect.
 
 > **Hard rule:** `ZEBRACAT_API_KEY` set ⇒ CLI/REST. Unset ⇒ MCP OAuth.
 

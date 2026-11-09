@@ -6,10 +6,10 @@ The repo ships *ten* skills you can install:
 - **`zebracat-avatar`** — choose or customize a presenter, build reusable characters
 - **`zebracat-voice`** — browse, preview, and clone voices; pick a tone
 - **`zebracat-brand`** — set up and reuse a brand kit (name, logo, colors, fonts, tone)
-- **`zebracat-script`** — write and refine a voice-over script (synchronous, no render credits)
-- **`zebracat-studio`** — Studio tools one at a time: hooks, voice-overs, images, clips
-- **`zebracat-swap`** — Character Swap: your character in place of the person in a clip
-- **`zebracat-image`** — generate standalone AI images (thumbnails, hero shots, 9:16 / 16:9 / 1:1)
+- **`zebracat-script`** — write and refine a voice-over script (synchronous, no render credits) (coming soon: not on the public service yet)
+- **`zebracat-studio`** — Studio tools one at a time: hooks, voice-overs, images, clips (coming soon: not on the public service yet)
+- **`zebracat-swap`** — Character Swap: your character in place of the person in a clip (coming soon: not on the public service yet)
+- **`zebracat-image`** — generate standalone AI images (thumbnails, hero shots, 9:16 / 16:9 / 1:1) (coming soon: not on the public service yet)
 - **`zebracat-brainrot`** — viral short-form (subway-surfers / minecraft-parkour / italian-brainrot)
 - **`zebracat-translate`** — dub existing videos into 170+ languages with captions
 
@@ -111,7 +111,6 @@ The skills auto-detect a transport at runtime. The full ladder lives in [CLAUDE.
 |----------|------|---------|---------|
 | 1 | **CLI / REST (API key)** | `ZEBRACAT_API_KEY` is set | Pay-as-you-go |
 | 2 | **MCP (OAuth)** | MCP tools visible AND no API key | Zebracat plan credits |
-| 3 | **CLI (OAuth)** | `zebracat auth login` session | Account credit |
 
 **The rule:** if `ZEBRACAT_API_KEY` is set, the skills use the CLI (or REST) with it. Otherwise they prefer MCP via OAuth.
 
@@ -150,7 +149,7 @@ export ZEBRACAT_API_KEY=sk-your-key-here
 
 Ephemeral (current shell only). To persist, add the `export` line to your shell profile (`~/.zshrc`, `~/.bashrc`, or equivalent). If `ZEBRACAT_API_KEY` is set, the skills use the CLI (or REST). This is the most predictable setup for agent workflows.
 
-Install the `zebracat` CLI with `npm install -g @zebracat/cli` (or `curl -fsSL https://raw.githubusercontent.com/zebracatai/zebracat-cli/main/install.sh | bash`). The CLI pattern is `zebracat <noun> <verb>`; output is JSON on stdout (`--human` for tables). Verify with `zebracat auth status`.
+Install the `zebracat` CLI with `curl -fsSL https://cli.zebracat.ai | bash` (the same script: `https://raw.githubusercontent.com/zebracatai/zebracat-cli/main/install.sh`). It takes an API key, from `ZEBRACAT_API_KEY` or saved with `zebracat auth login`. The CLI pattern is `zebracat <noun> <verb>`; output is JSON on stdout (`--human` for tables). Verify with `zebracat auth status`.
 
 ## First Run
 

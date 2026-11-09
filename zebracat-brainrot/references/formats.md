@@ -56,10 +56,10 @@ Lead with one, then deliver the single payoff fast.
 
 | Knob | Brainrot default |
 |------|------------------|
-| `video_type` | `brainrot` |
-| `aspect_ratio` | `vertical` |
-| `duration` | `15` or `30` |
-| `mood` | high-energy (comedic for `italian`) |
+| `preset` | the format's preset (SKILL.md, Phase 2) |
+| `aspect` | `vertical` |
+| `seconds` | `15` or `30` |
+| energy | high-energy (comedic for `italian`), said in the brief |
 | captions | on, bold, fast |
 | hook | first 1–2 seconds, non-negotiable |
 
@@ -72,4 +72,4 @@ Lead with one, then deliver the single payoff fast.
 | Comedy / meme / absurd | `italian` |
 | Brand content that wants brainrot pacing without gameplay | `general` |
 
-When the user just says "make it viral" with no format preference, default to `subway` (broadest appeal) or use the agentic entry with `video_type=brainrot`.
+When the user just says "make it viral" with no format preference, default to `subway` (broadest appeal) or the `brainrot-video-generator` preset.

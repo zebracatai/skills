@@ -77,7 +77,7 @@ Detection order:
 1. **CLI (API key)** — `ZEBRACAT_API_KEY` set AND `zebracat auth status` exits 0 → CLI, pay-as-you-go.
 2. **REST (API key)** — `ZEBRACAT_API_KEY` set AND no `zebracat` binary → direct HTTPS to `https://api.zebracat.ai/api/v1/public/` with header `X-API-KEY: sk-…`.
 3. **MCP (OAuth)** — no `ZEBRACAT_API_KEY` AND `mcp__zebracat__*` tools visible → MCP, plan credits. **Preferred for end users.**
-4. **CLI (OAuth)** — no key AND no MCP AND `zebracat` binary present → `zebracat auth login`, account credit.
+4. **CLI (saved API key)** — no `ZEBRACAT_API_KEY` AND no MCP AND `zebracat auth status` exits 0 (a key saved with `zebracat auth login`) → CLI, pay-as-you-go.
 5. **Neither** — tell the user once how to connect MCP or install the CLI (Step 3).
 
 **First, check for MCP.** If `mcp__zebracat__*` tools are visible and the user hasn't set an API key, MCP is the path of least resistance — OAuth, no key handling, bills the user's plan credits. If MCP is connected and the user is happy with it, **skip to Step 5**. But warn them:
@@ -101,16 +101,15 @@ We cannot configure this from inside the skill — the user wires the MCP server
 Install the CLI:
 
 ```bash
-npm install -g @zebracat/cli
-# or:
-curl -fsSL https://raw.githubusercontent.com/zebracatai/zebracat-cli/main/install.sh | bash
+curl -fsSL https://cli.zebracat.ai | bash
+# same script: https://raw.githubusercontent.com/zebracatai/zebracat-cli/main/install.sh
 ```
 
 Then authenticate — either:
 
 ```bash
-zebracat auth login                 # OAuth, account credit
-# or, for pay-as-you-go:
+zebracat auth login                 # paste your API key; it is saved
+# or:
 export ZEBRACAT_API_KEY=sk-your-key
 ```
 

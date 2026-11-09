@@ -12,7 +12,7 @@ Error → cause → action. Covers all three transports (MCP, CLI, REST).
 | Using CLI/REST when the user wanted plan credits | `ZEBRACAT_API_KEY` is set, which forces the API-key path | `unset ZEBRACAT_API_KEY`, reconnect MCP, re-detect. |
 | Using MCP when the user wanted pay-as-you-go | No `ZEBRACAT_API_KEY` set | `export ZEBRACAT_API_KEY=sk-…` and ensure the CLI is installed. |
 | MCP tools listed but auth fails | OAuth consent not completed | Trigger any MCP call to open the browser consent flow, then retry. |
-| CLI: `zebracat auth status` non-zero | No login / expired / no key | `zebracat auth login` (OAuth) or `export ZEBRACAT_API_KEY=sk-…`. |
+| CLI: `zebracat auth status` non-zero | No login / expired / no key | `zebracat auth login` (paste an API key) or `export ZEBRACAT_API_KEY=sk-…`. |
 
 > Hard rule: `ZEBRACAT_API_KEY` set ⇒ CLI/REST. Unset ⇒ MCP. See [CLAUDE.md](../CLAUDE.md).
 
