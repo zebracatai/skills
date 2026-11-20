@@ -27,7 +27,7 @@ A phone voice-memo in a quiet room usually works. A noisy café recording usuall
 
 ## Submitting the clone
 
-**MCP:** use the voice-clone tool, providing the sample audio in the input format your transport expects (URL, asset, or inline).
+**MCP:** `clone_voice(…)` with the sample as a URL. A local file: `create_upload_link` gives a one-time link to send it to and the final URL. Without `confirmed` it answers what it will do; call it again with `confirmed=true` on the user's yes.
 
 **CLI:**
 ```bash

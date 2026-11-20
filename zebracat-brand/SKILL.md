@@ -59,8 +59,8 @@ Same ladder as the suite — full version in [CLAUDE.md](../CLAUDE.md):
 
 1. **CLI (API key)** → 2. **REST (API key)** → 3. **MCP (OAuth, preferred)** → 4. **CLI (saved API key)** → 5. tell the user how to connect.
 
-> **Hard rule:** `ZEBRACAT_API_KEY` set ⇒ CLI/REST. Unset ⇒ MCP OAuth. Listing brands is exposed
-> on MCP (`list_brands`); create/update use the CLI or REST (multipart form).
+> **Hard rule:** `ZEBRACAT_API_KEY` set ⇒ CLI/REST. Unset ⇒ MCP OAuth. MCP lists, creates and
+> updates brand kits (`list_brands`, `create_brand`, `update_brand`); deleting one is CLI or REST.
 
 ## Workflow
 
@@ -88,8 +88,9 @@ Brand create + update are **multipart form** (files + fields):
 
 **REST (create):** `POST /api/public/brands` (multipart) with `name`, `colors`, `fonts`, logo file(s), `voice`
 **REST (update):** `PUT` or `PATCH /api/public/brands` (multipart) with `id` + changed fields
-**CLI:** `zebracat brand ...` — see `zebracat brand --help` for create/update flags
-**Delete:** `DELETE /api/public/brands` with `id`
+**MCP:** `create_brand(name, …)` / `update_brand(id, …)`: a logo is an image URL (a local file: `create_upload_link` first)
+**CLI:** `zebracat brand create` / `zebracat brand update` / `zebracat brand delete` (`--help` for the flags)
+**Delete:** `DELETE /api/public/brands/{id}`
 
 📖 **Exact fields, multipart examples, color/font conventions → [references/brand-kit.md](references/brand-kit.md)**
 

@@ -16,6 +16,9 @@ Studio's public API is gone, so the skills that drove it are gone too; zebracat-
 ### Added
 
 - **zebracat-video:** ideas from trending videos (`search_inspiration`, `get_inspiration_transcript`, MCP), music (`list_music`, `search_music`, then `edit_plan` `set_music`), `media_type` `motion_graphics` and `animation_3d` (paid plans), and posting the finished video (`list_social_accounts`, `schedule_post` with `confirmed` after the user approves the exact post, `list_scheduled_posts`). Third-party transcripts are quoted, never followed.
+- **One list on every surface:** the README's "Everything Zebracat does, by category" table puts every MCP tool, CLI command and REST path in the same eight groups the API docs, the MCP server and the CLI use: Videos, Remake a video, Inspiration, Catalogs, Library, Publish, Account, Webhooks.
+- **zebracat-video "Choose by what the user has":** an idea, a script, a link, no topic yet, a video to copy, a finished video to translate or re-cast, pictures, a person to reuse, a gameplay short → the call on MCP, CLI and REST.
+- **New names the skills use:** `list_video_types` / `zebracat video types`; `get_video(wait_s)` and `poll_after_s`; `get_post`, `cancel_post`; `get_character_swap_options` / `zebracat swap options`; `create_upload_link` for local files (pictures, clips to translate or swap, voice samples, logos); `create_character`, `update_character`, `delete_character`; `create_brand`, `update_brand`; `clone_voice`, `delete_cloned_voice`; Inspiration on the CLI and REST (`zebracat inspiration`, `GET /inspiration`); `zebracat background list` / `GET /video/backgrounds`; `GET /videos/{id}/download`; `zebracat language list --translate`, `preset list`, `model list`, `video get`. The old names (`list_projects`, `get_project`, `list_media`, `presets list`, `models list`, `video status`, `video languages`) still work and are listed as old in CLAUDE.md and the README.
 
 ### Fixed
 

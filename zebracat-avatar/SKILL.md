@@ -122,6 +122,8 @@ Filter by the desired look (gender, age, vibe), show 3–5 options **with previe
 
 **Path B — Customize / named character.** If the user wants a specific look or a real-person likeness, gather appearance traits conversationally (one or two at a time) and, if they offer a reference photo, note its path in the Appearance → Reference field. Custom-avatar creation runs through Zebracat's avatar pipeline.
 
+Saved characters (the user's Library): `list_characters()`, `create_character(…)`, `update_character(id, …)`, `delete_character(id, confirmed=true)` (MCP); `zebracat character list|create|update|delete` (CLI); `/characters`, `/characters/{id}` (REST). An avatar from a photo: `create_avatar_from_image` (MCP), `zebracat avatar clone` (CLI), `POST /avatars/clone` (REST). A local photo: `create_upload_link` first.
+
 📖 **Selection criteria, customization options, reference-photo handling, mode tradeoffs → [references/avatar-selection.md](references/avatar-selection.md)**
 
 ⛔ **STOP.** Show the chosen avatar (preview + a one-line description) and wait for approval before saving.

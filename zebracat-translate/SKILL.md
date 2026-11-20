@@ -88,8 +88,8 @@ Ask only what you don't already have. One or two questions per turn.
 
 ### Phase 2 — Pre-flight (silent)
 
-- **Validate the language** against the supported list: `list_translate_languages()` (MCP), `GET /video/translate/languages` (REST); the CLI validates on submit (`zebracat video translate --to <lang>`). Send the ISO 639-1 code ("Spanish" → `es`, "Chinese" → `zh`, "Brazilian Portuguese" → `pt`). If the language is not in the list, say so and offer the closest ones.
-- **Check the source is reachable.** A public HTTPS URL returning a video works directly. Auth-walled / 403 / 404 / HTML → ask for a public URL.
+- **Validate the language** against the supported list: `list_translate_languages()` (MCP), `zebracat language list --translate` (CLI), `GET /video/translate/languages` (REST). Send the ISO 639-1 code ("Spanish" → `es`, "Chinese" → `zh`, "Brazilian Portuguese" → `pt`). If the language is not in the list, say so and offer the closest ones.
+- **Check the source is reachable.** A public HTTPS URL returning a video works directly. A local file, or an auth-walled / 403 / 404 / HTML link → a one-time upload link (`create_upload_link` / `POST /uploads/link`), then use the final URL it gives.
 - **No regional variants.** The API takes the language only (`es`, not Spain vs Mexico): if the user asks for a region, say so before submitting.
 
 ### Phase 3 — Submit + Poll (silent)
@@ -112,7 +112,7 @@ zebracat video translate --url "https://…/source.mp4" --to es --render --wait
 ```
 For multiple languages, submit one job each and capture every `task_id`. `--wait` blocks per job; for batches, drop `--wait` and poll each.
 
-**Poll** (background): `get_video(task_id)` / `zebracat video status <id>`. Cadence: 30s for the first 3 min, then 60s. Most finish in a few minutes; long sources take longer. Deliver each language as it completes — don't wait for all.
+**Poll** (background): `get_video(task_id)` / `zebracat video get <id>`. Cadence: 30s for the first 3 min, then 60s. Most finish in a few minutes; long sources take longer. Deliver each language as it completes — don't wait for all.
 
 ### Phase 4 — Deliver
 

@@ -4,8 +4,10 @@ On the v2 engine a video is described by three independent choices, all optional
 type** (what the pictures are made of), the **audio mode** (who speaks), and a **preset** (a
 proven format). Leave out what the user does not care about; the plan decides from the brief.
 
-The live lists: `list_presets` / `zebracat presets list` / `GET /video/presets`, and
-`list_video_models` / `zebracat models list` / `GET /video/models` (qualities, models, prices).
+The live lists: `list_video_types` / `zebracat video types` / `GET /video/types` (each type, whether
+the user's plan can use it, how it is priced), `list_presets` / `zebracat preset list` /
+`GET /video/presets`, and `list_video_models` / `zebracat model list` / `GET /video/models`
+(qualities, models, prices).
 
 ---
 

@@ -53,7 +53,7 @@ another transport.
 
 | Step | MCP | REST (`/api/v1/public/…`) | CLI |
 |------|-----|---------------------------|-----|
-| 1. Can this account swap? price, length cap, consent text | — | `GET character-swap/options` | — |
+| 1. Can this account swap? price, length cap, consent text | `get_character_swap_options()` | `GET character-swap/options` | `zebracat swap options` |
 | 2. Find the people in the clip | `analyze_character_swap(video_url)` | `POST character-swap/analyze {video_url}` | (inside `zebracat swap`) |
 | 3. Price | `swap_character(…)` without `confirmed` | `POST character-swap {…, "dry_run": true}` | `zebracat swap … --dry-run` |
 | 4. Swap (after yes) | `swap_character(…, confirmed=true)` | `POST character-swap {…}` → `202 {job_id, project_id}` | `zebracat swap --video <url> --character <image-url> --consent --yes --wait` |
@@ -70,8 +70,8 @@ main person; ask only when the user meant someone else.
 
 - **Who can swap:** a signed-in (MCP/OAuth) user on a paid plan (`upgrade_required` otherwise), as on the dashboard;
   an API key pays from its dollar balance on any plan.
-- **The clip must be on Zebracat storage** (`cdata.zebracat.ai`): ask the user to upload it in the dashboard first if
-  it is a link elsewhere.
+- **The clip must be on Zebracat storage** (`cdata.zebracat.ai`). A file or a link elsewhere: get a one-time upload
+  link (`create_upload_link` / `POST /uploads/link`), have the file sent there, and use the final URL it gives.
 - **Length:** the plan's video length (`max_seconds`); longer clips are refused unless the user agrees to trim
   (`trim_to_cap: true`).
 - Credits are held at start, settled for the seconds delivered, and released in full on any failure.

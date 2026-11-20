@@ -148,10 +148,10 @@ Skills communicate through plain-text state files at the workspace root:
 
 ## API Conventions
 
-- **MCP tool names ARE the API in MCP mode** (e.g. `create_video`, `get_video`, `quote_video`, `generate_video`, `list_voices`). Never shell out to `zebracat ...` in MCP mode. Older tools (`get_video_status`, `list_latest_videos`, `generate_script`, `list_prompt_styles`) are deprecated; the skills never call them.
+- **MCP tool names ARE the API in MCP mode** (e.g. `create_video`, `get_video`, `quote_video`, `generate_video`, `list_voices`). Never shell out to `zebracat ...` in MCP mode. Older tools (`get_video_status`, `list_latest_videos`, `generate_script`, `list_prompt_styles`) and old names (`list_projects` → `list_videos`, `get_project` → `get_video`, `list_media` → `list_uploads`, `plan_video(idea)` → `plan_video(brief)`) are deprecated; the skills never call them. Old CLI names (`presets list`, `models list`, `video status`, `video languages`) keep working as aliases of `preset list`, `model list`, `video get`, `language list`; the skills use the new ones.
 - **CLI uses `zebracat <noun> <verb>`** with `--help` on any subcommand as the reference. Never call REST in CLI mode.
 - **REST is `https://api.zebracat.ai/api/v1/public/`** with `X-API-KEY` or `Authorization: Bearer`. Only used when neither MCP nor CLI is present.
-- **Long jobs are async.** Submit, then either `--wait` (CLI) or poll `get_video(task_id)` / `zebracat video status <id>` and read `phase`. Most videos finish in a few minutes; some take longer.
+- **Long jobs are async.** Submit, then either `--wait` (CLI) or poll `get_video(task_id)` / `zebracat video get <id>` and read `phase` (MCP `wait_s` holds the call until the phase changes; otherwise wait `poll_after_s`). Most videos finish in a few minutes; some take longer.
 - **Agent docs:** `https://api.zebracat.ai/docs/llms.txt` and `https://api.zebracat.ai/docs/llms-full.txt` are generated from the live API; read them when a field or code is unclear.
 - **`should_render` / `--render`** controls whether the pipeline renders the final MP4 or stops at an editable draft. Default to rendering only after the user has approved the plan, unless they asked to "just make it."
 
