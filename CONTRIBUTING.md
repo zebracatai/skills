@@ -35,15 +35,14 @@ gh pr create --title "Short summary" --body "What / Why / Changes / Testing"
 
 ## Repository layout
 
-Eight **independent, self-contained skills**, each owning its own `references/`:
+Seven **independent, self-contained skills**, each owning its own `references/`:
 
 ```
 zebracat-video/      SKILL.md + references/{prompt-craft,video-types,styles,troubleshooting}.md
 zebracat-avatar/     SKILL.md + references/{avatar-selection,troubleshooting}.md
 zebracat-voice/      SKILL.md + references/{voice-cloning,tones}.md
 zebracat-brand/      SKILL.md + references/brand-kit.md
-zebracat-script/     SKILL.md + references/script-craft.md
-zebracat-image/      SKILL.md + references/image-styles.md
+zebracat-swap/       SKILL.md
 zebracat-brainrot/   SKILL.md + references/formats.md
 zebracat-translate/  SKILL.md + references/languages.md
 ```

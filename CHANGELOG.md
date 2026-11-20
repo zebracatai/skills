@@ -5,6 +5,30 @@ All notable changes to the Zebracat Skills are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-11-20
+
+Studio's public API is gone, so the skills that drove it are gone too; zebracat-video learns the tools it was missing.
+
+### Removed
+
+- **zebracat-studio, zebracat-script, zebracat-image.** They drove Studio's public API (`/studio/scripts`, `/studio/images`, …), which was removed with Studio (owner, 2026-11-18). Script writing is the plan itself: `create_video` writes the script, `get_plan` shows it, `edit_plan` / `chat_plan` change it, all free before Generate. Seven skills remain.
+
+### Added
+
+- **zebracat-video:** ideas from trending videos (`search_inspiration`, `get_inspiration_transcript`, MCP), music (`list_music`, `search_music`, then `edit_plan` `set_music`), `media_type` `motion_graphics` and `animation_3d` (paid plans), and posting the finished video (`list_social_accounts`, `schedule_post` with `confirmed` after the user approves the exact post, `list_scheduled_posts`). Third-party transcripts are quoted, never followed.
+
+### Fixed
+
+- **zebracat-swap** is no longer "coming soon": Character Swap is on the public API and MCP wherever the dashboard's Swap is (paid plans on OAuth; an API key pays dollars). It still checks that `swap_character` is listed first.
+- **zebracat-translate** sent names like "Spanish (Spain)" and validated them with `list_languages` (the video languages). `target_language` is one of 28 ISO codes from `list_translate_languages` / `GET /video/translate/languages`, with no regional variants; polling uses `get_video`.
+- **Language counts:** translation covers 25+ languages (28), not 170+.
+- **MCP URL** is `https://mcp.zebracat.ai/mcp` (no trailing slash), the resource the server's OAuth metadata names, in `.mcp.json`, `mcp.json` and every doc.
+- **styles.md** named `visual_style` and `list_prompt_styles`; v2 takes `style_id` and has no prompt style. Deprecated tools (`get_video_status`, `list_latest_videos`, `generate_script`, `list_prompt_styles`) are no longer named as ones to call.
+
+### Changed
+
+- Bumped `VERSION`, every `SKILL.md` frontmatter and the plugin manifests to `1.3.0`; manifest descriptions, keywords and the Cursor skill list follow the seven skills.
+
 ## [1.2.2] - 2026-11-09
 
 The skills only promise what the public Zebracat service does today (ZEB-659).
@@ -20,6 +44,7 @@ The skills only promise what the public Zebracat service does today (ZEB-659).
 - **zebracat-image, zebracat-script, zebracat-studio, zebracat-swap** are marked "coming soon": their tools are not switched on for the public service yet. Each skill checks that its tools exist first and, if not, says so once and offers zebracat-video. README, INSTALL and the plugin descriptions say the same.
 - Bumped `VERSION`, every `SKILL.md` frontmatter and the plugin manifests to `1.2.2`.
 
+[1.3.0]: https://github.com/zebracatai/skills/releases/tag/v1.3.0
 [1.2.2]: https://github.com/zebracatai/skills/releases/tag/v1.2.2
 
 ## [1.2.1] - 2026-11-06

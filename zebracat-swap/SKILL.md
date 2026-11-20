@@ -1,15 +1,14 @@
 ---
-version: 1.2.2
+version: 1.3.0
 name: zebracat-swap
 description: |
   Zebracat Character Swap: replace the main person in a video with a character from a picture,
   keeping the motion, the camera and the original sound. The same engine and prices as the
   dashboard's Swap page; the result is a normal Zebracat project you can edit.
-  Not on the public Zebracat service yet (Studio tools are off there): check the tools exist first.
   Use when: (1) "put me / my mascot / this character in this video", "swap the person in this
   clip", "replace the presenter with …"; (2) "make this TikTok with my avatar instead of them".
   Needs: a clip on Zebracat storage, a picture of the character (or a saved AI character), a paid
-  plan, and the user's consent that it is them or they have the person's permission.
+  plan (or API dollars), and the user's consent that it is them or they have the person's permission.
   Chain signal: to make a new video from a brief → zebracat-video; to design a reusable character
   first → zebracat-avatar, then come back with its picture.
   NOT for: making videos from text (zebracat-video), cloning a video's style onto a new topic
@@ -31,7 +30,11 @@ https://api.zebracat.ai/docs/guides/character-swap.md
 
 ## Availability (check first)
 
-This skill's tools are switched off on the public Zebracat service for now (Studio tools are off there). Before anything else, check that these tools are in your tool list (MCP): `swap_character`. With the CLI / REST, a not-found answer means the same. If they are missing, tell the user once: *"This isn't available on Zebracat yet. I can make it part of a video with zebracat-video instead."* Then stop; don't try another transport.
+Character Swap is listed where the server has it switched on, the same switch as the dashboard's Swap page. Before
+anything else, check that `swap_character` is in your tool list (MCP); with the CLI / REST, `GET character-swap/options`
+answering 404 means the same. If it is missing, tell the user once: *"Character Swap isn't available on this Zebracat
+server right now. I can make a new video with your character in it with zebracat-video instead."* Then stop; don't try
+another transport.
 
 ## Skill Announcement
 
@@ -65,7 +68,8 @@ main person; ask only when the user meant someone else.
 
 ## Limits
 
-- **Paid plans only** (`upgrade_required` otherwise), whatever the credential.
+- **Who can swap:** a signed-in (MCP/OAuth) user on a paid plan (`upgrade_required` otherwise), as on the dashboard;
+  an API key pays from its dollar balance on any plan.
 - **The clip must be on Zebracat storage** (`cdata.zebracat.ai`): ask the user to upload it in the dashboard first if
   it is a link elsewhere.
 - **Length:** the plan's video length (`max_seconds`); longer clips are refused unless the user agrees to trim

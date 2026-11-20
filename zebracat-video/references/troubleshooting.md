@@ -8,7 +8,7 @@ Error → cause → action. Covers all three transports (MCP, CLI, REST).
 
 | Symptom | Likely cause | Fix |
 |---------|--------------|-----|
-| Skill can't reach Zebracat at all | No transport detected | Connect MCP (`https://mcp.zebracat.ai/mcp/`) or install the CLI + `zebracat auth login`. |
+| Skill can't reach Zebracat at all | No transport detected | Connect MCP (`https://mcp.zebracat.ai/mcp`) or install the CLI + `zebracat auth login`. |
 | Using CLI/REST when the user wanted plan credits | `ZEBRACAT_API_KEY` is set, which forces the API-key path | `unset ZEBRACAT_API_KEY`, reconnect MCP, re-detect. |
 | Using MCP when the user wanted pay-as-you-go | No `ZEBRACAT_API_KEY` set | `export ZEBRACAT_API_KEY=sk-…` and ensure the CLI is installed. |
 | MCP tools listed but auth fails | OAuth consent not completed | Trigger any MCP call to open the browser consent flow, then retry. |

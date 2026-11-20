@@ -7,7 +7,7 @@ How to turn an idea into a brief and script that produce a strong Zebracat video
 ## The brief vs the script
 
 - **Brief** — the instruction to Zebracat: video type, style, mood, duration, aspect, audience, key message. Goes into the entry call.
-- **Script** — the narration the viewer hears. Either the user's own (`input_kind: "script"`, their words are kept) or written by the plan / by zebracat-script (`write_script`).
+- **Script** — the narration the viewer hears. Either the user's own (`input_kind: "script"`, their words are kept) or written by the plan (`input_kind: "idea"`).
 
 Keep them separate. The brief is in English (API directive); the script is in the video language.
 
@@ -46,9 +46,10 @@ CTA:       what to do next (if any)
 ## Generating a script
 
 Usually you don't need to: `create_video` with `input_kind: "idea"` writes the script inside the
-plan, and `get_plan` shows it for approval. To draft the words first, use zebracat-script where Studio is on
-(`write_script(idea, seconds, language)` → `get_script(job_id)`), then pass the approved text with
-`input_kind: "voiceover_script"` (one narrator) or `"script"` (several speakers).
+plan, and `get_plan` shows it for approval. Planning is free, so the plan is the draft: change
+lines with `edit_plan` (`rewrite_line`) or `chat_plan` until the user likes the words, then
+Generate. If the user wrote the words themselves, pass them with `input_kind: "voiceover_script"`
+(one narrator) or `"script"` (several speakers).
 
 If the user supplied a script, keep their words (`input_kind: "script"`) — light cleanup only
 (remove directives, fix obvious typos).

@@ -1,5 +1,5 @@
 ---
-version: 1.2.2
+version: 1.3.0
 name: zebracat-brand
 description: |
   Set up and manage a Zebracat brand kit — name, logo, colors, fonts, and voice/tone — so every

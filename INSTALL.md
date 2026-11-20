@@ -1,25 +1,22 @@
 # Install Zebracat Skills
 
-The repo ships *ten* skills you can install:
+The repo ships *seven* skills you can install:
 
-- **`zebracat-video`** — the flagship producer: idea / script / blog / audio → finished video
+- **`zebracat-video`** — the flagship producer: idea / script / URL / reference video → finished video (also motion graphics, 3D, music, trending ideas, posting)
 - **`zebracat-avatar`** — choose or customize a presenter, build reusable characters
 - **`zebracat-voice`** — browse, preview, and clone voices; pick a tone
 - **`zebracat-brand`** — set up and reuse a brand kit (name, logo, colors, fonts, tone)
-- **`zebracat-script`** — write and refine a voice-over script (synchronous, no render credits) (coming soon: not on the public service yet)
-- **`zebracat-studio`** — Studio tools one at a time: hooks, voice-overs, images, clips (coming soon: not on the public service yet)
-- **`zebracat-swap`** — Character Swap: your character in place of the person in a clip (coming soon: not on the public service yet)
-- **`zebracat-image`** — generate standalone AI images (thumbnails, hero shots, 9:16 / 16:9 / 1:1) (coming soon: not on the public service yet)
+- **`zebracat-swap`** — Character Swap: your character in place of the person in a clip (paid plans)
 - **`zebracat-brainrot`** — viral short-form (subway-surfers / minecraft-parkour / italian-brainrot)
-- **`zebracat-translate`** — dub existing videos into 170+ languages with captions
+- **`zebracat-translate`** — dub existing videos into 25+ languages with captions
 
-Most people start with `zebracat-video`. The others chain into it: `zebracat-avatar` and `zebracat-voice` produce a presenter and a `voice_id` that `zebracat-video` consumes; `zebracat-brand` supplies a reusable brand kit; `zebracat-script` drafts the words before you render; `zebracat-studio` makes hooks, voice-overs and clips on their own; `zebracat-image` makes standalone stills; `zebracat-translate` localizes finished videos; `zebracat-brainrot` is a fast lane for viral shorts.
+Most people start with `zebracat-video`. The others chain into it: `zebracat-avatar` and `zebracat-voice` produce a presenter and a `voice_id` that `zebracat-video` consumes; `zebracat-brand` supplies a reusable brand kit; `zebracat-swap` puts a character into an existing clip; `zebracat-translate` localizes finished videos; `zebracat-brainrot` is a fast lane for viral shorts.
 
 ## Option 1 — `npx skills` (easiest)
 
 The [Vercel Labs `skills` CLI](https://github.com/vercel-labs/skills) installs directly from GitHub — no clone, no local config. It detects your agent and writes to the right directory.
 
-All ten skills:
+All seven skills:
 ```bash
 npx skills add zebracatai/skills
 ```
@@ -44,8 +41,7 @@ gh skill install zebracatai/skills zebracat-video
 gh skill install zebracatai/skills zebracat-avatar
 gh skill install zebracatai/skills zebracat-voice
 gh skill install zebracatai/skills zebracat-brand
-gh skill install zebracatai/skills zebracat-script
-gh skill install zebracatai/skills zebracat-image
+gh skill install zebracatai/skills zebracat-swap
 gh skill install zebracatai/skills zebracat-brainrot
 gh skill install zebracatai/skills zebracat-translate
 ```
@@ -58,7 +54,7 @@ Project scope (current repo only) is the default. For user scope (every project 
 clawhub install zebracat-skills
 ```
 
-Installs all ten skills to your agent's default skills directory automatically.
+Installs all seven skills to your agent's default skills directory automatically.
 
 ## Option 4 — Git clone
 
@@ -80,7 +76,7 @@ git clone https://github.com/zebracatai/skills.git ~/.openclaw/skills/zebracat-s
 
 ## Option 5 — Claude Code plugin
 
-Installs all ten skills and the Zebracat MCP server config in one step. Inside Claude Code:
+Installs all seven skills and the Zebracat MCP server config in one step. Inside Claude Code:
 
 ```
 /plugin marketplace add zebracatai/skills
@@ -99,7 +95,7 @@ Run `/mcp` once to sign in to Zebracat (OAuth, your plan credits).
 
 Type the skill's command in Claude Code, or just ask ("make a 30-second video about …"):
 
-`/zebracat-video`, `/zebracat-studio`, `/zebracat-swap`, `/zebracat-avatar`, `/zebracat-voice`, `/zebracat-brand`, `/zebracat-script`, `/zebracat-image`, `/zebracat-brainrot`, `/zebracat-translate`
+`/zebracat-video`, `/zebracat-swap`, `/zebracat-avatar`, `/zebracat-voice`, `/zebracat-brand`, `/zebracat-brainrot`, `/zebracat-translate`
 
 These work with every install option above. A plugin install (Option 4 for Claude Code, or Option 5) also lists them under the plugin's name, as `/zebracat:zebracat-video` and so on; both forms run the same skill.
 
@@ -118,12 +114,12 @@ The skills auto-detect a transport at runtime. The full ladder lives in [CLAUDE.
 
 Connect the Zebracat remote MCP server to your agent — OAuth handles auth, calls use your existing plan credits. No key to manage.
 
-- Endpoint: `https://mcp.zebracat.ai/mcp/`
+- Endpoint: `https://mcp.zebracat.ai/mcp`
 - Tool namespace: `mcp__zebracat__*`
 
 Claude Code:
 ```bash
-claude mcp add --transport http zebracat https://mcp.zebracat.ai/mcp/
+claude mcp add --transport http zebracat https://mcp.zebracat.ai/mcp
 ```
 
 OpenClaw — add to `~/.openclaw/openclaw.json`:
@@ -131,7 +127,7 @@ OpenClaw — add to `~/.openclaw/openclaw.json`:
 {
   "mcp": {
     "servers": {
-      "zebracat": { "url": "https://mcp.zebracat.ai/mcp/" }
+      "zebracat": { "url": "https://mcp.zebracat.ai/mcp" }
     }
   }
 }
@@ -155,4 +151,4 @@ Install the `zebracat` CLI with `curl -fsSL https://cli.zebracat.ai | bash` (the
 
 Paste this to your agent — it finds the right paths automatically:
 
-> Install the Zebracat Skills: run `npx skills add zebracatai/skills` (or clone https://github.com/zebracatai/skills.git into your skills directory — find it with your config, or ask if unsure). Then connect the Zebracat MCP server at https://mcp.zebracat.ai/mcp/, or if you have a Zebracat API key, `export ZEBRACAT_API_KEY=sk-…`. Then use zebracat-video to make a 30-second vertical video about [topic] — ask me anything first.
+> Install the Zebracat Skills: run `npx skills add zebracatai/skills` (or clone https://github.com/zebracatai/skills.git into your skills directory — find it with your config, or ask if unsure). Then connect the Zebracat MCP server at https://mcp.zebracat.ai/mcp, or if you have a Zebracat API key, `export ZEBRACAT_API_KEY=sk-…`. Then use zebracat-video to make a 30-second vertical video about [topic] — ask me anything first.

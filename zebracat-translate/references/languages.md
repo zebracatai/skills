@@ -1,30 +1,18 @@
 # Languages & Locale Reference
 
-Zebracat translates and dubs into 170+ languages. Always validate the user's input against the live supported list before submitting.
+Zebracat translates and dubs into 25+ languages (28 today). Always validate the user's input against the live supported list before submitting.
 
-**MCP:** `list_languages()`
+**MCP:** `list_translate_languages()`
 **CLI:** `zebracat video translate --to <name>` validates on submit; list supported names where the CLI exposes them.
 
 ---
 
-## Matching user input to a canonical name
+## Matching user input to a code
 
-Users say "Spanish"; the engine wants an exact canonical string (often with a region). Map loosely, then confirm when ambiguous:
-
-| User says | Default canonical | Confirm if… |
-|-----------|-------------------|-------------|
-| Spanish | Spanish (Spain) | audience is Latin America → Spanish (Mexico) / (Latin America) |
-| Portuguese | Portuguese (Portugal) | audience is Brazil → Portuguese (Brazil) |
-| Chinese | Chinese (Mandarin, Simplified) | Hong Kong → Cantonese (Traditional); Taiwan → Taiwanese Mandarin (Traditional) |
-| French | French (France) | Canada → French (Canada) |
-| Arabic | Arabic (Modern Standard) | a specific country variant is requested |
-| English | English (US) | UK/AU audience → the matching variant |
-
-When no canonical match is found, present the 2–3 closest supported names and let the user pick.
-
-## Regional variants matter
-
-Spanish (Spain) vs Spanish (Mexico), Portuguese (Portugal) vs (Brazil), and the Chinese variants are **not** interchangeable — vocabulary, intonation, and rhythm differ, and audiences notice. Default to the user's stated audience region; if unspecified for these languages, ask once.
+`target_language` is an ISO 639-1 code from the live list: `ar bg cs da de el en es fi fr hi hr id it ja ko ms nl pl
+pt ro ru sk sv ta tr uk zh` today. Map the user's words to the code ("Spanish" → `es`, "Mandarin" → `zh`, "Brazilian
+Portuguese" → `pt`). There are no regional variants: one code per language. When the language is not in the list,
+say so and offer the 2–3 closest supported ones.
 
 ## Right-to-left (RTL) languages
 

@@ -8,7 +8,7 @@ Error → cause → action across all three transports (MCP, CLI, REST).
 
 | Symptom | Likely cause | Fix |
 |---------|--------------|-----|
-| Can't reach Zebracat | No transport detected | Connect MCP (`https://mcp.zebracat.ai/mcp/`) or install the CLI + `zebracat auth login`. |
+| Can't reach Zebracat | No transport detected | Connect MCP (`https://mcp.zebracat.ai/mcp`) or install the CLI + `zebracat auth login`. |
 | Wrong billing path | `ZEBRACAT_API_KEY` set forces CLI/REST | `unset ZEBRACAT_API_KEY` for MCP plan credits; set it for pay-as-you-go. |
 | CLI `zebracat auth status` non-zero | No login / expired / no key | `zebracat auth login` or `export ZEBRACAT_API_KEY=sk-…`. |
 

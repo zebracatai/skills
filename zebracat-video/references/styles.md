@@ -2,10 +2,10 @@
 
 Zebracat applies a `visual_style` across every scene so the video looks consistent. Always browse the live list before choosing — the catalog evolves.
 
-**MCP:** `list_visual_styles()` and `list_prompt_styles()`
+**MCP:** `list_visual_styles()`
 **CLI:** `zebracat style list --human`
 
-Pass the chosen id as `visual_style=<id>` (MCP) or `--style <id>` (CLI).
+Pass the chosen id as `style_id=<id>` (MCP `create_video`, REST `POST /videos`) or `--style <id>` (CLI).
 
 ---
 
@@ -59,4 +59,4 @@ Stylized styles (Ghibli/Anime/Cartoon) do not apply to `stock_footage` — stock
 
 ## Prompt styles
 
-Some entries accept a `prompt_style` (narrative voice/structure of the script) separate from `visual_style` (the look). List with `list_prompt_styles()`. Use `prompt_style` to shape tone of the writing (e.g. punchy, storytelling, educational) and `visual_style` to shape the imagery. They're independent — set both for full control.
+The v2 engine has no separate prompt style: the tone of the writing (punchy, storytelling, educational) goes into the brief in plain words, and `style_id` shapes only the imagery. `list_prompt_styles` is an older tool and is deprecated.
