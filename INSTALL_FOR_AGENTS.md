@@ -15,10 +15,7 @@ If you fetched this file by URL without cloning yet, the companion files live at
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-avatar/SKILL.md` — avatar / character designer
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-voice/SKILL.md` — voice browse / clone
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-brand/SKILL.md` — brand kit
-- `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-script/SKILL.md` — script writer
-- `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-studio/SKILL.md` — Studio tools (hooks, voice-overs, images, clips)
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-swap/SKILL.md` — Character Swap
-- `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-image/SKILL.md` — standalone AI images
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-brainrot/SKILL.md` — viral short-form
 - `https://raw.githubusercontent.com/zebracatai/skills/main/zebracat-translate/SKILL.md` — translation / dubbing
 - `https://raw.githubusercontent.com/zebracatai/skills/main/INSTALL.md` — human-facing install doc
@@ -35,7 +32,7 @@ The API docs written for agents (generated from the live API, so they never drif
 **Preferred — `npx skills` (auto-detects the agent):**
 
 ```bash
-npx skills add zebracatai/skills                 # all ten skills
+npx skills add zebracatai/skills                 # all seven skills
 npx skills add zebracatai/skills --skill zebracat-video   # just one
 ```
 
@@ -62,7 +59,7 @@ git clone --single-branch --depth 1 \
 
 **Claude Code plugin (skills + MCP config in one step).** The user runs, inside Claude Code: `/plugin marketplace add zebracatai/skills`, then `/plugin install zebracat@zebracat` (shell: `claude plugin marketplace add zebracatai/skills && claude plugin install zebracat@zebracat`).
 
-**Commands.** In Claude Code each skill runs as `/zebracat-video`, `/zebracat-studio`, `/zebracat-swap`, `/zebracat-avatar`, `/zebracat-voice`, `/zebracat-brand`, `/zebracat-script`, `/zebracat-image`, `/zebracat-brainrot` or `/zebracat-translate`, on every install path; the user can also just ask. A plugin install also lists them as `/zebracat:zebracat-video` and so on. Never tell the user `/zebracat:video`: no such command exists.
+**Commands.** In Claude Code each skill runs as `/zebracat-video`, `/zebracat-swap`, `/zebracat-avatar`, `/zebracat-voice`, `/zebracat-brand`, `/zebracat-brainrot` or `/zebracat-translate`, on every install path; the user can also just ask. A plugin install also lists them as `/zebracat:zebracat-video` and so on. Never tell the user `/zebracat:video`: no such command exists.
 
 After install, jump to Step 2.
 
@@ -88,10 +85,10 @@ Detection order:
 
 ### Option A — MCP server (OAuth, no key)
 
-Point your agent at `https://mcp.zebracat.ai/mcp/`. The first call opens a browser OAuth consent flow. Claude Code:
+Point your agent at `https://mcp.zebracat.ai/mcp`. The first call opens a browser OAuth consent flow. Claude Code:
 
 ```bash
-claude mcp add --transport http zebracat https://mcp.zebracat.ai/mcp/
+claude mcp add --transport http zebracat https://mcp.zebracat.ai/mcp
 ```
 
 We cannot configure this from inside the skill — the user wires the MCP server into their agent. See [`INSTALL.md`](./INSTALL.md) for OpenClaw and other configs.

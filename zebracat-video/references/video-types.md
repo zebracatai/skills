@@ -4,8 +4,10 @@ On the v2 engine a video is described by three independent choices, all optional
 type** (what the pictures are made of), the **audio mode** (who speaks), and a **preset** (a
 proven format). Leave out what the user does not care about; the plan decides from the brief.
 
-The live lists: `list_presets` / `zebracat presets list` / `GET /video/presets`, and
-`list_video_models` / `zebracat models list` / `GET /video/models` (qualities, models, prices).
+The live lists: `list_video_types` / `zebracat video types` / `GET /video/types` (each type, whether
+the user's plan can use it, how it is priced), `list_presets` / `zebracat preset list` /
+`GET /video/presets`, and `list_video_models` / `zebracat model list` / `GET /video/models`
+(qualities, models, prices).
 
 ---
 
@@ -17,6 +19,8 @@ The live lists: `list_presets` / `zebracat presets list` / `GET /video/presets`,
 | `ai_image_video` | AI stills with motion | calm explainers, long narration, budget work | less kinetic |
 | `stock` | real b-roll | corporate, how-to, authentic footage | no stylized look |
 | `brainrot` | viral gameplay backgrounds (subway surfers, minecraft…) | viral shorts → use **zebracat-brainrot** | needs a background (`background_video`) |
+| `motion_graphics` | animated type, charts, diagrams, icons | data stories, explainers, product facts, list videos | paid plans only; no visual style |
+| `animation_3d` | a 3D animated film | mascots, kids' stories, product worlds | paid plans only; no visual style |
 
 **Presenters and avatars:** there is no separate "AI Avatar" type any more. A presenter is an
 `ai_video` with that person on camera: pass their portrait as `uploads: [{url, kind: "person"}]`

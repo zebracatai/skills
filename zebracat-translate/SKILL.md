@@ -1,5 +1,5 @@
 ---
-version: 1.2.2
+version: 1.3.0
 name: zebracat-translate
 description: |
   Translate and dub an existing video into another language with optional captions, powered
@@ -88,9 +88,9 @@ Ask only what you don't already have. One or two questions per turn.
 
 ### Phase 2 — Pre-flight (silent)
 
-- **Validate the language** against the supported list: `list_languages()` (MCP); the CLI validates on submit (`zebracat video translate --to <lang>`). Map loose input to a canonical name ("Spanish" → "Spanish (Spain)", "Chinese" → "Chinese (Mandarin, Simplified)"). If no match, ask the user to pick the closest.
-- **Check the source is reachable.** A public HTTPS URL returning a video works directly. Auth-walled / 403 / 404 / HTML → ask for a public URL.
-- **Regional variants matter.** If the user says "Spanish" without a region and the audience is unclear, confirm Spain vs Latin America once.
+- **Validate the language** against the supported list: `list_translate_languages()` (MCP), `zebracat language list --translate` (CLI), `GET /video/translate/languages` (REST). Send the ISO 639-1 code ("Spanish" → `es`, "Chinese" → `zh`, "Brazilian Portuguese" → `pt`). If the language is not in the list, say so and offer the closest ones.
+- **Check the source is reachable.** A public HTTPS URL returning a video works directly. A local file, or an auth-walled / 403 / 404 / HTML link → a one-time upload link (`create_upload_link` / `POST /uploads/link`), then use the final URL it gives.
+- **No regional variants.** The API takes the language only (`es`, not Spain vs Mexico): if the user asks for a region, say so before submitting.
 
 ### Phase 3 — Submit + Poll (silent)
 
@@ -100,7 +100,7 @@ Submit one job per target language.
 ```
 translate_video(
   video_url="https://…/source.mp4",
-  target_language="Spanish (Spain)",
+  target_language="es",
   enable_caption=true,
   should_render=true
 )
@@ -108,17 +108,17 @@ translate_video(
 
 **CLI:**
 ```bash
-zebracat video translate --url "https://…/source.mp4" --to "Spanish (Spain)" --render --wait
+zebracat video translate --url "https://…/source.mp4" --to es --render --wait
 ```
 For multiple languages, submit one job each and capture every `task_id`. `--wait` blocks per job; for batches, drop `--wait` and poll each.
 
-**Poll** (background): `get_video_status(task_id)` / `zebracat video status <id>`. Cadence: 30s for the first 3 min, then 60s. Most finish in a few minutes; long sources take longer. Deliver each language as it completes — don't wait for all.
+**Poll** (background): `get_video(task_id)` / `zebracat video get <id>`. Cadence: 30s for the first 3 min, then 60s. Most finish in a few minutes; long sources take longer. Deliver each language as it completes — don't wait for all.
 
 ### Phase 4 — Deliver
 
 One message per completed language:
 
-> ✅ Spanish (Spain) — <video_url> · captions on
+> ✅ Spanish — <video_url> · captions on
 
 Append a line to `zebracat-video-log.jsonl` per finished translation (`video_type:"translation"`, `topic:"<source> → <lang>"`). If a language fails, give one short line with the likely cause (unreachable source URL, unsupported language, or insufficient credits) and move on.
 
@@ -133,7 +133,7 @@ Translation bills by source duration × language count. A 3-minute video in 5 la
 ## Best Practices
 
 1. **Validate the language string** before submitting.
-2. **Confirm the regional variant** when the user is vague (Spanish, Portuguese, Chinese, Arabic, French).
+2. **Check the language is supported** before promising it (`list_translate_languages`).
 3. **Source quality is the ceiling** — say it upfront.
 4. **Suggest a test language** for new users or long videos.
 5. **Deliver per-language** as each finishes.

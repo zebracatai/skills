@@ -1,5 +1,5 @@
 ---
-version: 1.2.2
+version: 1.3.0
 name: zebracat-brainrot
 description: |
   Create viral, high-retention short-form "brainrot" videos with Zebracat — vertical clips with
@@ -96,6 +96,10 @@ Apply these unless the user overrides:
 | `italian` | `italian-brainrot-generator` |
 | `general` | `brainrot-video-generator` |
 
+A different gameplay clip behind the video: list them with `list_brainrot_backgrounds()` (MCP),
+`zebracat background list` (CLI) or `GET /video/backgrounds` (REST), and pass the chosen one as
+`background_video` (`--background` on the CLI).
+
 ### Phase 3 — Plan, price, generate
 
 Same v2 flow as **zebracat-video**: plan → show the price → generate on the user's yes.
@@ -125,7 +129,7 @@ zebracat video generate <task_id> --yes --wait
 
 ### Phase 4 — Poll + deliver
 
-Silent poll (`get_video(task_id)` / `zebracat video status <task_id>`), then deliver the vertical video with a one-line summary and append the JSONL log line. Offer next steps: *"Want this in other languages?"* → **zebracat-translate**; *"Want a normal cinematic version?"* → **zebracat-video**.
+Silent poll (`get_video(task_id)` / `zebracat video get <task_id>`), then deliver the vertical video with a one-line summary and append the JSONL log line. Offer next steps: *"Want this in other languages?"* → **zebracat-translate**; *"Want a normal cinematic version?"* → **zebracat-video**.
 
 ## Best Practices
 

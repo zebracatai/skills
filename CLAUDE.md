@@ -2,16 +2,13 @@
 
 ## What This Is
 
-The Zebracat Skills. Ten independent, self-contained skills for AI video generation:
+The Zebracat Skills. Seven independent, self-contained skills for AI video generation:
 
-- **zebracat-video** — idea / script / blog URL / audio → finished video. The flagship producer. Consumes avatars and characters from zebracat-avatar and voices from zebracat-voice.
+- **zebracat-video** — idea / script / URL / reference video → finished video (also motion graphics, 3D, music, ideas from trending videos, posting). The flagship producer. Consumes avatars and characters from zebracat-avatar and voices from zebracat-voice.
 - **zebracat-avatar** — design a reusable AI avatar presenter or named character. Output (an `AVATAR-<NAME>.md` state file) is reused by zebracat-video.
 - **zebracat-voice** — browse, preview, and clone voices; pick a tone. Output (a `voice_id`) is reused by zebracat-video and zebracat-avatar.
 - **zebracat-brand** — set up and manage a reusable brand kit (name, logo, colors, fonts, tone). Reused by zebracat-video so videos come out on-brand.
-- **zebracat-script** — write and refine a voice-over script synchronously (no render credits). Hands the approved script to zebracat-video.
-- **zebracat-studio** — Studio tools one at a time: hooks, voice-overs, images, clips (the dashboard's Studio). Quotes paid tools before spending.
 - **zebracat-swap** — Character Swap: a character in place of the main person in a clip (consent, paid plans, quote first).
-- **zebracat-image** — generate standalone AI images (thumbnails, hero shots, reference frames) in 9:16 / 16:9 / 1:1. Returns image URLs.
 - **zebracat-brainrot** — viral short-form (subway-surfers / minecraft-parkour / italian-brainrot / general). A specialized fast lane over zebracat-video.
 - **zebracat-translate** — existing video → dubbed video in another language with captions. Independent of the others.
 
@@ -56,20 +53,8 @@ zebracat-skills/
 │   ├── SKILL.md
 │   └── references/
 │       └── brand-kit.md
-├── zebracat-script/            # Voice-over script writer
-│   ├── SKILL.md
-│   └── references/
-│       └── script-craft.md
-├── zebracat-studio/            # Studio tools (hooks, voice, image, clip)
-│   ├── SKILL.md
-│   └── references/
-│       └── studio-api.md
 ├── zebracat-swap/              # Character Swap
 │   └── SKILL.md
-├── zebracat-image/             # Standalone AI image generation
-│   ├── SKILL.md
-│   └── references/
-│       └── image-styles.md
 ├── zebracat-brainrot/          # Viral short-form
 │   ├── SKILL.md
 │   └── references/
@@ -80,7 +65,7 @@ zebracat-skills/
         └── languages.md
 ```
 
-*No root SKILL.md, no root references/.* The ten skills are independent. If shared docs drift between them, that's acceptable — each skill is internally consistent and authored independently.
+*No root SKILL.md, no root references/.* The seven skills are independent. If shared docs drift between them, that's acceptable — each skill is internally consistent and authored independently.
 
 ## The 300-Line Rule
 
@@ -110,7 +95,7 @@ Every skill reaches Zebracat through exactly one of three transports. Detect at 
 
 If `mcp__zebracat__*` tools are available in the toolset, use them. OAuth on first call (browser consent) — **no API key needed**, and calls bill against the user's normal Zebracat plan credits.
 
-- Server: `https://mcp.zebracat.ai/mcp/`
+- Server: `https://mcp.zebracat.ai/mcp`
 - Tool namespace: `mcp__zebracat__*`
 - Skills declare `allowed-tools: ... mcp__zebracat__*` in frontmatter.
 
@@ -138,7 +123,7 @@ Detection order, in full:
 2. **REST (API key)** — `ZEBRACAT_API_KEY` is set AND no CLI → direct REST with `X-API-KEY`.
 3. **MCP (OAuth)** — no `ZEBRACAT_API_KEY` AND `mcp__zebracat__*` tools visible → MCP, plan credits. **This is the preferred end-user path.**
 4. **CLI (saved API key)** — no `ZEBRACAT_API_KEY` AND no MCP AND `zebracat auth status` exits 0 (a key saved with `zebracat auth login`) → CLI, pay-as-you-go.
-5. **Neither** — tell the user once: *"To use this skill, connect the Zebracat MCP server (`https://mcp.zebracat.ai/mcp/`) or install the Zebracat CLI (`curl -fsSL https://cli.zebracat.ai | bash`), then run `zebracat auth login` with a Zebracat API key."*
+5. **Neither** — tell the user once: *"To use this skill, connect the Zebracat MCP server (`https://mcp.zebracat.ai/mcp`) or install the Zebracat CLI (`curl -fsSL https://cli.zebracat.ai | bash`), then run `zebracat auth login` with a Zebracat API key."*
 
 **Never cross transports mid-session.** Read only the column for your detected transport in each SKILL.md's operation blocks. If something isn't exposed in your transport, tell the user — don't silently switch.
 
@@ -163,10 +148,10 @@ Skills communicate through plain-text state files at the workspace root:
 
 ## API Conventions
 
-- **MCP tool names ARE the API in MCP mode** (e.g. `create_video`, `get_video`, `quote_video`, `generate_video`, `list_voices`). Never shell out to `zebracat ...` in MCP mode. The v1 tools (`create_video_from_*`, `create_agentic_video`, `generate_script`) still work but are deprecated.
+- **MCP tool names ARE the API in MCP mode** (e.g. `create_video`, `get_video`, `quote_video`, `generate_video`, `list_voices`). Never shell out to `zebracat ...` in MCP mode. Older tools (`get_video_status`, `list_latest_videos`, `generate_script`, `list_prompt_styles`) and old names (`list_projects` → `list_videos`, `get_project` → `get_video`, `list_media` → `list_uploads`, `plan_video(idea)` → `plan_video(brief)`) are deprecated; the skills never call them. Old CLI names (`presets list`, `models list`, `video status`, `video languages`) keep working as aliases of `preset list`, `model list`, `video get`, `language list`; the skills use the new ones.
 - **CLI uses `zebracat <noun> <verb>`** with `--help` on any subcommand as the reference. Never call REST in CLI mode.
 - **REST is `https://api.zebracat.ai/api/v1/public/`** with `X-API-KEY` or `Authorization: Bearer`. Only used when neither MCP nor CLI is present.
-- **Long jobs are async.** Submit, then either `--wait` (CLI) or poll `get_video(task_id)` / `zebracat video status <id>` and read `phase`. Most videos finish in a few minutes; some take longer.
+- **Long jobs are async.** Submit, then either `--wait` (CLI) or poll `get_video(task_id)` / `zebracat video get <id>` and read `phase` (MCP `wait_s` holds the call until the phase changes; otherwise wait `poll_after_s`). Most videos finish in a few minutes; some take longer.
 - **Agent docs:** `https://api.zebracat.ai/docs/llms.txt` and `https://api.zebracat.ai/docs/llms-full.txt` are generated from the live API; read them when a field or code is unclear.
 - **`should_render` / `--render`** controls whether the pipeline renders the final MP4 or stops at an editable draft. Default to rendering only after the user has approved the plan, unless they asked to "just make it."
 

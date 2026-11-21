@@ -1,5 +1,5 @@
 ---
-version: 1.2.2
+version: 1.3.0
 name: zebracat-voice
 description: |
   Browse, preview, and pick a Zebracat voice — or clone a voice from a sample — and choose its
@@ -71,8 +71,9 @@ Same ladder as the suite — full version in [CLAUDE.md](../CLAUDE.md):
 
 List voices, filtered to the target language and (if stated) gender/tone:
 
-**MCP:** `list_voices(language=<lang>, gender=<optional>)`
-**CLI:** `zebracat voice list --human`
+**MCP:** `list_voices(language=<lang>, gender=<optional>)`; the user's own: `list_cloned_voices()`
+**CLI:** `zebracat voice list --search <words> --limit 20 --human`
+**REST:** `GET /voices?limit=20&search=<words>&language=<lang>` (without `limit` it answers the whole catalog)
 
 1. Read the desired tone from the user (or infer from the video brief).
 2. Narrow to 2–3 strong candidates that match tone + language.
@@ -90,8 +91,9 @@ Clone the user's own voice from a sample.
 1. **Consent + sample.** Ask the user to provide a clean recording of **their own** voice and confirm they have the right to use it. A good sample is 30–60s, clear, single speaker, minimal background noise.
 2. **Submit the clone:**
 
-**MCP:** the voice-clone tool (provide the sample audio per your transport's input format).
+**MCP:** `clone_voice(…)`: the sample as a URL (a local file: `create_upload_link` first); it asks for `confirmed`.
 **CLI:** `zebracat voice clone` — pass the sample file; follow `zebracat voice clone --help` for the exact flags.
+**REST:** `POST /voice/clone`. Rename or delete a clone: `zebracat voice delete`, `delete_cloned_voice` (MCP, with `confirmed`), `/voice/clone/{voice_id}`.
 
 3. **Confirm + preview** the cloned voice, then treat it like any other `voice_id`.
 
