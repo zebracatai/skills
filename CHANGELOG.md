@@ -5,6 +5,20 @@ All notable changes to the Zebracat Skills are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] - 2026-11-27
+
+The Zebracat MCP server becomes findable in MCP catalogs and Gemini CLI. The skills themselves do not change.
+
+### Added
+
+- **`server.json`:** the MCP Registry entry for the remote server `https://mcp.zebracat.ai/mcp`, under the name `ai.zebracat/zebracat`. Catalogs that read the official registry (Glama, PulseMCP, GitHub's MCP registry) pick it up from there.
+- **`gemini-extension.json`:** `gemini extensions install https://github.com/zebracatai/skills` connects the Zebracat MCP server to Gemini CLI (OAuth on first use). Install steps in README and INSTALL.md.
+
+### Changed
+
+- **One wording for languages everywhere:** voices in 170+ languages, translation into 25+ languages (plugin manifests, README, INSTALL.md).
+- Bumped `VERSION`, every `SKILL.md` frontmatter and the plugin manifests to `1.3.1`.
+
 ## [1.3.0] - 2026-11-20
 
 Studio's public API is gone, so the skills that drove it are gone too; zebracat-video learns the tools it was missing.

@@ -1,6 +1,6 @@
 # Zebracat Skills 🦓
 
-AI agent skills for making video. Describe an idea — your agent writes the script, picks the style and voice, generates the footage, and hands back a finished video. AI Video, Moving AI Images, AI Avatar presenters, Stock Footage, and viral Brainrot, plus voice cloning and dubbing into 25+ languages.
+AI agent skills for making video. Describe an idea — your agent writes the script, picks the style and voice, generates the footage, and hands back a finished video. AI Video, Moving AI Images, AI Avatar presenters, Stock Footage, and viral Brainrot, plus voices in 170+ languages, voice cloning and dubbing into 25+ languages.
 
 Works with Claude Code, OpenClaw, Codex, Cursor, and other AI coding agents.
 
@@ -94,6 +94,10 @@ Installs all seven skills and connects the Zebracat MCP server in one step. Insi
 
 Or from your shell: `claude plugin marketplace add zebracatai/skills && claude plugin install zebracat@zebracat`. Run `/mcp` once to sign in to Zebracat (OAuth, your plan credits).
 
+### Option F — Gemini CLI extension
+
+`gemini extensions install https://github.com/zebracatai/skills` connects the Zebracat MCP server to Gemini CLI. Restart it; the first Zebracat call opens your browser to sign in. For the skills themselves, add Option A or B.
+
 ## What's Included
 
 Seven skills that work standalone or chain together:
@@ -102,7 +106,7 @@ Seven skills that work standalone or chain together:
 |-------|--------------|--------|
 | **zebracat-video** | Idea / script / URL / reference video → a plan with its price → finished video, including motion graphics and 3D animation; ideas from trending videos, music, and posting to your social accounts. The flagship producer. | `/zebracat-video` |
 | **zebracat-avatar** | Choose or customize a presenter, build reusable characters → `AVATAR-<NAME>.md`. | `/zebracat-avatar` |
-| **zebracat-voice** | Browse, preview, and clone voices; pick a tone → `voice_id`. | `/zebracat-voice` |
+| **zebracat-voice** | Browse and preview voices in 170+ languages, or clone one; pick a tone → `voice_id`. | `/zebracat-voice` |
 | **zebracat-brand** | Set up and reuse a brand kit — name, logo, colors, fonts, tone. | `/zebracat-brand` |
 | **zebracat-swap** | Character Swap: put your character in place of the person in a clip (paid plans). | `/zebracat-swap` |
 | **zebracat-brainrot** | Viral short-form: subway-surfers / minecraft-parkour / italian-brainrot / general. | `/zebracat-brainrot` |

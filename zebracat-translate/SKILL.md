@@ -1,5 +1,5 @@
 ---
-version: 1.3.0
+version: 1.3.1
 name: zebracat-translate
 description: |
   Translate and dub an existing video into another language with optional captions, powered
