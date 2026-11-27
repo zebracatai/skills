@@ -1,5 +1,5 @@
 ---
-version: 1.3.0
+version: 1.3.1
 name: zebracat-voice
 description: |
   Browse, preview, and pick a Zebracat voice — or clone a voice from a sample — and choose its

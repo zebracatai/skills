@@ -4,7 +4,7 @@ The repo ships *seven* skills you can install:
 
 - **`zebracat-video`** — the flagship producer: idea / script / URL / reference video → finished video (also motion graphics, 3D, music, trending ideas, posting)
 - **`zebracat-avatar`** — choose or customize a presenter, build reusable characters
-- **`zebracat-voice`** — browse, preview, and clone voices; pick a tone
+- **`zebracat-voice`** — browse and preview voices in 170+ languages, or clone one; pick a tone
 - **`zebracat-brand`** — set up and reuse a brand kit (name, logo, colors, fonts, tone)
 - **`zebracat-swap`** — Character Swap: your character in place of the person in a clip (paid plans)
 - **`zebracat-brainrot`** — viral short-form (subway-surfers / minecraft-parkour / italian-brainrot)
@@ -90,6 +90,16 @@ claude plugin install zebracat@zebracat
 ```
 
 Run `/mcp` once to sign in to Zebracat (OAuth, your plan credits).
+
+## Option 6 — Gemini CLI extension
+
+Connects the Zebracat MCP server to [Gemini CLI](https://github.com/google-gemini/gemini-cli) in one step:
+
+```bash
+gemini extensions install https://github.com/zebracatai/skills
+```
+
+Restart Gemini CLI. The first Zebracat call opens your browser to sign in (OAuth, your plan credits). The extension adds the MCP server only; for the skills themselves, use Option 1 or 2 as well.
 
 ## Using the skills
 

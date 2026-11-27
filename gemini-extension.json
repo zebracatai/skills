@@ -1,0 +1,10 @@
+{
+  "name": "zebracat",
+  "version": "1.3.1",
+  "description": "Make Zebracat AI videos from Gemini CLI: plan first with the exact price, then generate. Connects the official Zebracat MCP server; sign in to your Zebracat account on first use.",
+  "mcpServers": {
+    "zebracat": {
+      "httpUrl": "https://mcp.zebracat.ai/mcp"
+    }
+  }
+}

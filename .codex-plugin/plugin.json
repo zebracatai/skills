@@ -1,7 +1,7 @@
 {
   "name": "zebracat",
-  "version": "1.3.0",
-  "description": "Create Zebracat AI videos from an idea, script, URL or a reference video, plan first with the exact price, on the same engine as the zebracat.ai chat: AI video, moving AI images, stock, motion graphics and 3D animation, with music, ideas from trending videos and posting to your social accounts. Also Character Swap (paid plans), avatars and reusable characters, voice cloning, brand kits, viral brainrot, and translation of finished videos into 25+ languages.",
+  "version": "1.3.1",
+  "description": "Create Zebracat AI videos from an idea, script, URL or a reference video, plan first with the exact price, on the same engine as the zebracat.ai chat: AI video, moving AI images, stock, motion graphics and 3D animation, with music, ideas from trending videos and posting to your social accounts. Also Character Swap (paid plans), avatars and reusable characters, voices in 170+ languages and voice cloning, brand kits, viral brainrot, and translation of finished videos into 25+ languages.",
   "author": {
     "name": "Zebracat",
     "email": "support@zebracat.ai",
@@ -36,7 +36,7 @@
   "interface": {
     "displayName": "Zebracat",
     "shortDescription": "AI videos, motion graphics, Character Swap, avatars, voice cloning, brainrot, and translation",
-    "longDescription": "Zebracat Skills turn an idea, script, URL or reference video into a finished video on the same engine as the zebracat.ai chat — AI video with people who speak on camera, AI images in motion, stock footage, motion graphics, 3D animation and viral Brainrot. Use zebracat-video as the producer (ideas from trending videos, plan, price, edit, music, generate, deliver, post to social accounts), zebracat-swap to put a character into an existing clip (paid plans), zebracat-avatar to design reusable presenters and characters, zebracat-voice to browse or clone voices, zebracat-brand to set up a reusable brand kit (logo, colors, fonts, tone), zebracat-brainrot for subway-surfers / minecraft-parkour / italian-brainrot short-form, and zebracat-translate to dub finished videos into 25+ languages with captions.",
+    "longDescription": "Zebracat Skills turn an idea, script, URL or reference video into a finished video on the same engine as the zebracat.ai chat — AI video with people who speak on camera, AI images in motion, stock footage, motion graphics, 3D animation and viral Brainrot. Use zebracat-video as the producer (ideas from trending videos, plan, price, edit, music, generate, deliver, post to social accounts), zebracat-swap to put a character into an existing clip (paid plans), zebracat-avatar to design reusable presenters and characters, zebracat-voice to browse voices in 170+ languages or clone a voice, zebracat-brand to set up a reusable brand kit (logo, colors, fonts, tone), zebracat-brainrot for subway-surfers / minecraft-parkour / italian-brainrot short-form, and zebracat-translate to dub finished videos into 25+ languages with captions.",
     "developerName": "Zebracat",
     "category": "Design",
     "capabilities": [

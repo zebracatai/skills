@@ -10,7 +10,7 @@
       "name": "zebracat",
       "source": "./",
       "description": "Zebracat skills for AI video generation (plan first, exact price; motion graphics, 3D, music, trending ideas, social posting), Character Swap, avatars and characters, voice cloning, brand kits, viral brainrot, and video translation. Invoke as /zebracat-video, /zebracat-swap, /zebracat-avatar, /zebracat-voice, /zebracat-brand, /zebracat-brainrot or /zebracat-translate, or just ask. The plugin also lists them under its namespace, e.g. /zebracat:zebracat-video.",
-      "version": "1.3.0"
+      "version": "1.3.1"
     }
   ]
 }

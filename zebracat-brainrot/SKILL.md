@@ -1,5 +1,5 @@
 ---
-version: 1.3.0
+version: 1.3.1
 name: zebracat-brainrot
 description: |
   Create viral, high-retention short-form "brainrot" videos with Zebracat — vertical clips with

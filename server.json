@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "ai.zebracat/zebracat",
+  "title": "Zebracat",
+  "description": "Plan and make short AI videos with script, voice, visuals, music and captions.",
+  "version": "2026.11.27",
+  "websiteUrl": "https://www.zebracat.ai/mcp",
+  "repository": {
+    "url": "https://github.com/zebracatai/skills",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.zebracat.ai/mcp"
+    }
+  ]
+}

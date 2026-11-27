@@ -30,6 +30,8 @@ zebracat-skills/
 ├── .claude-plugin/             # Claude Code / OpenClaw plugin manifest + marketplace
 ├── .codex-plugin/              # Codex plugin manifest
 ├── .cursor-plugin/             # Cursor plugin manifest
+├── gemini-extension.json       # Gemini CLI extension (connects the MCP server)
+├── server.json                 # MCP Registry entry (ai.zebracat/zebracat → https://mcp.zebracat.ai/mcp)
 ├── scripts/
 │   └── update-check.sh         # Opt-in version-check shell script
 ├── zebracat-video/             # Flagship producer skill
